@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 
-class MessageAdapter(private val messageList: List<Message>) :
+class MessageAdapter(private var messageList: MutableList<Message>) :
     RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
 
     companion object {
@@ -52,6 +52,25 @@ class MessageAdapter(private val messageList: List<Message>) :
         return when (message.sentBy) {
             Message.SENT_BY_ME -> SENT_BY_ME
             else -> SENT_BY_BOT
+        }
+    }
+
+
+    fun updateData(newMessageList: List<Message>) {
+        this.messageList.clear()
+        this.messageList.addAll(newMessageList)
+        notifyDataSetChanged()
+    }
+
+    fun addMessage(message: Message) {
+        this.messageList.add(message)
+        notifyItemInserted(messageList.size - 1)
+    }
+
+    fun removeTypingIndicator() {
+        if (messageList.lastOrNull()?.sentBy == Message.SENT_BY_BOT) {
+            messageList.removeAt(messageList.size - 1)
+            notifyItemRemoved(messageList.size)
         }
     }
 

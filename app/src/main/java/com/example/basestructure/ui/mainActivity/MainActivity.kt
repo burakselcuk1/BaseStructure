@@ -9,6 +9,7 @@ import com.example.basestructure.R
 import com.example.basestructure.adapter.MessageAdapter
 import com.example.basestructure.base.BaseActivity
 import com.example.basestructure.databinding.ActivityMainBinding
+import com.example.basestructure.model.local.MessageEntity
 import com.example.chatgptapp.model.Message
 import com.google.android.material.internal.ViewUtils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,33 +22,41 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     override fun onInitDataBinding() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-
         val llm = LinearLayoutManager(this)
         llm.stackFromEnd = true
         binding.recyclerView.layoutManager = llm
 
-        viewModel.messageList.observe(this) { messages ->
-            val adapter = MessageAdapter(messages)
-            binding.recyclerView.adapter = adapter
+        val adapter = MessageAdapter(mutableListOf())
+        binding.recyclerView.adapter = adapter
+
+        viewModel.allMessages.observe(this) { messages ->
+            adapter.updateData(messages)
             scrollToBottom() // Veri değiştiğinde listenin en altına kaydır
+        }
+
+        viewModel.botTyping.observe(this) { isTyping ->
+            if (isTyping) {
+                adapter.addMessage(Message("Typing...", Message.SENT_BY_BOT, viewModel.getCurrentTimestamp()))
+            } else {
+                adapter.removeTypingIndicator()
+            }
+            scrollToBottom()
         }
 
         binding.sendBtn.setOnClickListener {
             hideKeyboard(it)
             val question = binding.messageEditText.text.toString()
-            viewModel.addToChat(question, Message.SENT_BY_ME, viewModel.getCurrentTimestamp())
+            viewModel.sendMessage(question)
             binding.messageEditText.setText("")
-            viewModel.callApi(question)
         }
     }
 
     fun scrollToBottom() {
-        val targetPosition = viewModel.messageList.value?.size?.minus(1) ?: 0
+        val targetPosition = viewModel.allMessages.value?.size?.minus(1) ?: 0
         if (targetPosition >= 0) {
             binding.recyclerView.post {
                 binding.recyclerView.smoothScrollToPosition(targetPosition)
             }
         }
     }
-
 }
