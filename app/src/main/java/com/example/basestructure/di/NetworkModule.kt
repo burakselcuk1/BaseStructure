@@ -15,6 +15,7 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
@@ -30,7 +31,10 @@ object NetworkModule {
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(authInterceptor)
-        .addInterceptor(loggingInterceptor)
+        .addInterceptor(loggingInterceptor) // Loglama ekleyin
+        .connectTimeout(1, TimeUnit.MINUTES) // connect timeout
+        .readTimeout(30, TimeUnit.SECONDS) // socket timeout
+        .writeTimeout(15, TimeUnit.SECONDS)
         .build()
 
     private val retrofit = Retrofit.Builder()

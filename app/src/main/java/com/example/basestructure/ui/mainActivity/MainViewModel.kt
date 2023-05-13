@@ -57,6 +57,8 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
+
+
     private suspend fun handleApiResponse(response: Response<CompletionResponse>) {
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {
