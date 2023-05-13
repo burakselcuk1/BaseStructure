@@ -72,7 +72,7 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
     }
 
     fun callApi(question: String) {
-
+        _botTyping.value = true
         val messageHistory = createMessageHistory().toMutableList()
         messageHistory.add(MessageRequest("user", question))
 
@@ -101,6 +101,7 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
     private suspend fun handleApiResponse(response: Response<CompletionResponse>, question: String) {
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {
+                _botTyping.value = false
                 response.body()?.let { completionResponse ->
                     Log.d("APIResponse", "Completion Response: $completionResponse")
                     val result = completionResponse.choices.firstOrNull()?.message?.content

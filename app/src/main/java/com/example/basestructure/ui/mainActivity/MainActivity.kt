@@ -3,6 +3,7 @@ package com.example.basestructure.ui.mainActivity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.basestructure.R
@@ -48,6 +49,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
             val question = binding.messageEditText.text.toString()
             viewModel.sendMessage(question)
             binding.messageEditText.setText("")
+        }
+
+        viewModel.botTyping.observe(this) { isTyping ->
+            if (isTyping) {
+                binding.typingIndicator.visibility = View.VISIBLE
+            } else {
+                binding.typingIndicator.visibility = View.GONE
+            }
         }
     }
 

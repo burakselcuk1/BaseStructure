@@ -7,25 +7,41 @@
 
     </data>
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:background="@drawable/back"
         android:layout_height="match_parent"
         tools:context=".ui.mainActivity.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/recycler_view"
-            android:layout_above="@id/bottom_layout" />
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@id/bottom_layout"
+            app:layout_constraintBottom_toTopOf="@+id/typingIndicator"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/typingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Typing..."
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <RelativeLayout
+            android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_alignParentBottom="true"
             android:padding="8dp"
-            android:id="@+id/bottom_layout">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <EditText
                 android:id="@+id/message_edit_text"
@@ -53,5 +69,5 @@
         </RelativeLayout>
 
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
