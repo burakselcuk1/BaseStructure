@@ -1,10 +1,12 @@
 package com.example.basestructure.ui.mainActivity
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.basestructure.base.BaseViewModel
 import com.example.basestructure.di.NetworkModule
+import com.example.basestructure.model.MessageRequest
 import com.example.chatgptapp.model.CompletionRequest
 import com.example.chatgptapp.model.CompletionResponse
 import com.example.chatgptapp.model.Message
@@ -41,9 +43,14 @@ class MainViewModel : BaseViewModel() {
     fun callApi(question: String) {
         addToChat("Typing....", Message.SENT_BY_BOT, getCurrentTimestamp())
 
+        val messagesList = listOf(
+            MessageRequest("system", "You are a helpful assistant."),
+            MessageRequest("user", question)
+        )
+
         val completionRequest = CompletionRequest(
-            model = "text-davinci-003",
-            prompt = question,
+            model = "gpt-3.5-turbo",
+            messages = messagesList,
             max_tokens = 4000
         )
 
@@ -59,23 +66,29 @@ class MainViewModel : BaseViewModel() {
 
 
 
+
+
     private suspend fun handleApiResponse(response: Response<CompletionResponse>) {
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {
                 response.body()?.let { completionResponse ->
-                    val result = completionResponse.choices.firstOrNull()?.text
+                    Log.d("APIResponse", "Completion Response: $completionResponse")
+                    val result = completionResponse.choices.firstOrNull()?.message?.content
                     if (result != null) {
                         addResponse(result.trim())
                         displayResponseLetterByLetter(result.trim())
                     } else {
                         addResponse("No choices found")
                     }
+
                 }
             } else {
+                Log.d("APIResponse", "Failed response: ${response.errorBody()}")
                 addResponse("Failed to get response ${response.errorBody()}")
             }
         }
     }
+
 
     private suspend fun displayResponseLetterByLetter(response: String) {
         var currentText = ""

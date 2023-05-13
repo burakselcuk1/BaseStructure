@@ -16,6 +16,6 @@ interface Api {
     suspend fun getBtc(
     ): Response<BtcResponse>
 
-    @POST("v1/completions")
+    @POST("v1/chat/completions")
     suspend fun getCompletions(@Body completionResponse: CompletionRequest) : Response<CompletionResponse>
 }

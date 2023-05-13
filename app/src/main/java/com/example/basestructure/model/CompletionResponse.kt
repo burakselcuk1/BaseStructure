@@ -1,19 +1,14 @@
 package com.example.chatgptapp.model
 
+import com.example.basestructure.model.ApiMessage
+
 data class CompletionResponse(
     val id: String,
-    val obj: String,
-    val created: Long,
+    val responseObject : String,
+    val created: Int,
     val model: String,
-    val choices: List<Choice>,
-    val usage: Usage
-)
-
-data class Choice(
-    val text: String,
-    val index: Int,
-    val logprobs: Any?,
-    val finish_reason: String
+    val usage: Usage,
+    val choices: List<Choice>
 )
 
 data class Usage(
@@ -21,4 +16,11 @@ data class Usage(
     val completion_tokens: Int,
     val total_tokens: Int
 )
+
+data class Choice(
+    val message: ApiMessage,
+    val finish_reason: String,
+    val index: Int
+)
+
 
