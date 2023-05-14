@@ -23,6 +23,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     override fun onInitDataBinding() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
+        viewModel.clearAllMessages()
+
         val llm = LinearLayoutManager(this)
         llm.stackFromEnd = true
         binding.recyclerView.layoutManager = llm

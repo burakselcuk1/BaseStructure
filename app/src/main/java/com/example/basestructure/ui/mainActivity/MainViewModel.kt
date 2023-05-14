@@ -87,7 +87,7 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
         viewModelScope.launch {
             try {
                 val response = NetworkModule.apiService.getCompletions(completionRequest)
-                handleApiResponse(response, question)
+                handleApiResponse(response)
             } catch (e: SocketTimeoutException) {
                 addToChat("Timeout :  $e", Message.SENT_BY_BOT, getCurrentTimestamp())
             }
@@ -95,18 +95,21 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
     }
 
 
+    fun clearAllMessages() {
+        viewModelScope.launch {
+            messageRepository.deleteAll()
+        }
+    }
 
 
 
-    private suspend fun handleApiResponse(response: Response<CompletionResponse>, question: String) {
+    private suspend fun handleApiResponse(response: Response<CompletionResponse>) {
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {
-                _botTyping.value = false
                 response.body()?.let { completionResponse ->
                     Log.d("APIResponse", "Completion Response: $completionResponse")
                     val result = completionResponse.choices.firstOrNull()?.message?.content
                     if (result != null) {
-                        addToChat(question, Message.SENT_BY_ME, getCurrentTimestamp())
                         addToChat(result.trim(), Message.SENT_BY_BOT, getCurrentTimestamp())
                     } else {
                         addToChat("No choices found", Message.SENT_BY_BOT, getCurrentTimestamp())
@@ -119,6 +122,7 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
             _botTyping.value = false // AI has finished "typing", regardless of success or failure
         }
     }
+
 
 
 
