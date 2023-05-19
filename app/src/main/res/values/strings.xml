@@ -2,4 +2,8 @@
     <string name="app_name">Speak with Ai</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Main Fragment
+    <string name="description">Type below to get answers Ask any open ended questions</string>
+
 </resources>

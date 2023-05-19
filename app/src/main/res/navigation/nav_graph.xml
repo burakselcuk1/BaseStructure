@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph" />
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.example.basestructure.ui.explore.ExploreFragment"
+        android:label="FirstFragment"/>
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.basestructure.ui.mainFragment.MainFragment"
+        android:label="SecondFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_chatFragment2"
+            app:destination="@id/chatFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.example.basestructure.ui.more.MoreFragment"
+        android:label="ThirdFragment"/>
+    <fragment
+        android:id="@+id/chatFragment2"
+        android:name="com.example.basestructure.ui.chat.ChatFragment"
+        android:label="ChatFragment" />
+</navigation>
