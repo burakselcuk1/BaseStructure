@@ -4,6 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     //Main Fragment
-    <string name="description">Type below to get answers Ask any open ended questions</string>
+    <string name="description">Type below to get answers</string>
+    <string name="description_continue">Ask any open ended questions</string>
 
 </resources>
