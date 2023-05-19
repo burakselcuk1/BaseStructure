@@ -71,6 +71,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideGson() = Gson()
+
+    @Singleton
+    @Provides
+    fun provideApiService(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
+
 }
 
 class AuthInterceptor : Interceptor {
