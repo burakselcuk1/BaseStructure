@@ -16,7 +16,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(
 
 
     override fun onInitDataBinding() {
-        binding.animationView.setAnimation("progress/splash.json")
+        supportActionBar?.hide()
+
+        binding.animationView.setAnimation("progress/lol.json")
         binding.animationView.setImageAssetsFolder("progress/")
         binding.animationView.playAnimation()
 
@@ -40,6 +42,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(
             }
         })
 
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
 
     }
 

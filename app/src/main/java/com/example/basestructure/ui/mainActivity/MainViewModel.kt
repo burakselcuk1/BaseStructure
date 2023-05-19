@@ -57,6 +57,7 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
+
     fun addToChat(message: String, sentBy: String, timestamp: String) {
         val messageEntity = MessageEntity(
             content = message,
@@ -72,7 +73,6 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
     }
 
     fun callApi(question: String) {
-        _botTyping.value = true
         val messageHistory = createMessageHistory().toMutableList()
         messageHistory.add(MessageRequest("user", question))
 
@@ -82,17 +82,17 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
             max_tokens = 4000
         )
 
-        _botTyping.value = true
-
         viewModelScope.launch {
             try {
                 val response = NetworkModule.apiService.getCompletions(completionRequest)
                 handleApiResponse(response)
             } catch (e: SocketTimeoutException) {
                 addToChat("Timeout :  $e", Message.SENT_BY_BOT, getCurrentTimestamp())
+                _botTyping.value = false // AI has finished "typing"
             }
         }
     }
+
 
 
     fun clearAllMessages() {
@@ -109,11 +109,13 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
                 response.body()?.let { completionResponse ->
                     Log.d("APIResponse", "Completion Response: $completionResponse")
                     val result = completionResponse.choices.firstOrNull()?.message?.content
-                    if (result != null) {
+                    if (!result.isNullOrEmpty()) {
                         addToChat(result.trim(), Message.SENT_BY_BOT, getCurrentTimestamp())
                     } else {
                         addToChat("No choices found", Message.SENT_BY_BOT, getCurrentTimestamp())
                     }
+                } ?: run {
+                    addToChat("Response body is null", Message.SENT_BY_BOT, getCurrentTimestamp())
                 }
             } else {
                 Log.d("APIResponse", "Failed response: ${response.errorBody()}")
@@ -122,6 +124,7 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
             _botTyping.value = false // AI has finished "typing", regardless of success or failure
         }
     }
+
 
 
 
