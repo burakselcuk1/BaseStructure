@@ -24,30 +24,23 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(
 
         binding.animationView.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
-                // Animasyon başladığında yapılacaklar
             }
 
             override fun onAnimationEnd(animation: Animator) {
                 // Animasyon bittiğinde MainActivity'ye geçiş yapılıyor
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                finish() // Bu splash ekranını kapatır, böylece geri tuşuna basıldığında splash ekranına dönülmez.
+                finish()
             }
 
             override fun onAnimationCancel(animation: Animator) {
-                // Animasyon iptal edildiğinde yapılacaklar
             }
 
             override fun onAnimationRepeat(animation: Animator) {
-                // Animasyon tekrarlandığında yapılacaklar
             }
         })
-
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
-
     }
-
 }

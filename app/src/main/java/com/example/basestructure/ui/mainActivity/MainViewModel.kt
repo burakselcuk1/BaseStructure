@@ -57,7 +57,6 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
-
     fun addToChat(message: String, sentBy: String, timestamp: String) {
         val messageEntity = MessageEntity(
             content = message,
@@ -93,15 +92,11 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
-
-
     fun clearAllMessages() {
         viewModelScope.launch {
             messageRepository.deleteAll()
         }
     }
-
-
 
     private suspend fun handleApiResponse(response: Response<CompletionResponse>) {
         withContext(Dispatchers.Main) {
@@ -125,24 +120,17 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
-
-
-
-
     fun getCurrentTimestamp(): String {
         return SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
     }
 
     fun createMessageHistory(): List<MessageRequest> {
         val messageHistory = mutableListOf<MessageRequest>()
-
         // Her bir mesajı MessageRequest olarak dönüştür ve listeye ekle
         allMessages.value?.forEach { message ->
             val role = if (message.sentBy == Message.SENT_BY_ME) "user" else "system"
             messageHistory.add(MessageRequest(role, message.message))
         }
-
         return messageHistory
     }
-
 }
