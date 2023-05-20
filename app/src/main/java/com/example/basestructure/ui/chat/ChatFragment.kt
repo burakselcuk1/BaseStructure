@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.basestructure.R
@@ -45,6 +46,18 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             }
             scrollToBottom()
         }
+
+        viewModel.botWritingMessage.observe(viewLifecycleOwner) { partialMessage ->
+            val message = Message(partialMessage, Message.SENT_BY_BOT, viewModel.getCurrentTimestamp())
+            adapter.updateLastMessage(message)
+        }
+
+        viewModel.botWritingMessage.observe(viewLifecycleOwner) { _ ->
+            scrollToBottom()
+        }
+
+
+
 
         binding.sendBtn.setOnClickListener {
             ViewUtils.hideKeyboard(it)

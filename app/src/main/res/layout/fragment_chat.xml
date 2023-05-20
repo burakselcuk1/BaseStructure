@@ -14,13 +14,6 @@
         android:background="@drawable/back"
         tools:context=".ui.chat.ChatFragment">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="burak resi"
-            android:textSize="26sp"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -60,7 +53,9 @@
                 android:layout_toLeftOf="@id/send_btn"
                 android:background="@drawable/rounded_corner_right"
                 android:hint="Talk to Chat "
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
 
             <ImageButton
                 android:id="@+id/send_btn"

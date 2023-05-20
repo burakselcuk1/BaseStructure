@@ -1,7 +1,7 @@
 package com.example.chatgptapp.model
 
 data class Message(
-    val message : String,
+    var message : String,
     val sentBy : String,
     val timestamp : String
 ){

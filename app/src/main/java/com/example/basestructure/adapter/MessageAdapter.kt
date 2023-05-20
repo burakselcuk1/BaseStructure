@@ -74,6 +74,16 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
         }
     }
 
+    fun updateLastMessage(newMessage: Message) {
+        if (messageList.isNotEmpty() && messageList.last().sentBy == Message.SENT_BY_BOT) {
+            messageList[messageList.size - 1] = newMessage
+            notifyItemChanged(messageList.size - 1)
+        } else {
+            addMessage(newMessage)
+        }
+    }
+
+
     inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val leftChatTextView: TextView? = itemView.findViewById(R.id.left_chat_text_view)
         private val leftChatTimestamp: TextView? = itemView.findViewById(R.id.left_chat_timestamp)

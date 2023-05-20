@@ -1,5 +1,7 @@
 package com.example.basestructure.ui.chat
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,6 +43,8 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
 
     private val _botTyping = MutableLiveData<Boolean>()
     val botTyping: LiveData<Boolean> get() = _botTyping
+    private val _botWritingMessage = MutableLiveData<String>() // yeni eklendi
+    val botWritingMessage: LiveData<String> get() = _botWritingMessage
 
     fun sendMessage(content: String) {
         _botTyping.value = true
@@ -103,7 +107,18 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
                     Log.d("APIResponse", "Completion Response: $completionResponse")
                     val result = completionResponse.choices.firstOrNull()?.message?.content
                     if (!result.isNullOrEmpty()) {
-                        addToChat(result.trim(), Message.SENT_BY_BOT, getCurrentTimestamp())
+                        _botWritingMessage.value = ""  // Clear the previous message
+                        val delay: Long = 60  // Bot "typing" time in milliseconds per character
+                        val handler = Handler(Looper.getMainLooper())
+                        for (i in result.indices) {
+                            handler.postDelayed({
+                                val partialMessage = _botWritingMessage.value + result[i]
+                                _botWritingMessage.value = partialMessage
+                                if (i == result.length - 1) { // Eğer son harfe ulaştıysak
+                                    addToChat(_botWritingMessage.value!!, Message.SENT_BY_BOT, getCurrentTimestamp())
+                                }
+                            }, delay * i)
+                        }
                     } else {
                         addToChat("No choices found", Message.SENT_BY_BOT, getCurrentTimestamp())
                     }
@@ -118,6 +133,7 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
+
     fun getCurrentTimestamp(): String {
         return SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())
     }
@@ -130,6 +146,20 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
             messageHistory.add(MessageRequest(role, message.message))
         }
         return messageHistory
+    }
+
+    fun addToChat(message: Message) {
+        val messageEntity = MessageEntity(
+            content = message.message,
+            sender = when(message.sentBy) {
+                Message.SENT_BY_ME -> MessageEntity.Sender.USER
+                else -> MessageEntity.Sender.BOT
+            },
+            timestamp = message.timestamp
+        )
+        viewModelScope.launch {
+            messageRepository.insert(messageEntity)
+        }
     }
 
 }
