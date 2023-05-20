@@ -15,8 +15,9 @@ class ChildAdapter(private val children: List<Child>) : RecyclerView.Adapter<Chi
     }
 
     override fun onBindViewHolder(holder: ChildViewHolder, position: Int) {
-        holder.bind(children[position])
+        holder.bind(children[position], position)
     }
+
 
     override fun getItemCount() = children.size
 }

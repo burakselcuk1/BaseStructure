@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gölge -->
+    <item>
+        <shape>
+            <solid android:color="#40000000"/> <!-- Gölgenin rengini ayarla -->
+            <corners android:radius="20dp"/> <!-- Gölgenin yarıçapını ayarla -->
+        </shape>
+    </item>
+    <!-- Arka plan -->
+    <item
+        android:top="2dp"
+        android:bottom="2dp"
+        android:left="2dp"
+        android:right="2dp">
+        <shape>
+            <solid android:color="@color/teal_200"/> <!-- Arka planın rengini ayarla -->
+            <corners android:radius="20dp"/> <!-- Arka planın yarıçapını ayarla -->
+        </shape>
+    </item>
+</layer-list>

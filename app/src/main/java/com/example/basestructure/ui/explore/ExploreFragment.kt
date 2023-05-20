@@ -19,14 +19,15 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
     viewModelClass = ExploreFragmentViewModel::class.java
 ) {
     override fun onInitDataBinding() {
-        val child1 = Child("Child 1")
-        val child2 = Child("Child 2")
-        val child3 = Child("Child 3")
+        val child1 = Child("Ev Kiralama")
+        val child2 = Child("Bilet Alma")
+        val child3 = Child("Restoran Tevsiyesi")
+        val child4 = Child("Gezilecek Yerler")
 
-        val children = listOf(child1, child2, child3)
+        val children = listOf(child1, child2, child3, child4)
 
         val parent1 = ResourcesCompat.getDrawable(resources, R.drawable.logo, null)
-            ?.let { Parent(it, "Parent 1", children) }
+            ?.let { Parent(it, "Seyehat Ve Keşif", children) }
         val parent2 = ResourcesCompat.getDrawable(resources, R.drawable.logo, null)
             ?.let { Parent(it, "Parent 2", children) }
 
