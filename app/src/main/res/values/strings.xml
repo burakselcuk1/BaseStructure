@@ -7,4 +7,25 @@
     <string name="description">Type below to get answers</string>
     <string name="description_continue">Ask any open ended questions</string>
 
+    //Child Options
+    <string name="house_rent">Antalya Kaş ev kiraları ne kadar?</string>
+    <string name="take_ticket">Orlando Disney World için biletleri kapıda satın alabilir miyim?</string>
+    <string name="suggest_restaurant">Kapadokya\'da ziyaret edilecek en ünlü 5 restoran hangileri?</string>
+    <string name="travel">İstanbul\'da sadece 5 gün kalacağımı varsayarsak, mutlaka görülmesi gereken yerleri önerir misiniz?</string>
+    <string name="name_crator">Aşağıdaki ayrıntılar için ürün adı önerisi oluştur: Ürün açıklaması: Ev yapımı milkshake yapma makinesi. Önemli kelimeler: hızlı, sağlıklı, kompakt.</string>
+    <string name="suggest_relationship">Kız arkadaşıma evlilik teklifi için romantik fikirler nelerdir?</string>
+    <string name="suggest_title">Çeşme\'deki bir seyahat fotoğrafı için Instagram başlık fikirlerin var mı?</string>
+    <string name="write_document">Aşk hakkında bir şiir yaz</string>
+    <string name="job_posts">Jr. QA Engineer pozisyonu için bir iş ilanı şablonu yazabilir misin?</string>
+    <string name="cell">Bir ökaryotik hücrenin organelleri nelerdir?</string>
+    <string name="climate">İklim değişikliği dünyayı nasıl etkiler?</string>
+    <string name="evolution">Evrim süreci nedir ve nasıl işler?</string>
+    <string name="brain">Beyin nasıl bilgi işler, düşünce ve duyguları nasıl oluşturur?</string>
+    <string name="ıniverse">Evrenin yapısı nedir ve nasıl oluştu?</string>
+    <string name="hair">Saç uzamasını hızlandırmak için bazı yollar nelerdir?</string>
+    <string name="sleep">Daha iyi uyumamı sağlayacak bazı ipuçları nelerdir?</string>
+    <string name="routine">Sabah rutini oluşturmak için bazı ipuçları nelerdir?</string>
+    <string name="book">Mindfulness ile ilgilenen biri için önerebileceğin kitaplar nelerdir?</string>
+
+
 </resources>
