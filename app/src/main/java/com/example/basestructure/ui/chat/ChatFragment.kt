@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.basestructure.R
@@ -56,6 +57,11 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             scrollToBottom()
         }
 
+        // Get the clicked child name from the arguments
+        val clickedChildName = arguments?.getString("clickedChildName")
+
+        // Display a toast message
+        Toast.makeText(requireContext(), "Clicked child: $clickedChildName", Toast.LENGTH_SHORT).show()
 
 
 

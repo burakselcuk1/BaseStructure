@@ -5,7 +5,11 @@
     <fragment
         android:id="@+id/exploreFragment"
         android:name="com.example.basestructure.ui.explore.ExploreFragment"
-        android:label="FirstFragment"/>
+        android:label="FirstFragment">
+        <action
+            android:id="@+id/action_exploreFragment_to_chatFragment2"
+            app:destination="@id/chatFragment2" />
+    </fragment>
 
     <fragment
         android:id="@+id/mainFragment"

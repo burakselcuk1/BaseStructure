@@ -17,7 +17,7 @@ import com.example.basestructure.model.Parent
 import com.google.android.material.card.MaterialCardView
 
 
-class ParentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ParentViewHolder(view: View, private val onChildItemClickListener: (Child) -> Unit) : RecyclerView.ViewHolder(view) {
     private val iconView: ImageView = view.findViewById(R.id.icon)
     private val titleView: TextView = view.findViewById(R.id.title)
     private val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
@@ -27,27 +27,33 @@ class ParentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         titleView.text = parent.title
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = ChildAdapter(parent.children)
+            adapter = ChildAdapter(parent.children, onChildItemClickListener)
         }
     }
 }
 
-class ChildViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val textView: TextView = view.findViewById(R.id.textView)
-    private val layout: MaterialCardView = view.findViewById(R.id.item_child)
+
+class ChildViewHolder(itemView: View, private val onItemClickListener: (Child) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    private val textView: TextView = itemView.findViewById(R.id.textView)
+    private val layout: MaterialCardView = itemView.findViewById(R.id.item_child)
     private val colors = listOf(R.color.child_one, R.color.child_two, R.color.child_three, R.color.child_four, R.color.child_five)
 
     fun bind(child: Child, position: Int) {
         textView.text = child.text
 
-        // Pozisyona göre farklı bir arka plan rengi atayın
+        // Assign a different background color depending on position
         val color = ContextCompat.getColor(layout.context, colors[position % colors.size])
         layout.backgroundTintList = ColorStateList.valueOf(color)
 
-        // Sadece sola marjın ayarlanması
+        // Adjusting only the left margin
         val params = layout.layoutParams as RecyclerView.LayoutParams
         params.setMargins(20.dpToPx(), params.topMargin, params.rightMargin, params.bottomMargin)
         layout.layoutParams = params
+
+        // Set the click listener for the layout
+        layout.setOnClickListener {
+            onItemClickListener(child)
+        }
     }
 
     private fun Int.dpToPx(): Int {
