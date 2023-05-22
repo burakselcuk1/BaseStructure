@@ -27,5 +27,8 @@
     <string name="routine">Sabah rutini oluşturmak için bazı ipuçları nelerdir?</string>
     <string name="book">Mindfulness ile ilgilenen biri için önerebileceğin kitaplar nelerdir?</string>
 
+    //More Fragment
+    <string name="select_language">Dili Seçin</string>
+
 
 </resources>

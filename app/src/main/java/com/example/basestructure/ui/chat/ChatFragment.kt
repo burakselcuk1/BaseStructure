@@ -113,7 +113,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             }
             else -> {
                 // Beklenmeyen bir durum
-                Toast.makeText(requireContext(), "Beklenmeyen bir seçenek", Toast.LENGTH_SHORT).show()
             }
         }
 
