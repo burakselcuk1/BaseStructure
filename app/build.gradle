@@ -122,6 +122,9 @@ dependencies {
     implementation('com.google.firebase:firebase-ml-vision:24.1.0') {
         exclude group: 'com.google.android.gms', module: 'play-services-vision-common'
     }
+    implementation 'com.google.android.gms:play-services-vision:20.1.3'
+
+
 
 
 
