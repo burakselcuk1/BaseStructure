@@ -7,6 +7,11 @@
 
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,16 +30,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/explore_fragment_background"
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.288"
+            app:layout_constraintVertical_bias="0.09"
             tools:context=".ui.more.MoreFragment">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -45,79 +51,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/icon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/baseline_language_24" />
-
-                    <TextView
-                        android:id="@+id/textview1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/icon"
-                        android:text="@string/select_language"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:id="@+id/iconRight"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/baseline_chevron_right_24" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
-
-                    <ImageView
-                        android:id="@+id/icon2"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/baseline_language_24" />
-
-                    <TextView
-                        android:id="@+id/textview2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/icon2"
-                        android:text="@string/select_language"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:id="@+id/iconRight2"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/baseline_chevron_right_24" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -131,7 +64,7 @@
                         android:src="@drawable/baseline_language_24" />
 
                     <TextView
-                        android:id="@+id/textview3"
+                        android:id="@+id/change_language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -153,6 +86,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:alpha="0.5"
                     android:background="@android:color/darker_gray" />
 
                 <RelativeLayout
@@ -164,7 +98,7 @@
                         android:id="@+id/icon4"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/baseline_language_24" />
+                        android:src="@drawable/baseline_share_24" />
 
                     <TextView
                         android:id="@+id/textview4"
@@ -173,7 +107,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/icon4"
-                        android:text="@string/select_language"
+                        android:text="@string/share_speak_with_ai"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
@@ -189,6 +123,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:alpha="0.5"
                     android:background="@android:color/darker_gray" />
 
                 <RelativeLayout
@@ -200,7 +135,7 @@
                         android:id="@+id/icon5"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/baseline_language_24" />
+                        android:src="@drawable/baseline_star_rate_24" />
 
                     <TextView
                         android:id="@+id/textview5"
@@ -209,7 +144,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/icon5"
-                        android:text="@string/select_language"
+                        android:text="@string/evaluate"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
@@ -225,10 +160,114 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:alpha="0.5"
                     android:background="@android:color/darker_gray" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/explore_fragment_background"
+            android:padding="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.139"
+            tools:context=".ui.more.MoreFragment">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linearLayoutCompat8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/icon8"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/baseline_security_24" />
+
+                    <TextView
+                        android:id="@+id/privacy_policy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/icon8"
+                        android:text="@string/security"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iconRight8"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/baseline_chevron_right_24" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.5"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/icon9"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/baseline_help_24" />
+
+                    <TextView
+                        android:id="@+id/help"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/icon9"
+                        android:text="@string/help"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iconRight9"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/baseline_chevron_right_24" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.5"
+                    android:background="@android:color/darker_gray" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </layout>

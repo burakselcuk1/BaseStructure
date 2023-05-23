@@ -29,6 +29,40 @@
 
     //More Fragment
     <string name="select_language">Dili Seçin</string>
+    <string name="share_speak_with_ai">Speak With AI\'yi paylaş</string>
+    <string name="evaluate">Bizi Değerlendirin</string>
+    <string name="security">Gizlilik Politikası</string>
+    <string name="help">Yardım</string>
+
+
+    //Privacy Policy
+    <string name="privacy_policy">Bu Gizlilik Politikası, Speak With AI ("biz", "bize", "bizim") tarafından sunulan mobil uygulamanın ("Uygulama") kullanımınız sırasında toplanan bilgileri ve bu bilgilerin nasıl kullanıldığını açıklar.
+
+1. Topladığımız Bilgiler
+Uygulamamızı kullanırken, sizden bazı kişisel verileri toplamamız gerekebilir. Bu veriler, kayıt işlemi sırasında sağladığınız bilgileri (örneğin, e-posta adresi) ve Uygulamayı kullanırken oluşturulan diğer bilgileri (örneğin, mesajlarınız) içerir.
+
+2. Bilgilerin Kullanımı
+Topladığımız bilgileri aşağıdaki amaçlarla kullanırız:
+
+Uygulamayı yönetmek ve iyileştirmek.
+Kullanıcı deneyimini kişiselleştirmek ve geliştirmek.
+Teknik destek veya müşteri hizmetleri sağlamak.
+Uygulamanın güvenliğini sağlamak.
+3. Bilgi Paylaşımı
+Verilerinizin gizliliği bizim için önemlidir ve kişisel bilgilerinizi üçüncü taraf servis sağlayıcılarıyla sadece aşağıdaki durumlarda paylaşırız:
+
+OpenAI: ChatGPT API hizmetini sağlayan OpenAI ile mesajlarınız paylaşılır. OpenAI\'nin kendi gizlilik politikasını [OpenAI gizlilik politikası linki] adresinden gözden geçirebilirsiniz.
+Yasal gereklilikler: Yasalar gereği talep edilmesi durumunda veya hukuk yoluyla koruma ihtiyacı olduğuna inandığımız durumlarda bilgilerinizi paylaşabiliriz.
+4. Güvenlik
+Bilgilerinizi güvende tutmak için ticari olarak kabul görmüş teknik ve organizasyonel önlemler kullanırız. Ancak, internet üzerinde hiçbir iletim yönteminin veya elektronik depolamanın %100 güvenli olmadığını unutmayın.
+
+5. Gizlilik Politikasında Değişiklikler
+Bu gizlilik politikasını zaman zaman güncellememiz gerekebilir. Bu sayfayı düzenli olarak ziyaret ederek güncellemeleri kontrol edebilirsiniz.
+
+6. İletişim
+Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yazın. speakwithaitr@gmail.com</string>
+    <string name="privacy_policy_Title">Gizlilik Politikası</string>
+
 
 
 </resources>
