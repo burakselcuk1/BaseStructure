@@ -25,16 +25,16 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
 
     private fun viewClicks() {
         with(binding){
-            changeLanguage.setOnClickListener {
+            selectLanguage.setOnClickListener {
                 val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
                 if (activity?.packageManager?.let { it1 -> intent.resolveActivity(it1) } != null) {
                     startActivity(intent)
                 }
             }
-            privacyPolicy.setOnClickListener {
+            privacy.setOnClickListener {
                 findNavController().navigate(R.id.action_moreFragment_to_privacyPolicyFragment)
             }
-            help.setOnClickListener {
+            helpp.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
                     putExtra(Intent.EXTRA_EMAIL, arrayOf("speakwithaitr@gmail.com"))

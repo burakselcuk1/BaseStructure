@@ -125,8 +125,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
             .addOnSuccessListener { firebaseVisionText ->
                 val text = firebaseVisionText.text
                 Log.d("MLKit", "Recognized text: $text")
-                Toast.makeText(requireContext(),text.toString(),Toast.LENGTH_SHORT).show()
-
+                binding.sonuc.text = text.toString()
                 // text is the recognized text from image
             }
             .addOnFailureListener { e ->
