@@ -38,7 +38,7 @@
         <RelativeLayout
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"

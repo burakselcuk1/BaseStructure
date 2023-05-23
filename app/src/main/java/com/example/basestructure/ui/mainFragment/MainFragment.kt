@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -120,13 +121,18 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
     private fun recognizeTextFromImage(imageBitmap: Bitmap) {
         val image = FirebaseVisionImage.fromBitmap(imageBitmap)
         val recognizer = FirebaseVision.getInstance().getOnDeviceTextRecognizer()
+        binding.progressBar.visibility = View.VISIBLE
 
         recognizer.processImage(image)
             .addOnSuccessListener { firebaseVisionText ->
                 val text = firebaseVisionText.text
-                Log.d("MLKit", "Recognized text: $text")
-                binding.sonuc.text = text.toString()
+                val bundle = Bundle().apply {
+                    putString("recognized_text", text)
+                }
+                findNavController().navigate(R.id.action_mainFragment_to_chatFragment2,bundle)
                 // text is the recognized text from image
+                binding.progressBar.visibility = View.GONE
+
             }
             .addOnFailureListener { e ->
                 // Task failed with an exception

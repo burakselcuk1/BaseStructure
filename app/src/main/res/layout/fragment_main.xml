@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_fragmentt"
         android:layout_width="match_parent"
@@ -29,7 +28,6 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/textView2"
@@ -102,9 +100,18 @@
             app:layout_constraintStart_toStartOf="@+id/text_input_layout"
             app:layout_constraintTop_toBottomOf="@+id/text_input_layout" />
 
-
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/black"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/text_input_layout"
+            app:layout_constraintStart_toStartOf="@+id/text_input_layout"
+            app:layout_constraintTop_toTopOf="@+id/sonuc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </layout>

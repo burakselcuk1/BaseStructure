@@ -23,6 +23,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     layoutId = R.layout.fragment_chat,
     viewModelClass = ChatViewModel::class.java
 ) {
+    @SuppressLint("RestrictedApi")
     override fun onInitDataBinding() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
@@ -39,6 +40,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             adapter.updateData(messages)
             scrollToBottom() // Veri değiştiğinde listenin en altına kaydır
         }
+
+        val text = arguments?.getString("recognized_text")
+        binding.messageEditText.setText(text)
 
         viewModel.botTyping.observe(this) { isTyping ->
             if (isTyping) {
@@ -115,7 +119,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                 // Beklenmeyen bir durum
             }
         }
-
 
         binding.sendBtn.setOnClickListener {
             ViewUtils.hideKeyboard(it)
