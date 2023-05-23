@@ -67,21 +67,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <EditText
-            android:id="@+id/edit_text"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_layout"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/rounded_edittext"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:gravity="center"
-            android:hint="Type here.."
-            android:textColorHint="#5A5A5A"
-            android:textSize="15dp"
-            app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
-            app:layout_constraintStart_toStartOf="@+id/appCompatImageView"
-            app:layout_constraintTop_toBottomOf="@+id/text1View" />
+            android:layout_marginTop="20dp"
+            app:endIconDrawable="@drawable/baseline_camera_alt_24"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="@+id/text1View"
+            app:layout_constraintStart_toStartOf="@+id/text1View"
+            app:layout_constraintTop_toBottomOf="@+id/text1View">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_edittext"
+                android:hint="@string/type_here"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.basestructure.R
 import com.example.basestructure.base.BaseFragment
@@ -21,17 +22,16 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
 ) {
     override fun onInitDataBinding() {
 
-        binding.editText.setOnClickListener { view ->
-            // Klavyenin açılmasını önlemek için focus'ı kaldır
-            view.clearFocus()
-
-            // Eğer klavye açıksa, kapat
-            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-            imm?.hideSoftInputFromWindow(view.windowToken, 0)
-
-            // Navigasyon işlemini gerçekleştir
+// Edittext'e tıklanınca diğer fragment'a gidilir
+        binding.editText.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_chatFragment2)
         }
+
+// Ikon'a tıklandığında başka bir işlem yapılır (örneğin, bir Toast mesajı gösterilir)
+        binding.textInputLayout.setEndIconOnClickListener {
+            Toast.makeText(context, "Icon clicked!", Toast.LENGTH_SHORT).show()
+        }
+
 
 
 

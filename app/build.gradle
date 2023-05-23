@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id "dagger.hilt.android.plugin"
+    id 'com.google.gms.google-services'
 }
 
 
@@ -116,6 +117,12 @@ dependencies {
 
     //Lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //ML-Kit
+    implementation('com.google.firebase:firebase-ml-vision:24.1.0') {
+        exclude group: 'com.google.android.gms', module: 'play-services-vision-common'
+    }
+
 
 
 }

@@ -6,6 +6,7 @@
     //Main Fragment
     <string name="description">Type below to get answers</string>
     <string name="description_continue">Ask any open ended questions</string>
+    <string name="type_here">Type here..</string>
 
     //Child Options
     <string name="house_rent">Antalya Kaş ev kiraları ne kadar?</string>
