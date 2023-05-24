@@ -63,6 +63,10 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             scrollToBottom()
         }
 
+        viewModel.isMessageComplete.observe(viewLifecycleOwner) { isComplete ->
+            adapter.setCopyIconVisibility(isComplete)
+        }
+
         // Get the clicked child name from the arguments
         val clickedChildName = arguments?.getString("clickedChildName")
 

@@ -23,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MessageAdapter(private var messageList: MutableList<Message>) :
     RecyclerView.Adapter<MessageAdapter.MessageViewHolder>() {
+    private var showCopyIcon = false
 
     companion object {
         const val SENT_BY_ME = 0
@@ -47,6 +48,12 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = messageList[position]
         holder.bind(message)
+
+        if (showCopyIcon && message.sentBy == Message.SENT_BY_BOT) {
+            holder.copyIcon?.visibility = View.VISIBLE
+        } else {
+            holder.copyIcon?.visibility = View.GONE
+        }
     }
 
     override fun getItemCount(): Int = messageList.size
@@ -93,7 +100,7 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
         private val leftChatTimestamp: TextView? = itemView.findViewById(R.id.left_chat_timestamp)
         private val rightChatTextView: TextView? = itemView.findViewById(R.id.right_chat_text_view)
         private val rightChatTimestamp: TextView? = itemView.findViewById(R.id.right_chat_timestamp)
-        private val copyIcon: ImageView? = itemView.findViewById(R.id.copy_icon)
+        val copyIcon: ImageView? = itemView.findViewById(R.id.copy_icon)
 
         fun bind(message: Message) {
             when (message.sentBy) {
@@ -117,5 +124,10 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
             }
         }
 
+    }
+
+    fun setCopyIconVisibility(visible: Boolean) {
+        showCopyIcon = visible
+        notifyDataSetChanged()
     }
 }

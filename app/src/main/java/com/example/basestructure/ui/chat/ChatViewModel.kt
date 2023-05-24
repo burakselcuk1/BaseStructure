@@ -46,6 +46,10 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
     private val _botWritingMessage = MutableLiveData<String>() // yeni eklendi
     val botWritingMessage: LiveData<String> get() = _botWritingMessage
 
+    private val _isMessageComplete = MutableLiveData<Boolean>()
+    val isMessageComplete: LiveData<Boolean> get() = _isMessageComplete
+
+
     fun sendMessage(content: String) {
         _botTyping.value = true
         val userMessage = MessageEntity(
@@ -73,7 +77,7 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
-    fun callApi(question: String) {
+    fun callApi(question: String, retryCount: Int = 0) {
         val messageHistory = createMessageHistory().toMutableList()
         messageHistory.add(MessageRequest("user", question))
 
@@ -86,7 +90,7 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         viewModelScope.launch {
             try {
                 val response = NetworkModule.apiService.getCompletions(completionRequest)
-                handleApiResponse(response)
+                handleApiResponse(response, retryCount, question)
             } catch (e: SocketTimeoutException) {
                 addToChat("Timeout :  $e", Message.SENT_BY_BOT, getCurrentTimestamp())
                 _botTyping.value = false // AI has finished "typing"
@@ -94,13 +98,14 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
+
     fun clearAllMessages() {
         viewModelScope.launch {
             messageRepository.deleteAll()
         }
     }
 
-    private suspend fun handleApiResponse(response: Response<CompletionResponse>) {
+    private suspend fun handleApiResponse(response: Response<CompletionResponse>, retryCount: Int = 0, question: String) {
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {
                 response.body()?.let { completionResponse ->
@@ -116,6 +121,10 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
                                 _botWritingMessage.value = partialMessage
                                 if (i == result.length - 1) { // Eğer son harfe ulaştıysak
                                     addToChat(_botWritingMessage.value!!, Message.SENT_BY_BOT, getCurrentTimestamp())
+                                    // give a slight delay before setting _isMessageComplete.value to true
+                                    handler.postDelayed({
+                                        _isMessageComplete.value = true
+                                    }, 100)
                                 }
                             }, delay * i)
                         }
@@ -126,12 +135,17 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
                     addToChat("Response body is null", Message.SENT_BY_BOT, getCurrentTimestamp())
                 }
             } else {
-                Log.d("APIResponse", "Failed response: ${response.errorBody()}")
-                addToChat("Failed to get response ${response.errorBody()}", Message.SENT_BY_BOT, getCurrentTimestamp())
+                if (retryCount < 10) { // Max retry count is 3
+                    Log.d("APIResponse", "Failed response: ${response.errorBody()}, retrying... (${retryCount + 1})")
+                    callApi(question, retryCount + 1) // Here we increment the retryCount by 1 for each retry
+                } else {
+                    Log.d("APIResponse", "Failed response after ${retryCount} attempts: ${response.errorBody()}")
+                }
             }
             _botTyping.value = false // AI has finished "typing", regardless of success or failure
         }
     }
+
 
 
     fun getCurrentTimestamp(): String {

@@ -18,13 +18,15 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/copy_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_content_copy_24"/>
 
     </LinearLayout>
+    <ImageView
+        android:id="@+id/copy_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:src="@drawable/baseline_content_copy_24"/>
+
 
     <TextView
         android:id="@+id/left_chat_timestamp"
