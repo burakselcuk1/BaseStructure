@@ -1,10 +1,15 @@
 package com.example.basestructure.adapter
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.basestructure.R
 import com.example.chatgptapp.model.Message
@@ -14,7 +19,6 @@ import retrofit2.http.POST
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 
 
 class MessageAdapter(private var messageList: MutableList<Message>) :
@@ -89,6 +93,7 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
         private val leftChatTimestamp: TextView? = itemView.findViewById(R.id.left_chat_timestamp)
         private val rightChatTextView: TextView? = itemView.findViewById(R.id.right_chat_text_view)
         private val rightChatTimestamp: TextView? = itemView.findViewById(R.id.right_chat_timestamp)
+        private val copyIcon: ImageView? = itemView.findViewById(R.id.copy_icon)
 
         fun bind(message: Message) {
             when (message.sentBy) {
@@ -99,8 +104,18 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
                 else -> {
                     leftChatTextView?.text = message.message
                     leftChatTimestamp?.text = message.timestamp
+                    copyIcon?.setOnClickListener {
+                        // Burada mesajı kopyalarız.
+                        val clipboard = itemView.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        val clip = ClipData.newPlainText("bot_message", message.message)
+                        clipboard.setPrimaryClip(clip)
+
+                        // Kopyalamanın başarılı olduğunu bildir
+                        Toast.makeText(itemView.context, "Message copied", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
+
     }
 }
