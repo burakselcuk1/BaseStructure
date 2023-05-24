@@ -2,6 +2,7 @@ package com.example.basestructure.ui.chat
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -127,11 +128,33 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             binding.messageEditText.setText("")
         }
 
+        val typingText = "Typing"
+        var dotCount = 0
+        val typingHandler = Handler()
+
+        val typingRunnable = object : Runnable {
+            override fun run() {
+                dotCount = (dotCount + 1) % 4
+                val dots = when (dotCount) {
+                    0 -> ""
+                    1 -> "."
+                    2 -> ".."
+                    else -> "..."
+                }
+                val typingIndicatorText = "$typingText$dots"
+                binding.typingIndicator.text = typingIndicatorText
+                typingHandler.postDelayed(this, 500)
+            }
+        }
+
         viewModel.botTyping.observe(this) { isTyping ->
             if (isTyping) {
                 binding.typingIndicator.visibility = View.VISIBLE
+                dotCount = 0
+                typingHandler.postDelayed(typingRunnable, 500)
             } else {
                 binding.typingIndicator.visibility = View.GONE
+                typingHandler.removeCallbacks(typingRunnable)
             }
         }
     }
