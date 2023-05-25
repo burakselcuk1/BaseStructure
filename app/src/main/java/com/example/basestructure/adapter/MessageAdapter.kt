@@ -3,6 +3,9 @@ package com.example.basestructure.adapter
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.os.Build
+import android.text.Html
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -102,6 +105,10 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
         private val rightChatTimestamp: TextView? = itemView.findViewById(R.id.right_chat_timestamp)
         val copyIcon: ImageView? = itemView.findViewById(R.id.copy_icon)
 
+        init {
+            leftChatTextView?.movementMethod = LinkMovementMethod.getInstance()
+        }
+
         fun bind(message: Message) {
             when (message.sentBy) {
                 Message.SENT_BY_ME -> {
@@ -109,7 +116,14 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
                     rightChatTimestamp?.text = message.timestamp
                 }
                 else -> {
-                    leftChatTextView?.text = message.message
+                    // HTML olarak işle
+                    val spanned = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        Html.fromHtml(message.message, Html.FROM_HTML_MODE_LEGACY)
+                    } else {
+                        @Suppress("DEPRECATION")
+                        Html.fromHtml(message.message)
+                    }
+                    leftChatTextView?.text = spanned
                     leftChatTimestamp?.text = message.timestamp
                     copyIcon?.setOnClickListener {
                         // Burada mesajı kopyalarız.
@@ -123,8 +137,8 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
                 }
             }
         }
-
     }
+
 
     fun setCopyIconVisibility(visible: Boolean) {
         showCopyIcon = visible

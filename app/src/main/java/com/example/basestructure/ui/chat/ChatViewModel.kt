@@ -17,10 +17,12 @@ import com.example.chatgptapp.model.CompletionResponse
 import com.example.chatgptapp.model.Message
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.net.SocketTimeoutException
+import java.net.URLEncoder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -59,9 +61,10 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         )
         viewModelScope.launch {
             messageRepository.insert(userMessage)
-            callApi(content)
+            callApi(content, numOfMessages = 3) // default numOfMessages is 3
         }
     }
+
 
     fun addToChat(message: String, sentBy: String, timestamp: String) {
         val messageEntity = MessageEntity(
@@ -77,20 +80,20 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
-    fun callApi(question: String, retryCount: Int = 0) {
+    fun callApi(question: String, retryCount: Int = 0, numOfMessages: Int = 3) {
         val messageHistory = createMessageHistory().toMutableList()
         messageHistory.add(MessageRequest("user", question))
 
         val completionRequest = CompletionRequest(
             model = "gpt-3.5-turbo",
-            messages = messageHistory.takeLast(3),
+            messages = messageHistory.takeLast(numOfMessages),
             max_tokens = 4000
         )
 
         viewModelScope.launch {
             try {
                 val response = NetworkModule.apiService.getCompletions(completionRequest)
-                handleApiResponse(response, retryCount, question)
+                handleApiResponse(response, retryCount, question, numOfMessages)
             } catch (e: SocketTimeoutException) {
                 addToChat("Timeout :  $e", Message.SENT_BY_BOT, getCurrentTimestamp())
                 _botTyping.value = false // AI has finished "typing"
@@ -99,13 +102,14 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
     }
 
 
+
     fun clearAllMessages() {
         viewModelScope.launch {
             messageRepository.deleteAll()
         }
     }
 
-    private suspend fun handleApiResponse(response: Response<CompletionResponse>, retryCount: Int = 0, question: String) {
+    private suspend fun handleApiResponse(response: Response<CompletionResponse>, retryCount: Int = 0, question: String, numOfMessages: Int) {
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {
                 response.body()?.let { completionResponse ->
@@ -113,13 +117,19 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
                     val result = completionResponse.choices.firstOrNull()?.message?.content
                     if (!result.isNullOrEmpty()) {
                         _botWritingMessage.value = ""  // Clear the previous message
+                        _botTyping.value = false // AI has finished "typing", response is successful
+
                         val delay: Long = 60  // Bot "typing" time in milliseconds per character
                         val handler = Handler(Looper.getMainLooper())
-                        for (i in result.indices) {
+
+                        // Check the GPT-3 response and append a Google search link if necessary
+                        val finalResult = checkAndAppendGoogleSearchLink(result, question)
+
+                        for (i in finalResult.indices) {
                             handler.postDelayed({
-                                val partialMessage = _botWritingMessage.value + result[i]
+                                val partialMessage = _botWritingMessage.value + finalResult[i]
                                 _botWritingMessage.value = partialMessage
-                                if (i == result.length - 1) { // Eğer son harfe ulaştıysak
+                                if (i == finalResult.length - 1) { // Eğer son harfe ulaştıysak
                                     addToChat(_botWritingMessage.value!!, Message.SENT_BY_BOT, getCurrentTimestamp())
                                     // give a slight delay before setting _isMessageComplete.value to true
                                     handler.postDelayed({
@@ -135,16 +145,44 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
                     addToChat("Response body is null", Message.SENT_BY_BOT, getCurrentTimestamp())
                 }
             } else {
-                if (retryCount < 10) { // Max retry count is 3
+                if (retryCount < 10) { // Max retry count is 10
                     Log.d("APIResponse", "Failed response: ${response.errorBody()}, retrying... (${retryCount + 1})")
-                    callApi(question, retryCount + 1) // Here we increment the retryCount by 1 for each retry
+
+                    if (response.code() == 400 && "context_length_exceeded" in (response.errorBody()?.string() ?: "")) {
+                        if (numOfMessages > 1) {
+                            callApi(question, retryCount, numOfMessages - 1)
+                        } else {
+                            Log.d("APIResponse", "Failed response after reducing number of messages: ${response.errorBody()}")
+                        }
+                    } else {
+                        callApi(question, retryCount + 1, numOfMessages) // Here we increment the retryCount by 1 for each retry
+                    }
                 } else {
                     Log.d("APIResponse", "Failed response after ${retryCount} attempts: ${response.errorBody()}")
                 }
             }
-            _botTyping.value = false // AI has finished "typing", regardless of success or failure
         }
     }
+
+    // Check the GPT-3 response and append a Google search link if necessary
+    fun checkAndAppendGoogleSearchLink(gptResponse: String, question: String): String {
+        val limitedInfoStrings = listOf(
+            "2021 yılına kadar sınırlıyım",
+            "2021 yılına kadar sınırlı",
+            "2021'e kadar bilgim",
+            "2021'e kadar eğitildim"
+        )
+
+        val isLimited = limitedInfoStrings.any { it in gptResponse }
+
+        return if (isLimited) {
+            "$gptResponse 2021 sonrası verilere buradan bakabilirsiniz: https://www.google.com/search?q=${URLEncoder.encode(question, "utf-8")}"
+        } else {
+            gptResponse
+        }
+    }
+
+
 
 
 

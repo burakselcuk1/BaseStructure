@@ -23,7 +23,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     layoutId = R.layout.fragment_chat,
     viewModelClass = ChatViewModel::class.java
+
 ) {
+
     @SuppressLint("RestrictedApi")
     override fun onInitDataBinding() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
