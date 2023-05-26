@@ -18,11 +18,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
     viewModelClass = MoreViewModel::class.java
 ) {
     override fun onInitDataBinding() {
-
         viewClicks()
-
     }
-
     private fun viewClicks() {
         with(binding){
             selectLanguage.setOnClickListener {
@@ -38,14 +35,13 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
                     putExtra(Intent.EXTRA_EMAIL, arrayOf("speakwithaitr@gmail.com"))
-                    putExtra(Intent.EXTRA_SUBJECT, "Konu")
-                    putExtra(Intent.EXTRA_TEXT, "Mesajınız buraya")
+                    putExtra(Intent.EXTRA_SUBJECT, R.string.subject)
+                    putExtra(Intent.EXTRA_TEXT, R.string.write_your_message_here)
                 }
                 if (intent.resolveActivity(requireActivity().packageManager) != null) {
-                    startActivity(Intent.createChooser(intent, "E-posta ile gönder"))
+                    startActivity(Intent.createChooser(intent, getString(R.string.send_with_email)))
                 }
             }
         }
-
     }
 }

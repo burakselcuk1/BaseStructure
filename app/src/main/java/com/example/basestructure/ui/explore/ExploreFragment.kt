@@ -22,27 +22,27 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
     viewModelClass = ExploreFragmentViewModel::class.java
 ) {
     override fun onInitDataBinding() {
-        val child1 = Child("Ev Kiralama")
-        val child2 = Child("Bilet Alma")
-        val child3 = Child("Restoran Tevsiyesi")
-        val child4 = Child("Gezilecek Yerler")
+        val child1 = Child(getString(R.string.house_rent_short))
+        val child2 = Child(getString(R.string.take_ticket_short))
+        val child3 = Child(getString(R.string.suggest_restaurant_short))
+        val child4 = Child(getString(R.string.travel_short))
 
 
-        val child5 = Child("İsim Üretici")
-        val child6 = Child("İlişki Tavsiyeleri")
-        val child7 = Child("Başlık Fikirleri")
-        val child8 = Child("Şiir Yazma")
-        val child9 = Child("İş İlanı")
+        val child5 = Child(getString(R.string.name_crator_short))
+        val child6 = Child(getString(R.string.suggest_relationship_short))
+        val child7 = Child(getString(R.string.suggest_title_short))
+        val child8 = Child(getString(R.string.write_document_short))
+        val child9 = Child(getString(R.string.job_posts_short))
 
 
-        val child10 = Child("Hücre Organelleri")
-        val child11 = Child("İklim Değişikliği")
-        val child12 = Child("Evrim Teorisi")
+        val child10 = Child(getString(R.string.cell_short))
+        val child11 = Child(getString(R.string.climate_short))
+        val child12 = Child(getString(R.string.evolution_short))
 
-        val child13 = Child("Saç Uzatmak")
-        val child14 = Child("Daha iyi uyku")
-        val child15 = Child("Sabah Rutini")
-        val child16 = Child("Kitap Önerileri")
+        val child13 = Child(getString(R.string.hair_short))
+        val child14 = Child(getString(R.string.sleep_short))
+        val child15 = Child(getString(R.string.routine_short))
+        val child16 = Child(getString(R.string.book_short))
 
 
         val children = listOf(child1, child2, child3, child4)
@@ -51,18 +51,18 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
         val children3 = listOf(child13, child14, child15,child16)
 
         val parent1 = ResourcesCompat.getDrawable(resources, R.drawable.plane, null)
-            ?.let { Parent(it, "Seyehat Ve Keşif", children) }
+            ?.let { Parent(it, getString(R.string.travel_and_discovery), children) }
         val parent2 = ResourcesCompat.getDrawable(resources, R.drawable.creativity, null)
-            ?.let { Parent(it, "Yaratıcı Fikirler", children1) }
+            ?.let { Parent(it, getString(R.string.creative_ideas), children1) }
 
         val parent3 = ResourcesCompat.getDrawable(resources, R.drawable.atom, null)
-            ?.let { Parent(it, "Bilim ve Öğrenme", children2) }
+            ?.let { Parent(it, getString(R.string.science_and_learning), children2) }
 
         val parent4 = ResourcesCompat.getDrawable(resources, R.drawable.cosmetics, null)
-            ?.let { Parent(it, "Güzellik ve Yaşam Tarzı", children3) }
+            ?.let { Parent(it, getString(R.string.beauty_and_lifestyle), children3) }
 
         val parent5 = ResourcesCompat.getDrawable(resources, R.drawable.cosmetics, null)
-            ?.let { Parent(it, "Seyehat ve Keşif", children) }
+            ?.let { Parent(it, getString(R.string.travel_and_discovery), children) }
 
         val parents = mutableListOf<Parent>()
 

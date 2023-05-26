@@ -30,7 +30,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }
         }
-
-
     }
 }

@@ -27,7 +27,7 @@
             android:id="@+id/typingIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Typing..."
+            android:text="@string/typing"
             android:textSize="20sp"
             android:layout_marginLeft="10dp"
             android:visibility="gone"

@@ -1,6 +1,7 @@
 package com.example.basestructure.ui.mainFragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
@@ -104,6 +105,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {

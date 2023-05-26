@@ -49,7 +49,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
 
         viewModel.botTyping.observe(this) { isTyping ->
             if (isTyping) {
-                adapter.addMessage(Message("Typing...", Message.SENT_BY_BOT, viewModel.getCurrentTimestamp()))
+                adapter.addMessage(Message("${R.string.typing}", Message.SENT_BY_BOT, viewModel.getCurrentTimestamp()))
             } else {
                 adapter.removeTypingIndicator()
             }
@@ -134,7 +134,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             binding.messageEditText.setText("")
         }
 
-        val typingText = "Typing"
+        val typingText = getString(R.string.typing)
         var dotCount = 0
         val typingHandler = Handler()
 
@@ -172,5 +172,4 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             }
         }
     }
-
 }

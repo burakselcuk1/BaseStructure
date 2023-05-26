@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
+import com.example.basestructure.R
 import com.example.basestructure.base.BaseViewModel
 import com.example.basestructure.di.NetworkModule
 import com.example.basestructure.model.MessageRequest
@@ -139,14 +140,13 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
                             }, delay * i)
                         }
                     } else {
-                        addToChat("No choices found", Message.SENT_BY_BOT, getCurrentTimestamp())
+                        addToChat(R.string.no_choices_found.toString(), Message.SENT_BY_BOT, getCurrentTimestamp())
                     }
                 } ?: run {
-                    addToChat("Response body is null", Message.SENT_BY_BOT, getCurrentTimestamp())
+                    addToChat(R.string.response_body_is_null.toString(), Message.SENT_BY_BOT, getCurrentTimestamp())
                 }
             } else {
                 if (retryCount < 10) { // Max retry count is 10
-                    Log.d("APIResponse", "Failed response: ${response.errorBody()}, retrying... (${retryCount + 1})")
 
                     if (response.code() == 400 && "context_length_exceeded" in (response.errorBody()?.string() ?: "")) {
                         if (numOfMessages > 1) {
@@ -167,24 +167,20 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
     // Check the GPT-3 response and append a Google search link if necessary
     fun checkAndAppendGoogleSearchLink(gptResponse: String, question: String): String {
         val limitedInfoStrings = listOf(
-            "2021 yılına kadar sınırlıyım",
-            "2021 yılına kadar sınırlı",
-            "2021'e kadar bilgim",
-            "2021'e kadar eğitildim"
+            "${R.string.limited_until_2021}",
+            "${R.string.limited_until_2021_one}",
+            "${R.string.limited_until_2021_two}",
+            "${R.string.limited_until_2021_three}"
         )
 
         val isLimited = limitedInfoStrings.any { it in gptResponse }
 
         return if (isLimited) {
-            "$gptResponse 2021 sonrası verilere buradan bakabilirsiniz: https://www.google.com/search?q=${URLEncoder.encode(question, "utf-8")}"
+            "$gptResponse ${R.string.data_after_2021_here} https://www.google.com/search?q=${URLEncoder.encode(question, "utf-8")}"
         } else {
             gptResponse
         }
     }
-
-
-
-
 
     fun getCurrentTimestamp(): String {
         return SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())

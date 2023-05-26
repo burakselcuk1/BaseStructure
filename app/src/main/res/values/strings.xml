@@ -28,12 +28,47 @@
     <string name="routine">Sabah rutini oluşturmak için bazı ipuçları nelerdir?</string>
     <string name="book">Mindfulness ile ilgilenen biri için önerebileceğin kitaplar nelerdir?</string>
 
+
+    <string name="house_rent_short">Ev Kiralama</string>
+    <string name="take_ticket_short">Bilet Alma</string>
+    <string name="suggest_restaurant_short">Restoran Tavsiyesi</string>
+    <string name="travel_short">Gezilecek Yerler</string>
+
+    <string name="name_crator_short">İsim Üretici</string>
+    <string name="suggest_relationship_short">İlişki Tavsiyeleri</string>
+    <string name="suggest_title_short">Başlık Fikirleri</string>
+    <string name="write_document_short">Şiir Yazma</string>
+    <string name="job_posts_short">İş İlanı</string>
+
+    <string name="cell_short">Hücre Organelleri</string>
+    <string name="climate_short">İklim Değişikliği</string>
+    <string name="evolution_short">Evrim Teorisi</string>
+
+    <string name="hair_short">Saç Uzatmak</string>
+    <string name="sleep_short">Daha iyi uyku</string>
+    <string name="routine_short">Sabah Rutini</string>
+    <string name="book_short">Kitap Önerileri</string>
+
+
+    <string name="travel_and_discovery">Seyehat Ve Keşif</string>
+    <string name="creative_ideas">Yaratıcı Fikirler</string>
+    <string name="science_and_learning">Bilim ve Öğrenme</string>
+    <string name="beauty_and_lifestyle">Güzellik ve Yaşam Tarzı</string>
+
+
+
     //More Fragment
     <string name="select_language">Dili Seçin</string>
     <string name="share_speak_with_ai">Speak With AI\'yi paylaş</string>
     <string name="evaluate">Bizi Değerlendirin</string>
     <string name="security">Gizlilik Politikası</string>
     <string name="help">Yardım</string>
+
+    //MoreFragment
+    <string name="subject">Konu</string>
+    <string name="write_your_message_here">Mesajınızı buraya yazın</string>
+    <string name="send_with_email">E-posta ile gönder</string>
+
 
 
     //Privacy Policy
@@ -63,6 +98,18 @@ Bu gizlilik politikasını zaman zaman güncellememiz gerekebilir. Bu sayfayı d
 6. İletişim
 Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yazın. speakwithaitr@gmail.com</string>
     <string name="privacy_policy_Title">Gizlilik Politikası</string>
+
+
+    //Chat Fragment
+    <string name="no_choices_found">Seçenek bulunamadı</string>
+    <string name="response_body_is_null">Gelen cevap boş</string>
+    <string name="limited_until_2021">2021 yılına kadar sınırlıyım</string>
+    <string name="limited_until_2021_one">2021 yılına kadar sınırlı</string>
+    <string name="limited_until_2021_two">2021\'e kadar bilgim</string>
+    <string name="limited_until_2021_three">2021\'e kadar eğitildim</string>
+    <string name="data_after_2021_here">2021 sonrası verilere buradan bakabilirsiniz:</string>
+    <string name="typing">Yazıyor</string>
+
 
 
 

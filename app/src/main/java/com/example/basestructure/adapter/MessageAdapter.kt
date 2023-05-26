@@ -68,8 +68,6 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
             else -> SENT_BY_BOT
         }
     }
-
-
     fun updateData(newMessageList: List<Message>) {
         this.messageList.clear()
         this.messageList.addAll(newMessageList)
@@ -138,7 +136,6 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
             }
         }
     }
-
 
     fun setCopyIconVisibility(visible: Boolean) {
         showCopyIcon = visible
