@@ -52,7 +52,7 @@
                 android:layout_centerInParent="true"
                 android:layout_toLeftOf="@id/send_btn"
                 android:background="@drawable/rounded_corner_right"
-                android:hint="Talk to Chat "
+                android:hint="@string/speak_with_chat"
                 android:padding="16dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />

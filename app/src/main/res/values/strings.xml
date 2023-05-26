@@ -3,12 +3,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    //Main Fragment
-    <string name="description">Type below to get answers</string>
-    <string name="description_continue">Ask any open ended questions</string>
-    <string name="type_here">Type here..</string>
+    <!-- Main Fragment -->
+    <string name="description">Cevabını bulmak istediğiniz</string>
+    <string name="description_continue">Soruyu aşağıya yazın</string>
+    <string name="type_here">Buraya yazın..</string>
 
-    //Child Options
+    <!-- Child Options -->
     <string name="house_rent">Antalya Kaş ev kiraları ne kadar?</string>
     <string name="take_ticket">Orlando Disney World için biletleri kapıda satın alabilir miyim?</string>
     <string name="suggest_restaurant">Kapadokya\'da ziyaret edilecek en ünlü 5 restoran hangileri?</string>
@@ -56,51 +56,55 @@
     <string name="beauty_and_lifestyle">Güzellik ve Yaşam Tarzı</string>
 
 
-
-    //More Fragment
+    <!-- More Fragment -->
     <string name="select_language">Dili Seçin</string>
     <string name="share_speak_with_ai">Speak With AI\'yi paylaş</string>
     <string name="evaluate">Bizi Değerlendirin</string>
     <string name="security">Gizlilik Politikası</string>
     <string name="help">Yardım</string>
 
-    //MoreFragment
+    <!-- More Fragment -->
     <string name="subject">Konu</string>
     <string name="write_your_message_here">Mesajınızı buraya yazın</string>
     <string name="send_with_email">E-posta ile gönder</string>
 
 
-
-    //Privacy Policy
+<!--
     <string name="privacy_policy">Bu Gizlilik Politikası, Speak With AI ("biz", "bize", "bizim") tarafından sunulan mobil uygulamanın ("Uygulama") kullanımınız sırasında toplanan bilgileri ve bu bilgilerin nasıl kullanıldığını açıklar.
 
 1. Topladığımız Bilgiler
 Uygulamamızı kullanırken, sizden bazı kişisel verileri toplamamız gerekebilir. Bu veriler, kayıt işlemi sırasında sağladığınız bilgileri (örneğin, e-posta adresi) ve Uygulamayı kullanırken oluşturulan diğer bilgileri (örneğin, mesajlarınız) içerir.
-
+ <br />
 2. Bilgilerin Kullanımı
 Topladığımız bilgileri aşağıdaki amaçlarla kullanırız:
+ <br />
 
 Uygulamayı yönetmek ve iyileştirmek.
 Kullanıcı deneyimini kişiselleştirmek ve geliştirmek.
 Teknik destek veya müşteri hizmetleri sağlamak.
 Uygulamanın güvenliğini sağlamak.
+<br />
+
 3. Bilgi Paylaşımı
 Verilerinizin gizliliği bizim için önemlidir ve kişisel bilgilerinizi üçüncü taraf servis sağlayıcılarıyla sadece aşağıdaki durumlarda paylaşırız:
 
-OpenAI: ChatGPT API hizmetini sağlayan OpenAI ile mesajlarınız paylaşılır. OpenAI\'nin kendi gizlilik politikasını [OpenAI gizlilik politikası linki] adresinden gözden geçirebilirsiniz.
+OpenAI: ChatGPT API hizmetini sağlayan OpenAI ile mesajlarınız paylaşılır. OpenAI'nin kendi gizlilik politikasını gözden geçirebilirsiniz.
 Yasal gereklilikler: Yasalar gereği talep edilmesi durumunda veya hukuk yoluyla koruma ihtiyacı olduğuna inandığımız durumlarda bilgilerinizi paylaşabiliriz.
+ <br />
 4. Güvenlik
 Bilgilerinizi güvende tutmak için ticari olarak kabul görmüş teknik ve organizasyonel önlemler kullanırız. Ancak, internet üzerinde hiçbir iletim yönteminin veya elektronik depolamanın %100 güvenli olmadığını unutmayın.
-
+ <br />
 5. Gizlilik Politikasında Değişiklikler
 Bu gizlilik politikasını zaman zaman güncellememiz gerekebilir. Bu sayfayı düzenli olarak ziyaret ederek güncellemeleri kontrol edebilirsiniz.
-
+ <br />
 6. İletişim
 Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yazın. speakwithaitr@gmail.com</string>
+-->
+
     <string name="privacy_policy_Title">Gizlilik Politikası</string>
 
 
-    //Chat Fragment
+    <!-- Chat Fragment -->
     <string name="no_choices_found">Seçenek bulunamadı</string>
     <string name="response_body_is_null">Gelen cevap boş</string>
     <string name="limited_until_2021">2021 yılına kadar sınırlıyım</string>
@@ -109,8 +113,7 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="limited_until_2021_three">2021\'e kadar eğitildim</string>
     <string name="data_after_2021_here">2021 sonrası verilere buradan bakabilirsiniz:</string>
     <string name="typing">Yazıyor</string>
-
-
+    <string name="speak_with_chat">Chat ile Konuş</string>
 
 
 </resources>

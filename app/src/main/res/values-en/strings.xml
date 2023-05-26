@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Speak with Ai</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Main Fragment -->
+    <string name="description">The question you want to</string>
+    <string name="description_continue">find the answer to, write it below</string>
+    <string name="type_here">Type here..</string>
+
+    <!-- Child Options -->
+    <string name="house_rent">How much are the house rents in Kaş, Antalya?</string>
+    <string name="take_ticket">Can I purchase tickets for Orlando Disney World at the gate?</string>
+    <string name="suggest_restaurant">What are the top 5 restaurants to visit in Cappadocia?</string>
+    <string name="travel">Assuming I will only stay in Istanbul for 5 days, can you suggest places that I must see?</string>
+    <string name="name_crator">Can you create a product name suggestion for the following details: Product description: A machine for making homemade milkshake. Important words: quick, healthy, compact.</string>
+    <string name="suggest_relationship">What are some romantic ideas for proposing to my girlfriend?</string>
+    <string name="suggest_title">Do you have any Instagram caption ideas for a travel photo in Çeşme?</string>
+    <string name="write_document">Write a poem about love</string>
+    <string name="job_posts">Can you write a job posting template for a Jr. QA Engineer position?</string>
+    <string name="cell">What are the organelles of a eukaryotic cell?</string>
+    <string name="climate">How does climate change affect the world?</string>
+    <string name="evolution">What is the process of evolution and how does it work?</string>
+    <string name="brain">How does the brain process information, and how does it create thoughts and emotions?</string>
+    <string name="ıniverse">What is the structure of the universe and how did it form?</string>
+    <string name="hair">What are some ways to speed up hair growth?</string>
+    <string name="sleep">What are some tips that can help me sleep better?</string>
+    <string name="routine">What are some tips for creating a morning routine?</string>
+    <string name="book">What books would you recommend for someone interested in Mindfulness?</string>
+
+    <string name="house_rent_short">House Rent</string>
+    <string name="take_ticket_short">Ticket Purchase</string>
+    <string name="suggest_restaurant_short">Restaurant Suggestions</string>
+    <string name="travel_short">Places to Visit</string>
+
+    <string name="name_crator_short">Name Creator</string>
+    <string name="suggest_relationship_short">Relationship Advice</string>
+    <string name="suggest_title_short">Title Ideas</string>
+    <string name="write_document_short">Poem Writing</string>
+    <string name="job_posts_short">Job Posting</string>
+
+    <string name="cell_short">Cell Organelles</string>
+    <string name="climate_short">Climate Change</string>
+    <string name="evolution_short">Evolution Theory</string>
+
+    <string name="hair_short">Hair Growth</string>
+    <string name="sleep_short">Better Sleep</string>
+    <string name="routine_short">Morning Routine</string>
+    <string name="book_short">Book Suggestions</string>
+
+    <string name="travel_and_discovery">Travel and Discovery</string>
+    <string name="creative_ideas">Creative Ideas</string>
+    <string name="science_and_learning">Science and Learning</string>
+    <string name="beauty_and_lifestyle">Beauty and Lifestyle</string>
+
+    <!-- More Fragment -->
+    <string name="select_language">Select Language</string>
+    <string name="share_speak_with_ai">Share Speak With AI</string>
+    <string name="evaluate">Rate Us</string>
+    <string name="security">Privacy Policy</string>
+    <string name="help">Help</string>
+
+    <!-- More Fragment -->
+    <string name="subject">Subject</string>
+    <string name="write_your_message_here">Write your message here</string>
+    <string name="send_with_email">Send with email</string>
+
+
+<!--
+    <string name="privacy_policy">This Privacy Policy explains the information collected during your use of the mobile application ("App") provided by Speak With AI ("we", "us", "our") and how this information is used.
+
+1. Information We Collect
+While using our App, we may need to collect some personal data from you. This data includes the information you provide during registration (e.g., email address) and other information generated while using the App (e.g., your messages).
+ <br />
+2. Use of Information
+We use the information we collect for the following purposes:
+
+Manage and improve the App.
+Personalize and enhance the user experience.
+Provide technical support or customer service.
+Ensure the security of the App.
+ <br />
+3. Information Sharing
+Your data privacy is important to us, and we share your personal information with third-party service providers only in the following circumstances:
+
+OpenAI: Your messages are shared with OpenAI, which provides the ChatGPT API service. You can review OpenAI's own privacy policy at the designated location.
+Legal requirements: We may share your information if required by law or if we believe it is necessary for legal protection.
+ <br />4. Security
+We use commercially accepted technical and organizational measures to keep your information safe. However, remember that no method of transmission over the internet or electronic storage is 100% secure.
+ <br />
+5. Changes to the Privacy Policy
+We may need to update this privacy policy from time to time. You can check for updates by regularly visiting this page.
+ <br />
+6. Contact
+Please write to us for more information about this Privacy Policy. speakwithaitr@gmail.com</string>
+-->
+
+    <string name="privacy_policy_Title">Privacy Policy</string>
+
+
+    <!-- Chat Fragment -->
+    <string name="no_choices_found">No choices found</string>
+    <string name="response_body_is_null">Received response is empty</string>
+    <string name="limited_until_2021">I\'m limited until 2021</string>
+    <string name="limited_until_2021_one">Limited until 2021</string>
+    <string name="limited_until_2021_two">My knowledge is up to 2021</string>
+    <string name="limited_until_2021_three">I was trained until 2021</string>
+    <string name="data_after_2021_here">You can look at data after 2021 here:</string>
+    <string name="typing">Typing</string>
+    <string name="speak_with_chat">Talk to Chat</string>
+
+
+</resources>
