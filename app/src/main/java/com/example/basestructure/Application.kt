@@ -1,5 +1,7 @@
 package com.example.basestructure
 
+import android.content.res.Configuration
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.basestructure.db.AppDatabase
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -17,5 +19,8 @@ class Application: android.app.Application(){
             // Clear the database
             messageDao.deleteAll()
         }
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
     }
 }
