@@ -13,6 +13,8 @@ import android.speech.SpeechRecognizer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.Manifest
+import android.content.Context
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.text.Editable
 import android.text.TextWatcher
@@ -32,9 +34,15 @@ import com.example.basestructure.base.BaseFragment
 import com.example.basestructure.common.ChildOption
 import com.example.basestructure.databinding.FragmentChatBinding
 import com.example.chatgptapp.model.Message
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.internal.ViewUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.lang.reflect.Array.get
+import java.lang.reflect.Array.set
 import java.util.Locale
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     layoutId = R.layout.fragment_chat,
@@ -48,8 +56,27 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     }
     private var speechRecognizer: SpeechRecognizer? = null
 
+    val prefs: SharedPreferences by lazy {
+        requireActivity().getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
+    }
+    var messageCount: Int
+        get() = prefs.getInt("messageCount", 0)
+        set(value) {
+            prefs.edit().putInt("messageCount", value).apply()
+        }
+
+    var lastMessageTime: Long
+        get() = prefs.getLong("lastMessageTime", 0)
+        set(value) {
+            prefs.edit().putLong("lastMessageTime", value).apply()
+        }
+
     @SuppressLint("RestrictedApi", "ClickableViewAccessibility")
     override fun onInitDataBinding() {
+
+
+
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         viewModel.clearAllMessages()
@@ -93,106 +120,26 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
 
         // Get the clicked child name from the arguments
         val clickedChildName = arguments?.getString("clickedChildName")
-
-        val clickedChildOption = ChildOption.values().find { it.displayName == clickedChildName }
-        when(clickedChildOption) {
-            ChildOption.EV_KIRALAMA -> {
-                binding.messageEditText.setText(getString(R.string.house_rent))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.BILET_ALMA -> {
-                binding.messageEditText.setText(getString(R.string.take_ticket))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.RESTORAN_TAVSIYESI -> {
-                binding.messageEditText.setText(getString(R.string.suggest_restaurant))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.GEZILECEK_YERLER -> {
-                binding.messageEditText.setText(getString(R.string.travel))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.ISIM_URETICI -> {
-                binding.messageEditText.setText(getString(R.string.name_crator))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.ILISKI_TAVSIYELERI -> {
-                binding.messageEditText.setText(getString(R.string.suggest_relationship))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.BASLIK_FIKIRLERI -> {
-                binding.messageEditText.setText(getString(R.string.suggest_title))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.SIIR_YAZMA -> {
-                binding.messageEditText.setText(getString(R.string.write_document))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.IS_ILANI -> {
-                binding.messageEditText.setText(getString(R.string.job_posts))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.HUCRE_ORGANELLERI -> {
-                binding.messageEditText.setText(getString(R.string.cell))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.IKLIM_DEGISIKLIGI -> {
-                binding.messageEditText.setText(getString(R.string.climate))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.EVRIM_TEORISI -> {
-                binding.messageEditText.setText(getString(R.string.evolution))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.SAC_UZATMAK -> {
-                binding.messageEditText.setText(getString(R.string.hair))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.DAHA_IYI_UYKU -> {
-                binding.messageEditText.setText(getString(R.string.sleep))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.SABAH_RUTINI -> {
-                binding.messageEditText.setText(getString(R.string.routine))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            ChildOption.KITAP_ONERILERI -> {
-                binding.messageEditText.setText(getString(R.string.book))
-                binding.microphone.visibility = View.GONE
-                binding.sendBtn.visibility = View.VISIBLE
-            }
-            else -> {
-                // Beklenmeyen bir durum
-            }
-        }
+        handleChildOption(clickedChildName)
 
         binding.sendBtn.setOnClickListener {
+
             ViewUtils.hideKeyboard(it)
+            if (messageCount < 3) {
+
             val question = binding.messageEditText.text.toString()
             viewModel.sendMessage(question)
             binding.messageEditText.setText("")
+            incrementMessageCount()
+            }else{
+                showPremiumRequiredDialog()
+            }
         }
 
         binding.microphone.setOnClickListener {
             startVoiceInput() // Start speech to text
             val mp = MediaPlayer.create(requireContext(), R.raw.microphone)
             mp.start()
-
         }
 
         binding.microphone.setOnTouchListener { _, event ->
@@ -254,8 +201,30 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                 }
             }
         })
-
     }
+
+    fun incrementMessageCount() {
+        val currentTimeMillis = System.currentTimeMillis()
+        val oneDayMillis = 24 * 60 * 60 * 1000
+
+        // Eğer son mesaj gönderiminden 24 saat geçmişse sayaç sıfırlanır
+        if (currentTimeMillis - lastMessageTime > oneDayMillis) {
+            messageCount = 0
+        }
+
+        // Sayaç arttırılır ve son mesaj zamanı güncellenir
+        messageCount++
+        lastMessageTime = currentTimeMillis
+    }
+
+    private fun showPremiumRequiredDialog() {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val sheetView = layoutInflater.inflate(R.layout.dialog_premium_required, null)
+        bottomSheetDialog.setContentView(sheetView)
+        bottomSheetDialog.show()
+    }
+
+
     fun scrollToBottom() {
         val targetPosition = viewModel.allMessages.value?.size?.minus(1) ?: 0
         if (targetPosition >= 0) {
@@ -398,6 +367,65 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             speechRecognizer = null
         }
     }
-
-
+    fun handleChildOption(clickedChildName: String?) {
+        val clickedChildOption = ChildOption.values().find { it.displayName == clickedChildName }
+        when(clickedChildOption) {
+            ChildOption.EV_KIRALAMA -> {
+                prepareEditText(getString(R.string.house_rent))
+            }
+            ChildOption.BILET_ALMA -> {
+                prepareEditText(getString(R.string.take_ticket))
+            }
+            ChildOption.RESTORAN_TAVSIYESI -> {
+                prepareEditText(getString(R.string.suggest_restaurant))
+            }
+            ChildOption.GEZILECEK_YERLER -> {
+                prepareEditText(getString(R.string.travel))
+            }
+            ChildOption.ISIM_URETICI -> {
+                prepareEditText(getString(R.string.name_crator))
+            }
+            ChildOption.ILISKI_TAVSIYELERI -> {
+                prepareEditText(getString(R.string.suggest_relationship))
+            }
+            ChildOption.BASLIK_FIKIRLERI -> {
+                prepareEditText(getString(R.string.suggest_title))
+            }
+            ChildOption.SIIR_YAZMA -> {
+                prepareEditText(getString(R.string.write_document))
+            }
+            ChildOption.IS_ILANI -> {
+                prepareEditText(getString(R.string.job_posts))
+            }
+            ChildOption.HUCRE_ORGANELLERI -> {
+                prepareEditText(getString(R.string.cell))
+            }
+            ChildOption.IKLIM_DEGISIKLIGI -> {
+                prepareEditText(getString(R.string.climate))
+            }
+            ChildOption.EVRIM_TEORISI -> {
+                prepareEditText(getString(R.string.evolution))
+            }
+            ChildOption.SAC_UZATMAK -> {
+                prepareEditText(getString(R.string.hair))
+            }
+            ChildOption.DAHA_IYI_UYKU -> {
+                prepareEditText(getString(R.string.sleep))
+            }
+            ChildOption.SABAH_RUTINI -> {
+                prepareEditText(getString(R.string.routine))
+            }
+            ChildOption.KITAP_ONERILERI -> {
+                prepareEditText(getString(R.string.book))
+            }
+            else -> {
+                // Beklenmeyen bir durum
+            }
+        }
+    }
+    fun prepareEditText(text: String) {
+        binding.messageEditText.setText(text)
+        binding.microphone.visibility = View.GONE
+        binding.sendBtn.visibility = View.VISIBLE
+    }
 }
