@@ -98,51 +98,83 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         when(clickedChildOption) {
             ChildOption.EV_KIRALAMA -> {
                 binding.messageEditText.setText(getString(R.string.house_rent))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.BILET_ALMA -> {
                 binding.messageEditText.setText(getString(R.string.take_ticket))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.RESTORAN_TAVSIYESI -> {
                 binding.messageEditText.setText(getString(R.string.suggest_restaurant))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.GEZILECEK_YERLER -> {
                 binding.messageEditText.setText(getString(R.string.travel))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.ISIM_URETICI -> {
                 binding.messageEditText.setText(getString(R.string.name_crator))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.ILISKI_TAVSIYELERI -> {
                 binding.messageEditText.setText(getString(R.string.suggest_relationship))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.BASLIK_FIKIRLERI -> {
                 binding.messageEditText.setText(getString(R.string.suggest_title))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.SIIR_YAZMA -> {
                 binding.messageEditText.setText(getString(R.string.write_document))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.IS_ILANI -> {
                 binding.messageEditText.setText(getString(R.string.job_posts))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.HUCRE_ORGANELLERI -> {
                 binding.messageEditText.setText(getString(R.string.cell))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.IKLIM_DEGISIKLIGI -> {
                 binding.messageEditText.setText(getString(R.string.climate))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.EVRIM_TEORISI -> {
                 binding.messageEditText.setText(getString(R.string.evolution))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.SAC_UZATMAK -> {
                 binding.messageEditText.setText(getString(R.string.hair))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.DAHA_IYI_UYKU -> {
                 binding.messageEditText.setText(getString(R.string.sleep))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.SABAH_RUTINI -> {
                 binding.messageEditText.setText(getString(R.string.routine))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             ChildOption.KITAP_ONERILERI -> {
                 binding.messageEditText.setText(getString(R.string.book))
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
             }
             else -> {
                 // Beklenmeyen bir durum
