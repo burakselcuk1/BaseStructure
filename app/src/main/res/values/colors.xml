@@ -16,4 +16,8 @@
     <color name="child_five">#E3E2E0</color>
     <color name="child_six">#CDDC39</color>
 
+    <!-- Chat Fragment -->
+    <color name="red">#CF0000</color>
+
+
 </resources>
