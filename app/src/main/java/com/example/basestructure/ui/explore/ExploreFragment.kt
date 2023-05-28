@@ -1,10 +1,12 @@
 package com.example.basestructure.ui.explore
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 
 import androidx.core.content.res.ResourcesCompat
@@ -25,6 +27,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
 ) {
     private lateinit var databaseAdapter: DatabaseAdapter
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onInitDataBinding() {
         val child1 = Child(getString(R.string.house_rent_short))
         val child2 = Child(getString(R.string.take_ticket_short))
@@ -86,13 +89,13 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
 
         }
 
-        binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView2.adapter = adapter
 
 
 
         databaseAdapter = DatabaseAdapter(mutableListOf())
-        binding.dbRecyclerview.layoutManager = LinearLayoutManager(context)
+        binding.dbRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.dbRecyclerview.adapter = databaseAdapter
 
         viewModel.fetchDailyUserMessages()
