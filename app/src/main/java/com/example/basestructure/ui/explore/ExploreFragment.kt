@@ -86,7 +86,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
 
         }
 
-        binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerView2.adapter = adapter
 
 
