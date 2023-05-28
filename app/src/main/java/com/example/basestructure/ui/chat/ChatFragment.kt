@@ -94,7 +94,13 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         }
 
         val text = arguments?.getString("recognized_text")
-        binding.messageEditText.setText(text)
+        if (text != null) {
+            if (text.isNotEmpty()){
+                binding.messageEditText.setText(text)
+                binding.microphone.visibility = View.GONE
+                binding.sendBtn.visibility = View.VISIBLE
+            }
+        }
 
         viewModel.botTyping.observe(this) { isTyping ->
             if (isTyping) {
