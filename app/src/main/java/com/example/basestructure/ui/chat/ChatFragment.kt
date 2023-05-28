@@ -135,7 +135,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         binding.sendBtn.setOnClickListener {
 
             ViewUtils.hideKeyboard(it)
-            if (messageCount < 13) {
+            if (messageCount < 3) {
 
             val question = binding.messageEditText.text.toString()
             viewModel.sendMessage(question)

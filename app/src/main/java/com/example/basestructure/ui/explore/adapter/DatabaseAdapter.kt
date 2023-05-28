@@ -13,6 +13,7 @@ class DatabaseAdapter(private val messageList: MutableList<MessageEntity>) :
 
     inner class DatabaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val userHistory: TextView = itemView.findViewById(R.id.user_history)
+        val userHistory2: TextView = itemView.findViewById(R.id.chat_history)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DatabaseViewHolder {
@@ -23,6 +24,7 @@ class DatabaseAdapter(private val messageList: MutableList<MessageEntity>) :
     override fun onBindViewHolder(holder: DatabaseViewHolder, position: Int) {
         val currentItem = messageList[position]
         holder.userHistory.text = currentItem.content
+        holder.userHistory2.text = currentItem.dateTime
 
     }
 
