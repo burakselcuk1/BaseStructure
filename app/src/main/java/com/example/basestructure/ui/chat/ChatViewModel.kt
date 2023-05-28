@@ -44,6 +44,10 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
+    private val _currentSessionMessages = MutableLiveData<List<Message>>()
+    val currentSessionMessages: LiveData<List<Message>> get() = _currentSessionMessages
+
+
     private val _botTyping = MutableLiveData<Boolean>()
     val botTyping: LiveData<Boolean> get() = _botTyping
     private val _botWritingMessage = MutableLiveData<String>() // yeni eklendi
@@ -63,8 +67,24 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         viewModelScope.launch {
             messageRepository.insert(userMessage)
             callApi(content, numOfMessages = 3) // default numOfMessages is 3
+            // After inserting the message into the database, we add it to the _currentSessionMessages list
+            _currentSessionMessages.value = _currentSessionMessages.value?.plus(
+                Message(
+                    message = userMessage.content,
+                    sentBy = Message.SENT_BY_ME,
+                    timestamp = userMessage.timestamp
+                )
+            ) ?: listOf(
+                Message(
+                    message = userMessage.content,
+                    sentBy = Message.SENT_BY_ME,
+                    timestamp = userMessage.timestamp
+                )
+            )
         }
     }
+
+
 
 
     fun addToChat(message: String, sentBy: String, timestamp: String) {
@@ -78,6 +98,26 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         )
         viewModelScope.launch {
             messageRepository.insert(messageEntity)
+            // After inserting the message into the database, we add it to the _currentSessionMessages list
+            _currentSessionMessages.value = _currentSessionMessages.value?.plus(
+                Message(
+                    message = messageEntity.content,
+                    sentBy = when (messageEntity.sender) {
+                        MessageEntity.Sender.USER -> Message.SENT_BY_ME
+                        MessageEntity.Sender.BOT -> Message.SENT_BY_BOT
+                    },
+                    timestamp = messageEntity.timestamp
+                )
+            ) ?: listOf(
+                Message(
+                    message = messageEntity.content,
+                    sentBy = when (messageEntity.sender) {
+                        MessageEntity.Sender.USER -> Message.SENT_BY_ME
+                        MessageEntity.Sender.BOT -> Message.SENT_BY_BOT
+                    },
+                    timestamp = messageEntity.timestamp
+                )
+            )
         }
     }
 

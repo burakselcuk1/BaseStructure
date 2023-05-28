@@ -14,12 +14,12 @@ class Application: android.app.Application(){
     override fun onCreate() {
         super.onCreate()
 
-        CoroutineScope(Dispatchers.IO).launch {
+    /*    CoroutineScope(Dispatchers.IO).launch {
             val messageDao = AppDatabase.getInstance(this@Application).messageDao()
             // Clear the database
             messageDao.deleteAll()
         }
-
+*/
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
     }

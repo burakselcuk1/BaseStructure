@@ -59,6 +59,8 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     val prefs: SharedPreferences by lazy {
         requireActivity().getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
     }
+    private lateinit var adapter: MessageAdapter
+
     var messageCount: Int
         get() = prefs.getInt("messageCount", 0)
         set(value) {
@@ -75,11 +77,13 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     override fun onInitDataBinding() {
 
 
-
+        adapter = MessageAdapter(mutableListOf())
+        adapter.setMessages(emptyList())
+        binding.recyclerView.adapter = adapter
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        viewModel.clearAllMessages()
+      //  viewModel.clearAllMessages()
 
         val llm = LinearLayoutManager(requireContext())
         llm.stackFromEnd = true
@@ -88,7 +92,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         val adapter = MessageAdapter(mutableListOf())
         binding.recyclerView.adapter = adapter
 
-        viewModel.allMessages.observe(this) { messages ->
+        viewModel.currentSessionMessages.observe(this) { messages ->
             adapter.updateData(messages)
             scrollToBottom() // Veri değiştiğinde listenin en altına kaydır
         }
@@ -131,7 +135,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         binding.sendBtn.setOnClickListener {
 
             ViewUtils.hideKeyboard(it)
-            if (messageCount < 3) {
+            if (messageCount < 13) {
 
             val question = binding.messageEditText.text.toString()
             viewModel.sendMessage(question)

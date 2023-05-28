@@ -95,6 +95,14 @@ class MessageAdapter(private var messageList: MutableList<Message>) :
         }
     }
 
+    fun setMessages(newMessageList: List<Message>) {
+        this.messageList.clear()
+        this.messageList.addAll(newMessageList)
+        notifyDataSetChanged()
+    }
+
+
+
 
     inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val leftChatTextView: TextView? = itemView.findViewById(R.id.left_chat_text_view)
