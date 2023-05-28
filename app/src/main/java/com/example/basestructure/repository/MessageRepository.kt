@@ -16,5 +16,9 @@ class MessageRepository @Inject constructor(private val messageDao: MessageDao) 
     suspend fun deleteAll() {
         messageDao.deleteAll()
     }
+
+    suspend fun getFirstMessageForDate(date: String): MessageEntity? {
+        return messageDao.getFirstMessageForDate(date)
+    }
 }
 

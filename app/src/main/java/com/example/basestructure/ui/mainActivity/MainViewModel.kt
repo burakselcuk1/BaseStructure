@@ -1,6 +1,8 @@
 package com.example.basestructure.ui.mainActivity
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
@@ -21,12 +23,20 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.net.SocketTimeoutException
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val messageRepository: MessageRepository) : BaseViewModel() {
+
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    val currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+
 
     val allMessages: LiveData<List<Message>> = messageRepository.messages.map { messageEntityList ->
         messageEntityList.map { messageEntity ->
@@ -44,12 +54,15 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
     private val _botTyping = MutableLiveData<Boolean>()
     val botTyping: LiveData<Boolean> get() = _botTyping
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun sendMessage(content: String) {
         _botTyping.value = true
         val userMessage = MessageEntity(
             sender = MessageEntity.Sender.USER,
             content = content,
-            timestamp = getCurrentTimestamp()
+            timestamp = getCurrentTimestamp(),
+            dateTime = currentDateTime
+
         )
         viewModelScope.launch {
             messageRepository.insert(userMessage)
@@ -57,6 +70,7 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun addToChat(message: String, sentBy: String, timestamp: String) {
         val messageEntity = MessageEntity(
             content = message,
@@ -64,7 +78,9 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
                 Message.SENT_BY_ME -> MessageEntity.Sender.USER
                 else -> MessageEntity.Sender.BOT
             },
-            timestamp = timestamp
+            timestamp = timestamp,
+            dateTime = currentDateTime
+
         )
         viewModelScope.launch {
             messageRepository.insert(messageEntity)
@@ -98,6 +114,7 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun handleApiResponse(response: Response<CompletionResponse>) {
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {

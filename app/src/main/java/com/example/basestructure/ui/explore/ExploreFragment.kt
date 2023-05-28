@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 
 import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.basestructure.R
@@ -15,12 +16,15 @@ import com.example.basestructure.base.BaseFragment
 import com.example.basestructure.databinding.FragmentExploreBinding
 import com.example.basestructure.model.Child
 import com.example.basestructure.model.Parent
+import com.example.basestructure.ui.explore.adapter.DatabaseAdapter
 import com.example.basestructure.ui.explore.adapter.MyAdapter
 
 class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentViewModel>(
     layoutId = R.layout.fragment_explore,
     viewModelClass = ExploreFragmentViewModel::class.java
 ) {
+    private lateinit var databaseAdapter: DatabaseAdapter
+
     override fun onInitDataBinding() {
         val child1 = Child(getString(R.string.house_rent_short))
         val child2 = Child(getString(R.string.take_ticket_short))
@@ -84,7 +88,20 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
 
         binding.recyclerView2.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView2.adapter = adapter
+
+
+
+        databaseAdapter = DatabaseAdapter(mutableListOf())
+        binding.dbRecyclerview.layoutManager = LinearLayoutManager(context)
+        binding.dbRecyclerview.adapter = databaseAdapter
+
+        viewModel.fetchDailyUserMessages()
+        viewModel.dailyUserMessages.observe(viewLifecycleOwner, Observer { dailyUserMessages ->
+            databaseAdapter.updateData(dailyUserMessages)
+        })
     }
+
+
 
 
 }

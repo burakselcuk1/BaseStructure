@@ -17,4 +17,12 @@ interface MessageDao {
 
     @Query("DELETE FROM message_table")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM message_table WHERE date(dateTime) = :date ORDER BY dateTime ASC LIMIT 1")
+    suspend fun getFirstMessageForDate(date: String): MessageEntity?
+
+
+    @Query("SELECT * FROM message_table WHERE date(dateTime) = :date AND dateTime > :time ORDER BY dateTime ASC LIMIT 1")
+    suspend fun getSecondMessageForDate(date: String, time: String): MessageEntity?
+
 }

@@ -9,7 +9,8 @@ data class MessageEntity(
     val id: Int = 0,
     val content: String,
     val sender: Sender,
-    val timestamp: String
+    val timestamp: String,
+    val dateTime: String // yeni alan
 ) {
     enum class Sender { USER, BOT }
 
@@ -18,3 +19,4 @@ data class MessageEntity(
         const val SENT_BY_BOT = "sent_bot"
     }
 }
+
