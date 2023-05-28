@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:padding="20dp"
-    android:background="#E4E4E4"
+    android:background="@drawable/rounded_edittext"
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/user_history"
+        android:id="@+id/chat_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="user_history"
@@ -19,15 +19,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/chat_history"
+        android:id="@+id/user_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="18dp"
         android:text="chat_history"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_history" />
+        app:layout_constraintTop_toBottomOf="@+id/chat_history" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

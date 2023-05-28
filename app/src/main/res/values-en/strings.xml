@@ -116,4 +116,9 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="more">More</string>
 
 
+    <!-- Explore Fragment -->
+    <string name="categories">Categories</string>
+    <string name="history">History</string>
+
+
 </resources>

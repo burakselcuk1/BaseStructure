@@ -63,7 +63,6 @@
     <string name="security">Gizlilik Politikası</string>
     <string name="help">Yardım</string>
 
-    <!-- More Fragment -->
     <string name="subject">Konu</string>
     <string name="write_your_message_here">Mesajınızı buraya yazın</string>
     <string name="send_with_email">E-posta ile gönder</string>
@@ -119,6 +118,10 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="chat">Sohbet</string>
     <string name="explore">Keşfet</string>
     <string name="more">Daha Fazlası</string>
+
+    <!-- Explore Fragment -->
+    <string name="categories">Kategoriler</string>
+    <string name="history">Geçmiş</string>
 
 
 
