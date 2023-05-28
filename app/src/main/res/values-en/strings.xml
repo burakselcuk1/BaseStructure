@@ -110,5 +110,10 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="typing">Typing</string>
     <string name="speak_with_chat">Talk to Chat</string>
 
+    <!-- Bottom Nav Menu -->
+    <string name="chat">Chat</string>
+    <string name="explore">Explore</string>
+    <string name="more">More</string>
+
 
 </resources>

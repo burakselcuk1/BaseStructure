@@ -115,5 +115,11 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="typing">Yazıyor</string>
     <string name="speak_with_chat">Chat ile Konuş</string>
 
+    <!-- Bottom Nav Menu -->
+    <string name="chat">Sohbet</string>
+    <string name="explore">Keşfet</string>
+    <string name="more">Daha Fazlası</string>
+
+
 
 </resources>
