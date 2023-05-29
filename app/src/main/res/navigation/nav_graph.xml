@@ -32,7 +32,11 @@
     <fragment
         android:id="@+id/chatFragment2"
         android:name="com.example.basestructure.ui.chat.ChatFragment"
-        android:label="ChatFragment" />
+        android:label="ChatFragment" >
+        <action
+            android:id="@+id/action_chatFragment2_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/privacyPolicyFragment"
         android:name="com.example.basestructure.ui.privacypolicy.PrivacyPolicyFragment"

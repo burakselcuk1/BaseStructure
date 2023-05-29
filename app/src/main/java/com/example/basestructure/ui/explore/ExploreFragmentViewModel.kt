@@ -20,6 +20,19 @@ class ExploreFragmentViewModel @Inject constructor(private val repository: Messa
     private val _dailyUserMessages = MutableLiveData<List<MessageEntity>>()
     val dailyUserMessages: LiveData<List<MessageEntity>> = _dailyUserMessages
 
+    private val _clickedDateMessages = MutableLiveData<List<MessageEntity>>()
+    val clickedDateMessages: LiveData<List<MessageEntity>> get() = _clickedDateMessages
+
+    suspend fun getAllMessagesForDate(date: String): List<MessageEntity>? {
+        return repository.getAllMessagesForDate(date)
+    }
+
+    fun fetchAllMessagesForClickedDate(date: String) = viewModelScope.launch {
+        val allMessagesForDate = getAllMessagesForDate(date)
+        allMessagesForDate?.let {
+            _clickedDateMessages.value = it
+        }
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     fun fetchDailyUserMessages() = viewModelScope.launch {
         val messagesForDays = mutableListOf<MessageEntity>()

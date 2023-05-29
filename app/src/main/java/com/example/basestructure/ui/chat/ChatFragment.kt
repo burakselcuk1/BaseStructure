@@ -16,6 +16,7 @@ import android.Manifest
 import android.content.Context
 import android.content.SharedPreferences
 import android.media.MediaPlayer
+import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -25,6 +26,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,6 +45,8 @@ import java.lang.reflect.Array.set
 import java.util.Locale
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
+import com.example.basestructure.model.local.MessageEntity
 import kotlinx.coroutines.launch
 
 class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
@@ -73,6 +78,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             prefs.edit().putLong("lastMessageTime", value).apply()
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("RestrictedApi", "ClickableViewAccessibility")
     override fun onInitDataBinding() {
 
@@ -80,6 +86,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         adapter = MessageAdapter(mutableListOf())
         adapter.setMessages(emptyList())
         binding.recyclerView.adapter = adapter
+
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
@@ -91,6 +98,18 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
 
         val adapter = MessageAdapter(mutableListOf())
         binding.recyclerView.adapter = adapter
+
+        val clickedMessages = arguments?.getSerializable("clickedMessages") as? ArrayList<MessageEntity>
+
+        clickedMessages?.let { messages ->
+            for (messageEntity in messages) {
+                val message = messageEntityToMessage(messageEntity)
+                adapter.addMessage(message)
+            }
+            // Veri değişikliğini adapter'a bildirin
+            adapter.notifyDataSetChanged()
+        }
+
 
         viewModel.currentSessionMessages.observe(this) { messages ->
             adapter.updateData(messages)
@@ -105,6 +124,14 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                 binding.sendBtn.visibility = View.VISIBLE
             }
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Her zaman MainFragment'a gitmek için Navigation Component'i kullanın
+                findNavController().popBackStack(R.id.mainFragment, false)
+            }
+        })
+
 
         viewModel.botTyping.observe(this) { isTyping ->
             if (isTyping) {
@@ -212,6 +239,15 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             }
         })
     }
+
+    fun messageEntityToMessage(entity: MessageEntity): Message {
+        return Message(
+            message = entity.content,
+            timestamp = entity.timestamp,
+            sentBy = if(entity.sender == MessageEntity.Sender.USER) Message.SENT_BY_ME else Message.SENT_BY_BOT
+        )
+    }
+
 
     fun incrementMessageCount() {
         val currentTimeMillis = System.currentTimeMillis()

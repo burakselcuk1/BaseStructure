@@ -123,6 +123,9 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="categories">Kategoriler</string>
     <string name="history">Geçmiş</string>
 
-
+    <!-- Premium Bottom Sheet Dialog -->
+    <string name="head_text_one">Premium Erişim</string>
+    <string name="head_text_two">ile Deneyiminizi</string>
+    <string name="head_text_three">Artırın</string>
 
 </resources>

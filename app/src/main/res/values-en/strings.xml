@@ -120,5 +120,10 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="categories">Categories</string>
     <string name="history">History</string>
 
+    <!-- Premium Bottom Sheet Dialog -->
+    <string name="head_text_one">Elevate Your</string>
+    <string name="head_text_two">Experience With</string>
+    <string name="head_text_three">Premium Access</string>
+
 
 </resources>

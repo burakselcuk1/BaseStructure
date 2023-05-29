@@ -20,5 +20,10 @@ class MessageRepository @Inject constructor(private val messageDao: MessageDao) 
     suspend fun getFirstMessageForDate(date: String): MessageEntity? {
         return messageDao.getFirstMessageForDate(date)
     }
+
+    suspend fun getAllMessagesForDate(date: String): List<MessageEntity>? {
+        return messageDao.getAllMessagesForDate(date)
+    }
+
 }
 

@@ -6,14 +6,58 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/header_title_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/breulgroteskbregular"
+        android:text="@string/head_text_one"
+        android:textColor="@color/black"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/header_title_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/head_text_two"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:fontFamily="@font/breulgroteskbregular"
+        app:layout_constraintEnd_toEndOf="@+id/header_title_one"
+        app:layout_constraintStart_toStartOf="@+id/header_title_one"
+        app:layout_constraintTop_toBottomOf="@+id/header_title_one" />
+
+
+    <TextView
+        android:id="@+id/header_title_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/breulgroteskbregular"
+        android:text="@string/head_text_three"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="@+id/header_title_two"
+        app:layout_constraintStart_toStartOf="@+id/header_title_two"
+        app:layout_constraintTop_toBottomOf="@+id/header_title_two" />
+
+    <TextView
+        android:id="@+id/chat_gpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/breulgroteskablack"
+        android:text="Powered by Chat Cpt"
+        android:textColor="#03A9F4"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title_three" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

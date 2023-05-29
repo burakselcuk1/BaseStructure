@@ -29,6 +29,11 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onInitDataBinding() {
+
+
+
+
+
         val child1 = Child(getString(R.string.house_rent_short))
         val child2 = Child(getString(R.string.take_ticket_short))
         val child3 = Child(getString(R.string.suggest_restaurant_short))
@@ -94,7 +99,10 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
 
 
 
-        databaseAdapter = DatabaseAdapter(mutableListOf())
+      //  databaseAdapter = DatabaseAdapter(mutableListOf())
+        databaseAdapter = DatabaseAdapter(mutableListOf()) { date ->
+            viewModel.fetchAllMessagesForClickedDate(date)
+        }
         binding.dbRecyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.dbRecyclerview.adapter = databaseAdapter
 
@@ -102,9 +110,14 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
         viewModel.dailyUserMessages.observe(viewLifecycleOwner, Observer { dailyUserMessages ->
             databaseAdapter.updateData(dailyUserMessages)
         })
+
+
+
+        viewModel.clickedDateMessages.observe(viewLifecycleOwner, Observer { allMessagesForDate ->
+            val bundle = Bundle()
+            bundle.putSerializable("clickedMessages", ArrayList(allMessagesForDate))
+            findNavController().navigate(R.id.action_exploreFragment_to_chatFragment2, bundle)
+        })
+
     }
-
-
-
-
 }
