@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.basestructure.base.BaseViewModel
+import com.example.basestructure.common.Event
 import com.example.basestructure.model.local.MessageEntity
 import com.example.basestructure.repository.MessageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,8 +21,8 @@ class ExploreFragmentViewModel @Inject constructor(private val repository: Messa
     private val _dailyUserMessages = MutableLiveData<List<MessageEntity>>()
     val dailyUserMessages: LiveData<List<MessageEntity>> = _dailyUserMessages
 
-    private val _clickedDateMessages = MutableLiveData<List<MessageEntity>>()
-    val clickedDateMessages: LiveData<List<MessageEntity>> get() = _clickedDateMessages
+    private val _clickedDateMessages = MutableLiveData<Event<List<MessageEntity>>>()
+    val clickedDateMessages: LiveData<Event<List<MessageEntity>>> get() = _clickedDateMessages
 
     suspend fun getAllMessagesForDate(date: String): List<MessageEntity>? {
         return repository.getAllMessagesForDate(date)
@@ -30,7 +31,7 @@ class ExploreFragmentViewModel @Inject constructor(private val repository: Messa
     fun fetchAllMessagesForClickedDate(date: String) = viewModelScope.launch {
         val allMessagesForDate = getAllMessagesForDate(date)
         allMessagesForDate?.let {
-            _clickedDateMessages.value = it
+            _clickedDateMessages.value = Event(it) // Event ile wrap ediliyor
         }
     }
     @RequiresApi(Build.VERSION_CODES.O)

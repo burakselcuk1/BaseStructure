@@ -112,12 +112,14 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreFragmentView
         })
 
 
-
-        viewModel.clickedDateMessages.observe(viewLifecycleOwner, Observer { allMessagesForDate ->
-            val bundle = Bundle()
-            bundle.putSerializable("clickedMessages", ArrayList(allMessagesForDate))
-            findNavController().navigate(R.id.action_exploreFragment_to_chatFragment2, bundle)
+        viewModel.clickedDateMessages.observe(viewLifecycleOwner, Observer { event ->
+            event.getContentIfNotHandled()?.let { allMessagesForDate ->
+                val bundle = Bundle()
+                bundle.putSerializable("clickedMessages", ArrayList(allMessagesForDate))
+                findNavController().navigate(R.id.action_exploreFragment_to_chatFragment2, bundle)
+            }
         })
+
 
     }
 }
