@@ -125,12 +125,12 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             }
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+     /*   requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 // Her zaman MainFragment'a gitmek için Navigation Component'i kullanın
                 findNavController().popBackStack(R.id.mainFragment, false)
             }
-        })
+        })*/
 
 
         viewModel.botTyping.observe(this) { isTyping ->
