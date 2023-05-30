@@ -47,6 +47,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.basestructure.model.local.MessageEntity
+import com.example.basestructure.ui.PremiumRequiredDialogFragment.PremiumRequiredDialogFragment
 import kotlinx.coroutines.launch
 
 class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
@@ -264,10 +265,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     }
 
     private fun showPremiumRequiredDialog() {
-        val bottomSheetDialog = BottomSheetDialog(requireContext())
-        val sheetView = layoutInflater.inflate(R.layout.dialog_premium_required, null)
-        bottomSheetDialog.setContentView(sheetView)
-        bottomSheetDialog.show()
+        val dialogFragment = PremiumRequiredDialogFragment()
+        dialogFragment.show(requireActivity().supportFragmentManager, "premiumRequiredDialog")
+
     }
 
 
