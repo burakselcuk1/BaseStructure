@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/premium_cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -207,6 +208,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/image4"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -254,6 +256,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/textview10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="299,99  / Aylık"
@@ -272,7 +275,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
-        android:background="@drawable/rounded_border_green"
+        android:background="@drawable/rounded_border"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
         android:padding="10dp"
@@ -284,16 +287,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Yıllık Plan"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/asdf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="299,99  / Yıllık"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@+id/textView91"
             app:layout_constraintTop_toBottomOf="@+id/textView91" />
 

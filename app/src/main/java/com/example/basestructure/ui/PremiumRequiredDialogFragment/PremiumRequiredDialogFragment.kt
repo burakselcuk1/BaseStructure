@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import com.example.basestructure.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -35,6 +38,38 @@ class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
         bottomSheet.setBackgroundColor(Color.TRANSPARENT)
 
 
+        view.findViewById<View>(R.id.premium_cancel_button).setOnClickListener {
+            dismiss() // dialogu kapatır
+        }
+
+        val constraintLayout1 = view.findViewById<ConstraintLayout>(R.id.constraintLayout3)
+        val constraintLayout2 = view.findViewById<ConstraintLayout>(R.id.bozo)
+        val textView1InLayout1 = view.findViewById<TextView>(R.id.textView9)
+        val textView2InLayout2 = view.findViewById<TextView>(R.id.textview10)
+        val textView1InLayout3 = view.findViewById<TextView>(R.id.textView91)
+        val textView2InLayout4 = view.findViewById<TextView>(R.id.asdf)
+
+
+
+        constraintLayout1.setOnClickListener {
+            it.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border_green)
+            constraintLayout2.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border) // default renk
+            textView2InLayout2.setTextColor(Color.WHITE)
+            textView1InLayout1.setTextColor(Color.WHITE)
+            textView1InLayout3.setTextColor(Color.BLACK)
+            textView2InLayout4.setTextColor(Color.BLACK)
+
+        }
+
+        constraintLayout2.setOnClickListener {
+            it.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border_green)
+            constraintLayout1.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border) // default renk
+            textView1InLayout3.setTextColor(Color.WHITE)
+            textView2InLayout4.setTextColor(Color.WHITE)
+            textView2InLayout2.setTextColor(Color.BLACK)
+            textView1InLayout1.setTextColor(Color.BLACK)
+
+        }
 
     }
 
