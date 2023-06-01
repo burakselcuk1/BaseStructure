@@ -2,9 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="10dp" /> <!-- Köşelerin yuvarlaklık derecesini ayarlar -->
 
-    <solid android:color="#178332" /> <!-- Arka plan rengini belirler (yeşil) -->
+    <solid android:color="#03A9F4" /> <!-- Arka plan rengini belirler (yeşil) -->
 
     <stroke
         android:width="2dp"
-        android:color="#006400" />
+        android:color="#004665" />
 </shape>
