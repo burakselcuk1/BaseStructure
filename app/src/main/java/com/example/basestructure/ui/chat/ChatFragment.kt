@@ -163,7 +163,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         binding.sendBtn.setOnClickListener {
 
             ViewUtils.hideKeyboard(it)
-            if (messageCount < 3) {
+            if (messageCount < 10) {
 
             val question = binding.messageEditText.text.toString()
             viewModel.sendMessage(question)
@@ -416,52 +416,52 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     fun handleChildOption(clickedChildName: String?) {
         val clickedChildOption = ChildOption.values().find { it.displayName == clickedChildName }
         when(clickedChildOption) {
-            ChildOption.EV_KIRALAMA -> {
+            ChildOption.EV_KIRALAMA, ChildOption.HOUSE_RENT -> {
                 prepareEditText(getString(R.string.house_rent))
             }
-            ChildOption.BILET_ALMA -> {
+            ChildOption.BILET_ALMA, ChildOption.TICKET -> {
                 prepareEditText(getString(R.string.take_ticket))
             }
-            ChildOption.RESTORAN_TAVSIYESI -> {
+            ChildOption.RESTORAN_TAVSIYESI, ChildOption.RESTAURANT_SUGESTIONS -> {
                 prepareEditText(getString(R.string.suggest_restaurant))
             }
-            ChildOption.GEZILECEK_YERLER -> {
+            ChildOption.GEZILECEK_YERLER, ChildOption.PLACES_TO_VISIT -> {
                 prepareEditText(getString(R.string.travel))
             }
-            ChildOption.ISIM_URETICI -> {
+            ChildOption.ISIM_URETICI, ChildOption.NAME_CREATOR -> {
                 prepareEditText(getString(R.string.name_crator))
             }
-            ChildOption.ILISKI_TAVSIYELERI -> {
+            ChildOption.ILISKI_TAVSIYELERI, ChildOption.RELATIONSHOP_ADVICE -> {
                 prepareEditText(getString(R.string.suggest_relationship))
             }
-            ChildOption.BASLIK_FIKIRLERI -> {
+            ChildOption.BASLIK_FIKIRLERI, ChildOption.TITLE_IDEAS -> {
                 prepareEditText(getString(R.string.suggest_title))
             }
-            ChildOption.SIIR_YAZMA -> {
+            ChildOption.SIIR_YAZMA, ChildOption.POEM_WRITING -> {
                 prepareEditText(getString(R.string.write_document))
             }
-            ChildOption.IS_ILANI -> {
+            ChildOption.IS_ILANI, ChildOption.JOB_POSTING -> {
                 prepareEditText(getString(R.string.job_posts))
             }
-            ChildOption.HUCRE_ORGANELLERI -> {
+            ChildOption.HUCRE_ORGANELLERI, ChildOption.CELL_ORGANELLES -> {
                 prepareEditText(getString(R.string.cell))
             }
-            ChildOption.IKLIM_DEGISIKLIGI -> {
+            ChildOption.IKLIM_DEGISIKLIGI, ChildOption.CLIMATE_CHANGE -> {
                 prepareEditText(getString(R.string.climate))
             }
-            ChildOption.EVRIM_TEORISI -> {
+            ChildOption.EVRIM_TEORISI, ChildOption.EVOLUTION_HISTORY -> {
                 prepareEditText(getString(R.string.evolution))
             }
-            ChildOption.SAC_UZATMAK -> {
+            ChildOption.SAC_UZATMAK, ChildOption.HAIR_GROWN -> {
                 prepareEditText(getString(R.string.hair))
             }
-            ChildOption.DAHA_IYI_UYKU -> {
+            ChildOption.DAHA_IYI_UYKU, ChildOption.BETTER_SLEEP -> {
                 prepareEditText(getString(R.string.sleep))
             }
-            ChildOption.SABAH_RUTINI -> {
+            ChildOption.SABAH_RUTINI, ChildOption.MORNING_ROUTINE -> {
                 prepareEditText(getString(R.string.routine))
             }
-            ChildOption.KITAP_ONERILERI -> {
+            ChildOption.KITAP_ONERILERI,ChildOption.BOOK_SUGGESTIONS -> {
                 prepareEditText(getString(R.string.book))
             }
             else -> {

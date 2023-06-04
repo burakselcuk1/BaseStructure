@@ -18,4 +18,23 @@ enum class ChildOption(val displayName: String) {
     SABAH_RUTINI("Sabah Rutini"),
     KITAP_ONERILERI("Kitap Önerileri"),
     // Diğer seçenekler...
+
+    //ENGLISH
+    HOUSE_RENT("House Rent"),
+    TICKET("Ticket Purchase"),
+    RESTAURANT_SUGESTIONS("Restaurant Suggestions"),
+    PLACES_TO_VISIT("Places to Visit"),
+    NAME_CREATOR("Name Creator"),
+    RELATIONSHOP_ADVICE("Relationship Advice"),
+    TITLE_IDEAS("Title Ideas"),
+    POEM_WRITING("Poem Writing"),
+    JOB_POSTING("Job Posting"),
+    CELL_ORGANELLES("Cell Organelles"),
+    CLIMATE_CHANGE("Climate Change"),
+    EVOLUTION_HISTORY("Evolution Theory"),
+    HAIR_GROWN("Hair Growth"),
+    BETTER_SLEEP("Better Sleep"),
+    MORNING_ROUTINE("Morning Routine"),
+    BOOK_SUGGESTIONS("Book Suggestions"),
+
 }
