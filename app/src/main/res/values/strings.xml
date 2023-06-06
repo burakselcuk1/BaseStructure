@@ -127,5 +127,17 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="head_text_one">Premium Erişim</string>
     <string name="head_text_two">ile Deneyiminizi</string>
     <string name="head_text_three">Artırın</string>
+    
+    
+    <!-- SignIn Fragment -->
+    <string name="login">Giriş Yap</string>
+    <string name="create_an_account">Bir Hesap Oluştur</string>
+    <string name="password">Şifre</string>
+    <string name="name">İsim</string>
+
+
+    <!-- SignUp Fragment -->
+    <string name="sign_up">Kayıt Ol</string>
+
 
 </resources>

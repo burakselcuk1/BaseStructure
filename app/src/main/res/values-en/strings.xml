@@ -125,5 +125,14 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="head_text_two">Experience With</string>
     <string name="head_text_three">Premium Access</string>
 
+    <!-- SignIn Fragment -->
+    <string name="login">Sign In</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="password">Password</string>
+    <string name="name">Username</string>
+
+    <!-- SignUp Fragment -->
+    <string name="sign_up">Sign Up</string>
+
 
 </resources>
