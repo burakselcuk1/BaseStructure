@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.example.basestructure.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -48,6 +49,7 @@ class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
         val textView2InLayout2 = view.findViewById<TextView>(R.id.textview10)
         val textView1InLayout3 = view.findViewById<TextView>(R.id.textView91)
         val textView2InLayout4 = view.findViewById<TextView>(R.id.asdf)
+        val continuee = view.findViewById<TextView>(R.id.continuee)
 
 
 
@@ -69,6 +71,10 @@ class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
             textView2InLayout2.setTextColor(Color.BLACK)
             textView1InLayout1.setTextColor(Color.BLACK)
 
+        }
+
+        continuee.setOnClickListener {
+            findNavController().navigate(R.id.action_premiumRequiredDialogFragment_to_signInFragment)
         }
 
     }

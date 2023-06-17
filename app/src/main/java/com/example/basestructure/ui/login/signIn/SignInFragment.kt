@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.basestructure.R
+import com.example.basestructure.base.BaseFragment
+import com.example.basestructure.databinding.FragmentSignInBinding
 
-class SignInFragment : Fragment() {
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>(
+    layoutId = R.layout.fragment_sign_in,
+    viewModelClass = SignInViewModel::class.java
+) {
+    override fun onInitDataBinding() {
+        binding.createAnAccount.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+        }
     }
+
 }

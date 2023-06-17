@@ -163,7 +163,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         binding.sendBtn.setOnClickListener {
 
             ViewUtils.hideKeyboard(it)
-            if (messageCount < 10) {
+            if (messageCount < 2) {
 
             val question = binding.messageEditText.text.toString()
             viewModel.sendMessage(question)
@@ -265,8 +265,9 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     }
 
     private fun showPremiumRequiredDialog() {
-        val dialogFragment = PremiumRequiredDialogFragment()
-        dialogFragment.show(requireActivity().supportFragmentManager, "premiumRequiredDialog")
+/*        val dialogFragment = PremiumRequiredDialogFragment()
+        dialogFragment.show(requireActivity().supportFragmentManager, "premiumRequiredDialog")*/
+        findNavController().navigate(R.id.action_chatFragment2_to_premiumRequiredDialogFragment)
 
     }
 

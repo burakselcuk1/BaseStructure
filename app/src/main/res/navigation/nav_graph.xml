@@ -36,10 +36,34 @@
         <action
             android:id="@+id/action_chatFragment2_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_chatFragment2_to_premiumRequiredDialogFragment"
+            app:destination="@id/premiumRequiredDialogFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/privacyPolicyFragment"
         android:name="com.example.basestructure.ui.privacypolicy.PrivacyPolicyFragment"
         android:label="fragment_privacy_policy"
         tools:layout="@layout/fragment_privacy_policy" />
+    <dialog
+        android:id="@+id/premiumRequiredDialogFragment"
+        android:name="com.example.basestructure.ui.PremiumRequiredDialogFragment.PremiumRequiredDialogFragment"
+        android:label="PremiumRequiredDialogFragment" >
+        <action
+            android:id="@+id/action_premiumRequiredDialogFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.basestructure.ui.login.signIn.SignInFragment"
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.basestructure.ui.login.singUp.SignUpFragment"
+        android:label="SignUpFragment" />
 </navigation>
