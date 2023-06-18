@@ -70,7 +70,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout31"
+                android:id="@+id/email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,6 +87,7 @@
                 app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emaill"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:outlineSpotShadowColor="@color/black"
@@ -94,7 +95,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout4"
+                android:id="@+id/password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,13 +105,15 @@
                 app:counterMaxLength="20"
                 app:counterTextColor="@color/black"
                 app:endIconMode="clear_text"
+                android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout31"
+                app:layout_constraintTop_toBottomOf="@+id/email"
                 app:startIconDrawable="@drawable/baseline_password_24"
                 app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black" />
@@ -118,14 +121,15 @@
 
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:text="@string/sign_up"
-                app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
+                app:layout_constraintEnd_toEndOf="@+id/password"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+                app:layout_constraintStart_toStartOf="@+id/password"
+                app:layout_constraintTop_toBottomOf="@+id/password" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

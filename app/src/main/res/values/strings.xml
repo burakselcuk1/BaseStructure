@@ -66,6 +66,7 @@
     <string name="subject">Konu</string>
     <string name="write_your_message_here">Mesajınızı buraya yazın</string>
     <string name="send_with_email">E-posta ile gönder</string>
+    <string name="logut">Çıkış yapıldı</string>
 
 
     <!--

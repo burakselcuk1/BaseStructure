@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.basestructure.R
 import com.example.basestructure.base.BaseFragment
 import com.example.basestructure.databinding.FragmentMoreBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
     layoutId = R.layout.fragment_more,
@@ -41,6 +44,11 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                 if (intent.resolveActivity(requireActivity().packageManager) != null) {
                     startActivity(Intent.createChooser(intent, getString(R.string.send_with_email)))
                 }
+            }
+            logOut.setOnClickListener {
+                Toast.makeText(requireContext(),R.string.logut,Toast.LENGTH_SHORT).show()
+                Firebase.auth.signOut()
+                findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
             }
         }
     }
