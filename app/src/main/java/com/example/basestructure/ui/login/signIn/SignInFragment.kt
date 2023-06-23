@@ -11,12 +11,14 @@ import com.example.basestructure.R
 import com.example.basestructure.base.BaseFragment
 import com.example.basestructure.databinding.FragmentSignInBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>(
     layoutId = R.layout.fragment_sign_in,
     viewModelClass = SignInViewModel::class.java
 ) {
     val auth = FirebaseAuth.getInstance()
+
     override fun onInitDataBinding() {
 
 
@@ -45,5 +47,6 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>(
                 }
             }
     }
+
 
 }
