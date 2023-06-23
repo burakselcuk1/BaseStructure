@@ -20,6 +20,8 @@ import com.example.basestructure.R
 import com.example.basestructure.base.BaseFragment
 import com.example.basestructure.base.BaseViewModel
 import com.example.basestructure.databinding.FragmentMainBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 
@@ -40,25 +42,54 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
         }
 
         binding.textInputLayout.setEndIconOnClickListener {
-            val options = arrayOf<CharSequence>("Camera", "Gallery", "Cancel")
 
-            val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Choose your picture")
+            val user = FirebaseAuth.getInstance().currentUser
+            val uid = user?.uid
 
-            builder.setItems(options) { dialog, item ->
-                when {
-                    options[item] == "Camera" -> {
-                        askCameraPermissionAndOpenCamera()
+            if (uid != null) {
+                val userRef = FirebaseFirestore.getInstance().collection("users").document(uid)
+                userRef.get()
+                    .addOnSuccessListener { document ->
+                        if (document != null && document.exists()) {
+                            val isPremium = document.getBoolean("isPremium")
+                            if (isPremium != null && isPremium) {
+                                // Kullanıcı premium hesaba sahip
+                                val options = arrayOf<CharSequence>("Camera", "Gallery", "Cancel")
+
+                                val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+                                builder.setTitle("Choose your picture")
+
+                                builder.setItems(options) { dialog, item ->
+                                    when {
+                                        options[item] == "Camera" -> {
+                                            askCameraPermissionAndOpenCamera()
+                                        }
+                                        options[item] == "Gallery" -> {
+                                            openGallery()
+                                        }
+                                        options[item] == "Cancel" -> {
+                                            dialog.dismiss()
+                                        }
+                                    }
+                                }
+                                builder.show()
+                            } else {
+                                // Kullanıcı premium hesaba sahip değil
+                                Toast.makeText(requireContext(), "Premium hesaba sahip olmanız gerekiyor", Toast.LENGTH_SHORT).show()
+                            }
+                        } else {
+                            // Belge bulunamadı veya hata oluştu
+                            Toast.makeText(requireContext(), "Kullanıcı belgesi bulunamadı", Toast.LENGTH_SHORT).show()
+                        }
                     }
-                    options[item] == "Gallery" -> {
-                        openGallery()
+                    .addOnFailureListener { e ->
+                        // Firestore'dan veri alınamadı
+                        Toast.makeText(requireContext(), "Firestore'dan veri alınamadı", Toast.LENGTH_SHORT).show()
                     }
-                    options[item] == "Cancel" -> {
-                        dialog.dismiss()
-                    }
-                }
+            } else {
+                // Kullanıcı oturum açmamış
+                Toast.makeText(requireContext(), "Kullanıcı oturum açmamış", Toast.LENGTH_SHORT).show()
             }
-            builder.show()
         }
     }
 
