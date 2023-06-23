@@ -15,6 +15,7 @@ import com.example.basestructure.base.BaseFragment
 import com.example.basestructure.databinding.FragmentMoreBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
     layoutId = R.layout.fragment_more,
@@ -24,6 +25,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
         viewClicks()
     }
     private fun viewClicks() {
+        val user = Firebase.auth.currentUser
+
         with(binding){
             selectLanguage.setOnClickListener {
                 val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
@@ -45,10 +48,25 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                     startActivity(Intent.createChooser(intent, getString(R.string.send_with_email)))
                 }
             }
+            login.setOnClickListener {
+                findNavController().navigate(R.id.action_moreFragment_to_signInFragment)
+            }
             logOut.setOnClickListener {
                 Toast.makeText(requireContext(),R.string.logut,Toast.LENGTH_SHORT).show()
                 Firebase.auth.signOut()
                 findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
+            }
+            email.text = user?.email ?: "No user logged in"
+
+            val user = Firebase.auth.currentUser
+            if (user != null) {
+                // Kullanıcı giriş yapmış, girişe özel özellikleri göster
+                constraintLayout2.visibility = View.VISIBLE
+                logOut.visibility = View.VISIBLE
+                login.visibility = View.GONE
+                // ...
+            } else {
+                // Kullanıcı giriş yapmamış, girişe özel özellikleri gizle
             }
         }
     }

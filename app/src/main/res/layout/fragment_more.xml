@@ -35,6 +35,7 @@
             android:layout_height="100dp"
             android:background="@drawable/explore_fragment_background"
             android:padding="20dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,10 +60,10 @@
                     android:id="@+id/icon3s"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/baseline_language_24" />
+                    android:src="@drawable/baseline_person_24" />
 
                 <TextView
-                    android:id="@+id/change_languagec"
+                    android:id="@+id/email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -337,12 +338,23 @@
         <ImageView
             android:id="@+id/logOut"
             android:layout_width="50dp"
+            android:visibility="gone"
             android:layout_height="50dp"
             android:src="@drawable/baseline_logout_24"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

@@ -131,6 +131,8 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="create_an_account">Create an Account</string>
     <string name="password">Password</string>
     <string name="name">Username</string>
+    <string name="unsuccess">Login Failed</string>
+
 
     <!-- SignUp Fragment -->
     <string name="sign_up">Sign Up</string>

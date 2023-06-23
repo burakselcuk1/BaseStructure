@@ -135,6 +135,7 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="create_an_account">Bir Hesap Oluştur</string>
     <string name="password">Şifre</string>
     <string name="name">İsim</string>
+    <string name="unsuccess">Giriş Başarısız</string>
 
 
     <!-- SignUp Fragment -->
