@@ -163,7 +163,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         binding.sendBtn.setOnClickListener {
 
             ViewUtils.hideKeyboard(it)
-            if (messageCount < 2) {
+            if (messageCount < 10) {
 
             val question = binding.messageEditText.text.toString()
             viewModel.sendMessage(question)

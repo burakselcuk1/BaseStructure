@@ -75,7 +75,8 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
                                 builder.show()
                             } else {
                                 // Kullanıcı premium hesaba sahip değil
-                                Toast.makeText(requireContext(), "Premium hesaba sahip olmanız gerekiyor", Toast.LENGTH_SHORT).show()
+                               // Toast.makeText(requireContext(), "Premium hesaba sahip olmanız gerekiyor", Toast.LENGTH_SHORT).show()
+                                findNavController().navigate(R.id.action_mainFragment_to_premiumRequiredDialogFragment)
                             }
                         } else {
                             // Belge bulunamadı veya hata oluştu
