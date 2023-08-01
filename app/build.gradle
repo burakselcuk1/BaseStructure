@@ -4,15 +4,17 @@ plugins {
     id 'kotlin-kapt'
     id "dagger.hilt.android.plugin"
     id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs.kotlin'
+
 }
 
 
 android {
-    namespace 'com.example.basestructure'
+    namespace 'com.speakwithai.basestructure'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.basestructure"
+        applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 33
         versionCode 1

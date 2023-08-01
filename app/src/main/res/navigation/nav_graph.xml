@@ -5,7 +5,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.example.basestructure.ui.explore.ExploreFragment"
+        android:name="com.speakwithai.basestructure.ui.explore.ExploreFragment"
         android:label="FirstFragment">
         <action
             android:id="@+id/action_exploreFragment_to_chatFragment2"
@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.basestructure.ui.mainFragment.MainFragment"
+        android:name="com.speakwithai.basestructure.ui.mainFragment.MainFragment"
         android:label="SecondFragment">
         <action
             android:id="@+id/action_mainFragment_to_chatFragment2"
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/moreFragment"
-        android:name="com.example.basestructure.ui.more.MoreFragment"
+        android:name="com.speakwithai.basestructure.ui.more.MoreFragment"
         android:label="ThirdFragment">
         <action
             android:id="@+id/action_moreFragment_to_privacyPolicyFragment"
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment2"
-        android:name="com.example.basestructure.ui.chat.ChatFragment"
+        android:name="com.speakwithai.basestructure.ui.chat.ChatFragment"
         android:label="ChatFragment" >
         <action
             android:id="@+id/action_chatFragment2_to_mainFragment"
@@ -52,12 +52,16 @@
 
     <fragment
         android:id="@+id/privacyPolicyFragment"
-        android:name="com.example.basestructure.ui.privacypolicy.PrivacyPolicyFragment"
+        android:name="com.speakwithai.basestructure.ui.privacypolicy.PrivacyPolicyFragment"
         android:label="fragment_privacy_policy"
-        tools:layout="@layout/fragment_privacy_policy" />
+        tools:layout="@layout/fragment_privacy_policy" >
+        <argument
+            android:name="isim"
+            app:argType="string" />
+    </fragment>
     <dialog
         android:id="@+id/premiumRequiredDialogFragment"
-        android:name="com.example.basestructure.ui.PremiumRequiredDialogFragment.PremiumRequiredDialogFragment"
+        android:name="com.speakwithai.basestructure.ui.PremiumRequiredDialogFragment.PremiumRequiredDialogFragment"
         android:label="PremiumRequiredDialogFragment" >
         <action
             android:id="@+id/action_premiumRequiredDialogFragment_to_signInFragment"
@@ -65,7 +69,7 @@
     </dialog>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.basestructure.ui.login.signIn.SignInFragment"
+        android:name="com.speakwithai.basestructure.ui.login.signIn.SignInFragment"
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
@@ -76,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.basestructure.ui.login.singUp.SignUpFragment"
+        android:name="com.speakwithai.basestructure.ui.login.singUp.SignUpFragment"
         android:label="SignUpFragment" >
         <action
             android:id="@+id/action_signUpFragment_to_moreFragment"
