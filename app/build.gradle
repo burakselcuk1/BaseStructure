@@ -17,8 +17,9 @@ android {
         applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "1.5"
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +54,7 @@ dependencies {
     def gsonVersion = '2.8.6'
     def lottieVersion = "3.2.0"
     def room_version = "2.3.0"
+    def billing_version = "6.0.1"
 
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -127,6 +129,10 @@ dependencies {
         exclude group: 'com.google.android.gms', module: 'play-services-vision-common'
     }
     implementation 'com.google.android.gms:play-services-vision:20.1.3'
+
+    //Google Billing
+    implementation "com.android.billingclient:billing:$billing_version"
+
 
 
 

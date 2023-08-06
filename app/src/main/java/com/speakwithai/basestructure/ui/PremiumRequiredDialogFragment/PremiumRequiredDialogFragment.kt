@@ -4,84 +4,122 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.PurchasesUpdatedListener
+import com.android.billingclient.api.SkuDetailsParams
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.common.BillingManager
+import com.speakwithai.basestructure.databinding.DialogPremiumRequiredBinding
 
 class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
+
+    private var _binding: DialogPremiumRequiredBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val coordinatorLayout = container?.parent as? CoordinatorLayout
-        coordinatorLayout?.setBackgroundResource(R.drawable.rounded_corner_left)
-        return inflater.inflate(R.layout.dialog_premium_required, container, false)
+        _binding = DialogPremiumRequiredBinding.inflate(inflater, container, false)
+        setCoordinatorLayoutStyle(container)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupBottomSheetBackground()
+        setupClickListeners()
+    }
+
+    private fun setCoordinatorLayoutStyle(container: ViewGroup?) {
+        val coordinatorLayout = container?.parent as? CoordinatorLayout
+        coordinatorLayout?.setBackgroundResource(R.drawable.rounded_corner_left)
+    }
+
+    private fun setupBottomSheetBackground() {
         val bottomSheet = (requireView().parent as View)
         bottomSheet.backgroundTintMode = PorterDuff.Mode.CLEAR
         bottomSheet.backgroundTintList = ColorStateList.valueOf(Color.TRANSPARENT)
         bottomSheet.setBackgroundColor(Color.TRANSPARENT)
+    }
+
+    private fun setupClickListeners() {
+        with(binding) {
+            premiumCancelButton.setOnClickListener { dismiss() }
+
+            constraintLayout3.setOnClickListener {
+                setSelectedStyle(constraintLayout3, bozo)
+            }
+
+            bozo.setOnClickListener {
+                setSelectedStyle(bozo, constraintLayout3)
+            }
+
+            continuee.setOnClickListener { handleBillingProcess() }
+        }
+    }
 
 
-        view.findViewById<View>(R.id.premium_cancel_button).setOnClickListener {
-            dismiss() // dialogu kapatır
+    private fun setSelectedStyle(selected: View, unselected: View) {
+        selected.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border_green)
+        unselected.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border)
+    }
+
+    private fun handleBillingProcess() {
+        val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
+            // Satın alma işlemlerini burada işleyebilirsiniz.
         }
 
-        val constraintLayout1 = view.findViewById<ConstraintLayout>(R.id.constraintLayout3)
-        val constraintLayout2 = view.findViewById<ConstraintLayout>(R.id.bozo)
-        val textView1InLayout1 = view.findViewById<TextView>(R.id.textView9)
-        val textView2InLayout2 = view.findViewById<TextView>(R.id.textview10)
-        val textView1InLayout3 = view.findViewById<TextView>(R.id.textView91)
-        val textView2InLayout4 = view.findViewById<TextView>(R.id.asdf)
-        val continuee = view.findViewById<TextView>(R.id.continuee)
+        val billingManager =  BillingManager(requireActivity(), purchasesUpdatedListener)
 
+        billingManager.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    queryAndInitiatePurchase(billingManager)
+                }
+            }
 
+            override fun onBillingServiceDisconnected() {
+                Log.d("DEBUG", "onBillingServiceDisconnected: Bağlantı kesildi.")
+            }
+        })
+    }
 
-        constraintLayout1.setOnClickListener {
-            it.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border_green)
-            constraintLayout2.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border) // default renk
-            textView2InLayout2.setTextColor(Color.WHITE)
-            textView1InLayout1.setTextColor(Color.WHITE)
-            textView1InLayout3.setTextColor(Color.BLACK)
-            textView2InLayout4.setTextColor(Color.BLACK)
+    private fun queryAndInitiatePurchase(billingManager: BillingManager) {
+        val skuList = listOf("premium")
+        val params = SkuDetailsParams.newBuilder()
+            .setSkusList(skuList)
+            .setType(BillingClient.SkuType.SUBS)
 
+        billingManager.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
+                skuDetailsList.forEach { skuDetails ->
+                    billingManager.initiatePurchase(skuDetails)
+                }
+            }
         }
+    }
 
-        constraintLayout2.setOnClickListener {
-            it.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border_green)
-            constraintLayout1.background = ContextCompat.getDrawable(requireContext(), R.drawable.rounded_border) // default renk
-            textView1InLayout3.setTextColor(Color.WHITE)
-            textView2InLayout4.setTextColor(Color.WHITE)
-            textView2InLayout2.setTextColor(Color.BLACK)
-            textView1InLayout1.setTextColor(Color.BLACK)
-
-        }
-
-        continuee.setOnClickListener {
-            findNavController().navigate(R.id.action_premiumRequiredDialogFragment_to_signInFragment)
-        }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onStart() {
         super.onStart()
-        val bottomSheetDialog = dialog as? BottomSheetDialog
-        bottomSheetDialog?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
+        (dialog as? BottomSheetDialog)?.behavior?.state = BottomSheetBehavior.STATE_EXPANDED
     }
 }
