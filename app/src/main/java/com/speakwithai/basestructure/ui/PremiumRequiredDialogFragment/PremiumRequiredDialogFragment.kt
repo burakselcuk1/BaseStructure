@@ -108,7 +108,6 @@ class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
             }
 
             override fun onBillingServiceDisconnected() {
-                Timber.d("onBillingServiceDisconnected: Bağlantı kesildi.")
             }
         })
     }

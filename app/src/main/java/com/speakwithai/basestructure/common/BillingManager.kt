@@ -30,7 +30,6 @@ class BillingManager @Inject constructor(private val context: Context) {
         }
     }
 
-
     var billingClient: BillingClient = BillingClient.newBuilder(context)
         .setListener(defaultPurchasesUpdatedListener)
         .enablePendingPurchases()
@@ -54,24 +53,13 @@ class BillingManager @Inject constructor(private val context: Context) {
             .build()
     }
 
-
-
     fun startConnection(param: BillingClientStateListener) {
         billingClient.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
-                Timber.tag("BillingManager")
-                    .d("onBillingSetupFinished: %s", billingResult.responseCode)
-                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    Timber.tag("BillingManager").d("Bağlantı başarılı!")
-                } else {
-                    Timber.tag("BillingManager")
-                        .d("Bağlantı başarısız! Hata kodu: %s", billingResult.responseCode)
-                }
+
                 param.onBillingSetupFinished(billingResult)
             }
-
             override fun onBillingServiceDisconnected() {
-                Timber.tag("BillingManager").d("onBillingServiceDisconnected: Bağlantı kesildi")
                 param.onBillingServiceDisconnected()
             }
         })
@@ -89,24 +77,17 @@ class BillingManager @Inject constructor(private val context: Context) {
         try {
             val response = billingClient.launchBillingFlow(context, flowParams)
             if (response.responseCode != BillingClient.BillingResponseCode.OK) {
-                // Burada bir işlem yapılacaksa eklenebilir, aksi takdirde bu kontrolü de kaldırabilirsiniz.
             }
         } catch (e: Exception) {
             // Exception'ı işlemek veya loglamak için gereken işlemler burada yapılabilir.
         }
     }
 
-
     fun querySkuDetailsAsync(params: SkuDetailsParams.Builder, responseListener: (BillingResult, List<SkuDetails>?) -> Unit) {
-        Timber.tag("BillingManager").d("SKU detayları sorgulanıyor")
         billingClient.querySkuDetailsAsync(params.build(), responseListener)
     }
 
     fun queryPurchases() {
-        if (!billingClient.isReady) {
-            Timber.tag("BILLINGR").e("queryPurchases: BillingClient is not ready")
-        }
-
         billingClient.queryPurchasesAsync(
             QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS).build()
         ) { billingResult, purchaseList ->
@@ -119,10 +100,8 @@ class BillingManager @Inject constructor(private val context: Context) {
                     _userStatus.value = UserStatus.NON_PREMIUM
                 }
             } else {
-                Timber.tag("BILLINGR").e(billingResult.debugMessage)
                 _userStatus.value = UserStatus.UNKNOWN
             }
         }
     }
-
 }
