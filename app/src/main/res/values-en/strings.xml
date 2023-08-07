@@ -110,6 +110,8 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="data_after_2021_here">You can look at data after 2021 here:</string>
     <string name="typing">Typing</string>
     <string name="speak_with_chat">Talk to Chat</string>
+    <string name="unsupport">Sorry, your device does not support this feature</string>
+    <string name="no_microphone_permission">Microphone permission denied.</string>
 
     <!-- Bottom Nav Menu -->
     <string name="chat">Chat</string>

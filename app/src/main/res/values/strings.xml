@@ -114,6 +114,8 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="data_after_2021_here">2021 sonrası verilere buradan bakabilirsiniz:</string>
     <string name="typing">Yazıyor</string>
     <string name="speak_with_chat">Chat ile Konuş</string>
+    <string name="unsupport">Üzgünüm, cihazınız bu özelliği desteklemiyor</string>
+    <string name="no_microphone_permission">Mikrofon izni reddedildi.</string>
 
     <!-- Bottom Nav Menu -->
     <string name="chat">Sohbet</string>

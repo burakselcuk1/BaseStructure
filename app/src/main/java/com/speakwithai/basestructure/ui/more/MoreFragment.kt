@@ -60,9 +60,9 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                     startActivity(Intent.createChooser(intent, getString(R.string.send_with_email)))
                 }
             }
-            login.setOnClickListener {
+            /*login.setOnClickListener {
                 findNavController().navigate(R.id.action_moreFragment_to_signInFragment)
-            }
+            }*/
             logOut.setOnClickListener {
                 Toast.makeText(requireContext(),R.string.logut,Toast.LENGTH_SHORT).show()
                 Firebase.auth.signOut()
@@ -75,8 +75,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                 // Kullanıcı giriş yapmış, girişe özel özellikleri göster
                 constraintLayout2.visibility = View.VISIBLE
                 logOut.visibility = View.VISIBLE
-                login.visibility = View.GONE
-                // ...
+                //login.visibility = View.GONE
             } else {
                 // Kullanıcı giriş yapmamış, girişe özel özellikleri gizle
             }

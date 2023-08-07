@@ -345,7 +345,7 @@
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
-
+<!--
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/login"
             android:layout_width="match_parent"
@@ -354,7 +354,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

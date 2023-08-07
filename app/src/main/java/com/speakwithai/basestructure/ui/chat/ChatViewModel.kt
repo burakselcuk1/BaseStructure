@@ -1,5 +1,6 @@
 package com.speakwithai.basestructure.ui.chat
 
+import android.content.Context
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -11,6 +12,7 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseViewModel
+import com.speakwithai.basestructure.common.ChildOption
 import com.speakwithai.basestructure.di.NetworkModule
 import com.speakwithai.basestructure.model.MessageRequest
 import com.speakwithai.basestructure.model.local.MessageEntity
@@ -19,6 +21,7 @@ import com.speakwithai.basestructure.model.CompletionRequest
 import com.speakwithai.basestructure.model.CompletionResponse
 import com.speakwithai.basestructure.model.Message
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,7 +35,9 @@ import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 @HiltViewModel
-class ChatViewModel @Inject constructor(private val messageRepository: MessageRepository): BaseViewModel() {
+class ChatViewModel @Inject constructor(private val messageRepository: MessageRepository,
+                                        @ApplicationContext private val context: Context
+): BaseViewModel() {
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -168,7 +173,6 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         withContext(Dispatchers.Main) {
             if (response.isSuccessful) {
                 response.body()?.let { completionResponse ->
-                    Log.d("APIResponse", "Completion Response: $completionResponse")
                     val result = completionResponse.choices.firstOrNull()?.message?.content
                     if (!result.isNullOrEmpty()) {
                         _botWritingMessage.value = ""  // Clear the previous message
@@ -264,6 +268,29 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         )
         viewModelScope.launch {
             messageRepository.insert(messageEntity)
+        }
+    }
+
+    fun handleChildOption(clickedChildName: String?): String {
+        val clickedChildOption = ChildOption.values().find { it.displayName == clickedChildName }
+        return when(clickedChildOption) {
+            ChildOption.EV_KIRALAMA, ChildOption.HOUSE_RENT -> context.getString(R.string.house_rent)
+            ChildOption.BILET_ALMA, ChildOption.TICKET -> context.getString(R.string.take_ticket)
+            ChildOption.RESTORAN_TAVSIYESI, ChildOption.RESTAURANT_SUGESTIONS -> context.getString(R.string.suggest_restaurant)
+            ChildOption.GEZILECEK_YERLER, ChildOption.PLACES_TO_VISIT -> context.getString(R.string.travel)
+            ChildOption.ISIM_URETICI, ChildOption.NAME_CREATOR -> context.getString(R.string.name_crator)
+            ChildOption.ILISKI_TAVSIYELERI, ChildOption.RELATIONSHOP_ADVICE -> context.getString(R.string.suggest_relationship)
+            ChildOption.BASLIK_FIKIRLERI, ChildOption.TITLE_IDEAS -> context.getString(R.string.suggest_title)
+            ChildOption.SIIR_YAZMA, ChildOption.POEM_WRITING -> context.getString(R.string.write_document)
+            ChildOption.IS_ILANI, ChildOption.JOB_POSTING -> context.getString(R.string.job_posts)
+            ChildOption.HUCRE_ORGANELLERI, ChildOption.CELL_ORGANELLES -> context.getString(R.string.cell)
+            ChildOption.IKLIM_DEGISIKLIGI, ChildOption.CLIMATE_CHANGE -> context.getString(R.string.climate)
+            ChildOption.EVRIM_TEORISI, ChildOption.EVOLUTION_HISTORY -> context.getString(R.string.evolution)
+            ChildOption.SAC_UZATMAK, ChildOption.HAIR_GROWN -> context.getString(R.string.hair)
+            ChildOption.DAHA_IYI_UYKU, ChildOption.BETTER_SLEEP -> context.getString(R.string.sleep)
+            ChildOption.SABAH_RUTINI, ChildOption.MORNING_ROUTINE -> context.getString(R.string.routine)
+            ChildOption.KITAP_ONERILERI, ChildOption.BOOK_SUGGESTIONS -> context.getString(R.string.book)
+            else -> ""
         }
     }
 

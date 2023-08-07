@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.speakwithai.basestructure.base.BaseActivity
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.enums.UserStatus
+import com.speakwithai.basestructure.common.utils.MessageManager
 import com.speakwithai.basestructure.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +19,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     layoutId = R.layout.activity_main, viewModelClass = MainViewModel::class.java
 ) {
     override fun onInitDataBinding() {
+        MessageManager.initialize(this)
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment

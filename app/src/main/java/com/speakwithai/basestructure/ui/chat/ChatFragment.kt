@@ -33,6 +33,7 @@ import com.google.android.material.internal.ViewUtils
 import java.util.Locale
 import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.common.utils.MessageManager
 import com.speakwithai.basestructure.databinding.FragmentChatBinding
 import com.speakwithai.basestructure.model.Message
 import com.speakwithai.basestructure.model.local.MessageEntity
@@ -49,32 +50,15 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     }
     private var speechRecognizer: SpeechRecognizer? = null
 
-    val prefs: SharedPreferences by lazy {
-        requireActivity().getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
-    }
     private lateinit var adapter: MessageAdapter
-
-    var messageCount: Int
-        get() = prefs.getInt("messageCount", 0)
-        set(value) {
-            prefs.edit().putInt("messageCount", value).apply()
-        }
-
-    var lastMessageTime: Long
-        get() = prefs.getLong("lastMessageTime", 0)
-        set(value) {
-            prefs.edit().putLong("lastMessageTime", value).apply()
-        }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("RestrictedApi", "ClickableViewAccessibility")
     override fun onInitDataBinding() {
-
-
+        setupUI()
         adapter = MessageAdapter(mutableListOf())
         adapter.setMessages(emptyList())
         binding.recyclerView.adapter = adapter
-
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
@@ -94,7 +78,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                 val message = messageEntityToMessage(messageEntity)
                 adapter.addMessage(message)
             }
-            // Veri değişikliğini adapter'a bildirin
             adapter.notifyDataSetChanged()
         }
 
@@ -144,36 +127,30 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         }
 
         // Get the clicked child name from the arguments
-        val clickedChildName = arguments?.getString("clickedChildName")
-        handleChildOption(clickedChildName)
 
         binding.sendBtn.setOnClickListener {
-
             ViewUtils.hideKeyboard(it)
-            if (messageCount < 2) {
-
-            val question = binding.messageEditText.text.toString()
-            viewModel.sendMessage(question)
-            binding.messageEditText.setText("")
-            incrementMessageCount()
-            }else{
+            if (MessageManager.canSendMessage()) {
+                val question = binding.messageEditText.text.toString()
+                viewModel.sendMessage(question)
+                binding.messageEditText.setText("")
+                MessageManager.messageSent()
+            } else {
                 showPremiumRequiredDialog()
             }
         }
 
         binding.microphone.setOnClickListener {
-            startVoiceInput() // Start speech to text
+            startVoiceInput()
             val mp = MediaPlayer.create(requireContext(), R.raw.microphone)
             mp.start()
         }
 
         binding.microphone.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP) {
-                // User released the button, stop listening
-                // You might need to implement the stopListening() function depending on your needs.
                 stopListening()
             }
-            false // Don't consume the event
+            false
         }
 
 
@@ -235,29 +212,11 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             sentBy = if(entity.sender == MessageEntity.Sender.USER) Message.SENT_BY_ME else Message.SENT_BY_BOT
         )
     }
-
-
-    fun incrementMessageCount() {
-        val currentTimeMillis = System.currentTimeMillis()
-        val oneDayMillis = 24 * 60 * 60 * 1000
-
-        // Eğer son mesaj gönderiminden 24 saat geçmişse sayaç sıfırlanır
-        if (currentTimeMillis - lastMessageTime > oneDayMillis) {
-            messageCount = 0
-        }
-
-        // Sayaç arttırılır ve son mesaj zamanı güncellenir
-        messageCount++
-        lastMessageTime = currentTimeMillis
-    }
-
     private fun showPremiumRequiredDialog() {
 /*        val dialogFragment = PremiumRequiredDialogFragment()
         dialogFragment.show(requireActivity().supportFragmentManager, "premiumRequiredDialog")*/
         findNavController().navigate(R.id.action_chatFragment2_to_premiumRequiredDialogFragment)
-
     }
-
 
     fun scrollToBottom() {
         val targetPosition = viewModel.allMessages.value?.size?.minus(1) ?: 0
@@ -312,18 +271,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
 
                     override fun onError(error: Int) {
                         Log.d("SpeechRecognition", "Error code: $error")
-                        when (error) {
-                            SpeechRecognizer.ERROR_AUDIO -> Log.e("SpeechRecognition", "Audio recording error")
-                            SpeechRecognizer.ERROR_CLIENT -> Log.e("SpeechRecognition", "Client side error")
-                            SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> Log.e("SpeechRecognition", "Insufficient permissions")
-                            SpeechRecognizer.ERROR_NETWORK -> Log.e("SpeechRecognition", "Network error")
-                            SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> Log.e("SpeechRecognition", "Network timeout")
-                            SpeechRecognizer.ERROR_NO_MATCH -> Log.e("SpeechRecognition", "No match")
-                            SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> Log.e("SpeechRecognition", "RecognitionService busy")
-                            SpeechRecognizer.ERROR_SERVER -> Log.e("SpeechRecognition", "Server error")
-                            SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> Log.e("SpeechRecognition", "No speech input")
-                            else -> Log.e("SpeechRecognition", "Unknown error")
-                        }
                     }
 
 
@@ -331,7 +278,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                         val matches = bundle?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                         if (matches != null && matches.isNotEmpty()) {
                             val text = matches[0] // En iyi sonucu alır
-                            // Metni EditText'e yerleştir
                             binding.messageEditText.setText(text)
                         }
                     }
@@ -340,7 +286,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                         val matches = bundle?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                         if (matches != null && matches.isNotEmpty()) {
                             val text = matches[0] // En iyi sonucu alır
-                            // Kısmi metni EditText'e yerleştir
                             binding.messageEditText.setText(text)
                         }
                     }
@@ -348,15 +293,13 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                     override fun onEvent(p0: Int, p1: Bundle?) {
                         TODO("Not yet implemented")
                     }
-
-                    // You may need to implement more methods here depending on your needs
                 })
             }
 
             try {
                 speechRecognizer?.startListening(intent)
             } catch (a: ActivityNotFoundException) {
-                Toast.makeText(requireContext(), "Üzgünüm, cihazınız bu özelliği desteklemiyor.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.unsupport), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -367,7 +310,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             REQ_CODE_SPEECH_INPUT -> {
                 if (resultCode == RESULT_OK && null != data) {
                     val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                    // Burada dönüştürülen metni işleyebilirsiniz.
                     binding.messageEditText.text = Editable.Factory.getInstance().newEditable(result.toString())
                 }
             }
@@ -376,23 +318,18 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
             MY_PERMISSIONS_REQUEST_RECORD_AUDIO -> {
-                // İstek iptal edilirse, sonuç dizileri boş olacak.
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // İzin verildi, ses tanıma işlemine devam et
                     startVoiceInput()
                 } else {
-                    // İzin verilmedi, işlemi durdur veya kullanıcıyı bilgilendir
-                    Toast.makeText(requireContext(), "Mikrofon izni reddedildi.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.no_microphone_permission), Toast.LENGTH_SHORT).show()
                 }
                 return
             }
             else -> {
-                // Diğer izin isteklerini işle
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults)
             }
         }
     }
-
 
     private fun stopListening() {
         if (speechRecognizer != null) {
@@ -401,65 +338,21 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             speechRecognizer = null
         }
     }
-    fun handleChildOption(clickedChildName: String?) {
-        val clickedChildOption = ChildOption.values().find { it.displayName == clickedChildName }
-        when(clickedChildOption) {
-            ChildOption.EV_KIRALAMA, ChildOption.HOUSE_RENT -> {
-                prepareEditText(getString(R.string.house_rent))
-            }
-            ChildOption.BILET_ALMA, ChildOption.TICKET -> {
-                prepareEditText(getString(R.string.take_ticket))
-            }
-            ChildOption.RESTORAN_TAVSIYESI, ChildOption.RESTAURANT_SUGESTIONS -> {
-                prepareEditText(getString(R.string.suggest_restaurant))
-            }
-            ChildOption.GEZILECEK_YERLER, ChildOption.PLACES_TO_VISIT -> {
-                prepareEditText(getString(R.string.travel))
-            }
-            ChildOption.ISIM_URETICI, ChildOption.NAME_CREATOR -> {
-                prepareEditText(getString(R.string.name_crator))
-            }
-            ChildOption.ILISKI_TAVSIYELERI, ChildOption.RELATIONSHOP_ADVICE -> {
-                prepareEditText(getString(R.string.suggest_relationship))
-            }
-            ChildOption.BASLIK_FIKIRLERI, ChildOption.TITLE_IDEAS -> {
-                prepareEditText(getString(R.string.suggest_title))
-            }
-            ChildOption.SIIR_YAZMA, ChildOption.POEM_WRITING -> {
-                prepareEditText(getString(R.string.write_document))
-            }
-            ChildOption.IS_ILANI, ChildOption.JOB_POSTING -> {
-                prepareEditText(getString(R.string.job_posts))
-            }
-            ChildOption.HUCRE_ORGANELLERI, ChildOption.CELL_ORGANELLES -> {
-                prepareEditText(getString(R.string.cell))
-            }
-            ChildOption.IKLIM_DEGISIKLIGI, ChildOption.CLIMATE_CHANGE -> {
-                prepareEditText(getString(R.string.climate))
-            }
-            ChildOption.EVRIM_TEORISI, ChildOption.EVOLUTION_HISTORY -> {
-                prepareEditText(getString(R.string.evolution))
-            }
-            ChildOption.SAC_UZATMAK, ChildOption.HAIR_GROWN -> {
-                prepareEditText(getString(R.string.hair))
-            }
-            ChildOption.DAHA_IYI_UYKU, ChildOption.BETTER_SLEEP -> {
-                prepareEditText(getString(R.string.sleep))
-            }
-            ChildOption.SABAH_RUTINI, ChildOption.MORNING_ROUTINE -> {
-                prepareEditText(getString(R.string.routine))
-            }
-            ChildOption.KITAP_ONERILERI,ChildOption.BOOK_SUGGESTIONS -> {
-                prepareEditText(getString(R.string.book))
-            }
-            else -> {
-                // Beklenmeyen bir durum
-            }
+    fun setupUI() {
+        val clickedChildName = arguments?.getString("clickedChildName")
+        val resultText = viewModel.handleChildOption(clickedChildName)
+        if (resultText.isNullOrEmpty()){
+
+        }else{
+            prepareEditText(resultText)
+
         }
     }
     fun prepareEditText(text: String) {
-        binding.messageEditText.setText(text)
-        binding.microphone.visibility = View.GONE
-        binding.sendBtn.visibility = View.VISIBLE
+        with(binding){
+            messageEditText.setText(text)
+            microphone.visibility = View.GONE
+            sendBtn.visibility = View.VISIBLE
+        }
     }
 }
