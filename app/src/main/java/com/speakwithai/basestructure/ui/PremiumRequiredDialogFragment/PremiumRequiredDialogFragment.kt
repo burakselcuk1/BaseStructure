@@ -21,8 +21,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.BillingManager
 import com.speakwithai.basestructure.databinding.DialogPremiumRequiredBinding
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+import javax.inject.Inject
+
+@AndroidEntryPoint
 
 class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
+
+    @Inject
+    lateinit var billingManager: BillingManager
 
     private var _binding: DialogPremiumRequiredBinding? = null
     private val binding get() = _binding!!
@@ -80,25 +88,32 @@ class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
 
     private fun handleBillingProcess() {
         val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
-            // Satın alma işlemlerini burada işleyebilirsiniz.
+            if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
+                // Satın alma başarılı
+                for (purchase in purchases) {
+                    // Satın alınan ürünleri burada işleyebilirsiniz
+                }
+            } else {
+                // Satın alma başarısız
+            }
         }
 
-        val billingManager =  BillingManager(requireActivity(), purchasesUpdatedListener)
+        billingManager.setPurchasesUpdatedListener(purchasesUpdatedListener)
 
         billingManager.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    queryAndInitiatePurchase(billingManager)
+                    queryAndInitiatePurchase()
                 }
             }
 
             override fun onBillingServiceDisconnected() {
-                Log.d("DEBUG", "onBillingServiceDisconnected: Bağlantı kesildi.")
+                Timber.d("onBillingServiceDisconnected: Bağlantı kesildi.")
             }
         })
     }
 
-    private fun queryAndInitiatePurchase(billingManager: BillingManager) {
+    private fun queryAndInitiatePurchase() {
         val skuList = listOf("premium")
         val params = SkuDetailsParams.newBuilder()
             .setSkusList(skuList)
@@ -107,7 +122,7 @@ class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
         billingManager.querySkuDetailsAsync(params) { billingResult, skuDetailsList ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
                 skuDetailsList.forEach { skuDetails ->
-                    billingManager.initiatePurchase(skuDetails)
+                    billingManager.initiatePurchase(requireActivity(),skuDetails)
                 }
             }
         }

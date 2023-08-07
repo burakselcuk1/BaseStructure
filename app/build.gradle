@@ -17,8 +17,8 @@ android {
         applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 33
-        versionCode 6
-        versionName "1.6"
+        versionCode 7
+        versionName "1.7"
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -133,8 +133,8 @@ dependencies {
     //Google Billing
     implementation "com.android.billingclient:billing:$billing_version"
 
-
-
+    //Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 
 
 

@@ -2,13 +2,14 @@ package com.speakwithai.basestructure.ui.mainActivity
 
 
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.findNavController
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.speakwithai.basestructure.base.BaseActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,5 +31,21 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }
         }
+
+        viewModel.userStatus.observe(this, Observer { status ->
+            when(status) {
+                UserStatus.PREMIUM -> {
+                    Toast.makeText(this,"Premium", Toast.LENGTH_SHORT).show()
+
+                }
+                UserStatus.NON_PREMIUM -> {
+                    Toast.makeText(this,"Değil", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(this,"Belirsiz", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+        })
     }
 }

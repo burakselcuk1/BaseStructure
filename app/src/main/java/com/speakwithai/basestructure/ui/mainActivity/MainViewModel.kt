@@ -7,7 +7,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
+import com.android.billingclient.api.PurchasesUpdatedListener
 import com.speakwithai.basestructure.base.BaseViewModel
+import com.speakwithai.basestructure.common.BillingManager
+import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.di.NetworkModule
 import com.speakwithai.basestructure.model.MessageRequest
 import com.speakwithai.basestructure.model.local.MessageEntity
@@ -29,7 +32,8 @@ import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val messageRepository: MessageRepository) : BaseViewModel() {
+class MainViewModel @Inject constructor(private val messageRepository: MessageRepository,
+    private val billingManager: BillingManager) : BaseViewModel() {
 
 
 
@@ -52,6 +56,25 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
 
     private val _botTyping = MutableLiveData<Boolean>()
     val botTyping: LiveData<Boolean> get() = _botTyping
+
+
+    init {
+        setPurchasesUpdatedListener()
+        checkUserStatus()
+    }
+    private fun setPurchasesUpdatedListener() {
+        val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
+            // Satın alma işlemlerini burada işleyebilirsiniz. Gerekliyse LiveData'yı güncelleyebilirsiniz.
+        }
+        billingManager.setPurchasesUpdatedListener(purchasesUpdatedListener)
+    }
+
+    private fun checkUserStatus() {
+        billingManager.queryPurchases()
+    }
+
+    val userStatus: LiveData<UserStatus> get() = billingManager.userStatus
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun sendMessage(content: String) {
