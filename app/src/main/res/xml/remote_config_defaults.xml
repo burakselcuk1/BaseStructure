@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>latest_version</key>
+        <value>1.7</value> <!-- Örnek bir varsayılan değer -->
+    </entry>
+    <!-- Diğer anahtarlar ve değerler burada yer alabilir -->
+</defaultsMap>

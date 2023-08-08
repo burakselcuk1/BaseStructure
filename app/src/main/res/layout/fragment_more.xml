@@ -346,16 +346,16 @@
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
-<!--
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login"
+            android:id="@+id/update_versin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="@string/update_version"
+            android:visibility="gone"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />-->
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

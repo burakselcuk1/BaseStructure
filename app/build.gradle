@@ -44,6 +44,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
+    implementation 'com.google.firebase:firebase-config-ktx:21.2.0'
     def nav_version = "2.5.3"
     def retrofit_version ="2.9.0"
     def hilt_version = "2.44"

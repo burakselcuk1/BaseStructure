@@ -60,6 +60,8 @@
     <string name="evaluate">Rate Us</string>
     <string name="security">Privacy Policy</string>
     <string name="help">Help</string>
+    <string name="share_app">Check this awesome app:</string>
+    <string name="share_app_two">Share App</string>
 
     <!-- More Fragment -->
     <string name="subject">Subject</string>
@@ -134,7 +136,7 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
 
 
     <!-- SignIn Fragment -->
-    <string name="login">Sign In</string>
+    <string name="update_version">Please update app version</string>
     <string name="create_an_account">Create an Account</string>
     <string name="password">Password</string>
     <string name="name">Username</string>

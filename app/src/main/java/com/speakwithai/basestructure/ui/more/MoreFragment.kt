@@ -15,6 +15,7 @@ import com.speakwithai.basestructure.ui.more.navigation.MoreFragmentNavigatiion
 import com.speakwithai.basestructure.ui.more.navigation.MoreFragmentNavigatiionImpl
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.databinding.FragmentMoreBinding
 import kotlin.math.log
@@ -28,7 +29,6 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
 
     }
     private fun viewClicks() {
-        val user = Firebase.auth.currentUser
 
         with(binding){
             selectLanguage.setOnClickListener {
@@ -44,13 +44,11 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
             shareApp.setOnClickListener {
                 val shareIntent = Intent(Intent.ACTION_SEND)
                 shareIntent.type = "text/plain"
-                val shareMessage = "Bu harika uygulamayı kontrol et: "
-                val url = PLAY_STORE_URL // Eğer URL'yi strings.xml dosyasında sakladıysanız
-                // Veya
-                // val url = PLAY_STORE_URL // Eğer URL'yi Companion object içinde sakladıysanız
+                val shareMessage = getString(R.string.share_app)
+                val url = PLAY_STORE_URL
                 shareIntent.putExtra(Intent.EXTRA_TEXT, "$shareMessage$url")
-                startActivity(Intent.createChooser(shareIntent, "Uygulamayı paylaşın"))
-
+                val shareChooserTitle = getString(R.string.share_app_two)
+                startActivity(Intent.createChooser(shareIntent, shareChooserTitle))
             }
 
             helpp.setOnClickListener {
@@ -64,32 +62,32 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                     startActivity(Intent.createChooser(intent, getString(R.string.send_with_email)))
                 }
             }
-            /*login.setOnClickListener {
-                findNavController().navigate(R.id.action_moreFragment_to_signInFragment)
-            }*/
-            logOut.setOnClickListener {
-                Toast.makeText(requireContext(),R.string.logut,Toast.LENGTH_SHORT).show()
-                Firebase.auth.signOut()
-                findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
-            }
-
             linkToPlayStore.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data = Uri.parse(PLAY_STORE_URL)
                 startActivity(intent)
             }
 
-            email.text = user?.email ?: "No user logged in"
+            val firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+            firebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
+            firebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(requireActivity()) { task ->
+                    if (task.isSuccessful) {
+                        val latestVersion = firebaseRemoteConfig.getDouble("latest_version")
+                        val currentVersion = requireActivity().packageManager.getPackageInfo(requireActivity().packageName, 0).versionName.toDouble()
 
-            val user = Firebase.auth.currentUser
-            if (user != null) {
-                // Kullanıcı giriş yapmış, girişe özel özellikleri göster
-                constraintLayout2.visibility = View.VISIBLE
-                logOut.visibility = View.VISIBLE
-                //login.visibility = View.GONE
-            } else {
-                // Kullanıcı giriş yapmamış, girişe özel özellikleri gizle
-            }
+                        if (currentVersion < latestVersion) {
+                            with(binding){
+                                updateVersin.visibility = View.VISIBLE
+                                updateVersin.setOnClickListener {
+                                    val intent = Intent(Intent.ACTION_VIEW)
+                                    intent.data = Uri.parse(PLAY_STORE_URL)
+                                    startActivity(intent)
+                                }
+                            }
+                        }
+                    }
+                }
         }
     }
     companion object {

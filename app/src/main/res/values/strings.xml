@@ -62,6 +62,8 @@
     <string name="evaluate">Bizi Değerlendirin</string>
     <string name="security">Gizlilik Politikası</string>
     <string name="help">Yardım</string>
+    <string name="share_app">Bu harika uygulamayı kontrol et:</string>
+    <string name="share_app_two">Uygulamayı paylaşın</string>
 
     <string name="subject">Konu</string>
     <string name="write_your_message_here">Mesajınızı buraya yazın</string>
@@ -133,7 +135,7 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
 
     
     <!-- SignIn Fragment -->
-    <string name="login">Giriş Yap</string>
+    <string name="update_version">Lütfen uygulama sürümünüzü güncelleyin</string>
     <string name="create_an_account">Bir Hesap Oluştur</string>
     <string name="password">Şifre</string>
     <string name="name">İsim</string>
