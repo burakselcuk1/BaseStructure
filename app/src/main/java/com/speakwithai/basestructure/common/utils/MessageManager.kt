@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 
 object MessageManager {
     private const val ONE_DAY_MILLIS = 24 * 60 * 60 * 1000L
-
     private lateinit var prefs: SharedPreferences
 
     fun initialize(context: Context) {
@@ -27,13 +26,11 @@ object MessageManager {
     fun canSendMessage(): Boolean {
         val currentTimeMillis = System.currentTimeMillis()
 
-        // Eğer son mesaj gönderiminden 24 saat geçmişse sayaç sıfırlanır
         if (currentTimeMillis - lastMessageTime > ONE_DAY_MILLIS) {
             resetCounter()
             return true
         }
 
-        // Eğer mesaj sınırı aşılmamışsa
         return messageCount < 2
     }
 
@@ -47,4 +44,10 @@ object MessageManager {
         messageCount = 0
         lastMessageTime = System.currentTimeMillis()
     }
+
+    fun isOneDayPassed(): Boolean {
+        val currentTimeMillis = System.currentTimeMillis()
+        return currentTimeMillis - lastMessageTime > ONE_DAY_MILLIS
+    }
+
 }

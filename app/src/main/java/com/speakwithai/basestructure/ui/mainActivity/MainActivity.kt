@@ -7,18 +7,27 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.speakwithai.basestructure.base.BaseActivity
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.common.CheckDayWorker
 import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.common.utils.MessageManager
 import com.speakwithai.basestructure.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     layoutId = R.layout.activity_main, viewModelClass = MainViewModel::class.java
 ) {
+
     override fun onInitDataBinding() {
+
+        val periodicWorkRequest = PeriodicWorkRequestBuilder<CheckDayWorker>(15, TimeUnit.MINUTES).build()
+        WorkManager.getInstance(this).enqueue(periodicWorkRequest)
+
         MessageManager.initialize(this)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

@@ -140,4 +140,8 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="sign_up">Sign Up</string>
 
 
+    <!-- Notification -->
+    <string name="one_day_passed">1 Day Passed!</string>
+    <string name="ask_now">Now you can ask your questions</string>
+
 </resources>

@@ -143,5 +143,9 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <!-- SignUp Fragment -->
     <string name="sign_up">Kayıt Ol</string>
 
+    <!-- Notification -->
+    <string name="one_day_passed">1 Gün Geçti!</string>
+    <string name="ask_now">Artık sorularını sorabilirsin</string>
+
 
 </resources>
