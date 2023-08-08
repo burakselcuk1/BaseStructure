@@ -23,13 +23,7 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
     layoutId = R.layout.fragment_more,
     viewModelClass = MoreViewModel::class.java
 ) {
-    private val navigator : MoreFragmentNavigatiion = MoreFragmentNavigatiionImpl()
     override fun onInitDataBinding() {
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-      //  navigator.bind(findNavController())  // burada navController'a bir değer atanıyor
         viewClicks()
 
     }
@@ -44,11 +38,21 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                 }
             }
             privacy.setOnClickListener {
-              //  findNavController().navigate(R.id.action_moreFragment_to_privacyPolicyFragment)
-                val args ="lale"
-
-                navigator.navigateToPrivacy(args)
+                findNavController().navigate(R.id.action_moreFragment_to_privacyPolicyFragment)
             }
+
+            shareApp.setOnClickListener {
+                val shareIntent = Intent(Intent.ACTION_SEND)
+                shareIntent.type = "text/plain"
+                val shareMessage = "Bu harika uygulamayı kontrol et: "
+                val url = PLAY_STORE_URL // Eğer URL'yi strings.xml dosyasında sakladıysanız
+                // Veya
+                // val url = PLAY_STORE_URL // Eğer URL'yi Companion object içinde sakladıysanız
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "$shareMessage$url")
+                startActivity(Intent.createChooser(shareIntent, "Uygulamayı paylaşın"))
+
+            }
+
             helpp.setOnClickListener {
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
@@ -68,6 +72,13 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                 Firebase.auth.signOut()
                 findNavController().navigate(R.id.action_moreFragment_to_mainFragment)
             }
+
+            linkToPlayStore.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(PLAY_STORE_URL)
+                startActivity(intent)
+            }
+
             email.text = user?.email ?: "No user logged in"
 
             val user = Firebase.auth.currentUser
@@ -80,5 +91,8 @@ class MoreFragment : BaseFragment<FragmentMoreBinding,MoreViewModel>(
                 // Kullanıcı giriş yapmamış, girişe özel özellikleri gizle
             }
         }
+    }
+    companion object {
+        const val PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.speakwithai.basestructure"
     }
 }

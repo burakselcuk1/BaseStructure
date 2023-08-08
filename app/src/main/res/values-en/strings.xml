@@ -68,34 +68,37 @@
     <string name="logut">Log out</string>
 
 
-<!--
-    <string name="privacy_policy">This Privacy Policy explains the information collected during your use of the mobile application ("App") provided by Speak With AI ("we", "us", "our") and how this information is used.
+
+
+    <string name="privacy_policy">This Privacy Policy explains the information collected by Speak With AI during your use of the mobile application and how this information is used.
 
 1. Information We Collect
-While using our App, we may need to collect some personal data from you. This data includes the information you provide during registration (e.g., email address) and other information generated while using the App (e.g., your messages).
+We may need to collect some personal data from you while using our application. This data includes the information you provide during the registration process and other information generated while using the Application.
  <br />
 2. Use of Information
-We use the information we collect for the following purposes:
-
-Manage and improve the App.
-Personalize and enhance the user experience.
-Provide technical support or customer service.
-Ensure the security of the App.
+We use the information we collect for the following purposes
  <br />
+
+To manage and improve the Application.
+To personalize and enhance the user experience.
+To provide technical support or customer service.
+To ensure the security of the Application.
+<br />
+
 3. Information Sharing
-Your data privacy is important to us, and we share your personal information with third-party service providers only in the following circumstances:
+Your privacy is important to us, and we only share your personal information with third-party service providers in the following situations
 
-OpenAI: Your messages are shared with OpenAI, which provides the ChatGPT API service. You can review OpenAI's own privacy policy at the designated location.
-Legal requirements: We may share your information if required by law or if we believe it is necessary for legal protection.
- <br />4. Security
-We use commercially accepted technical and organizational measures to keep your information safe. However, remember that no method of transmission over the internet or electronic storage is 100% secure.
+Your messages are shared with OpenAI, which provides the OpenAI ChatGPT API service. You can review OpenAI s own privacy policy.
+Legal requirements We may share your information if required by law or if we believe that legal protection is necessary.
  <br />
-5. Changes to the Privacy Policy
+4. Security
+We use commercially accepted technical and organizational measures to keep your information secure. However, please note that no method of transmission over the internet or electronic storage is 100% secure.
+ <br />
+5. Changes to Privacy Policy
 We may need to update this privacy policy from time to time. You can check for updates by regularly visiting this page.
  <br />
 6. Contact
 Please write to us for more information about this Privacy Policy. speakwithaitr@gmail.com</string>
--->
 
     <string name="privacy_policy_Title">Privacy Policy</string>
 
@@ -127,6 +130,8 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="head_text_one">Elevate Your</string>
     <string name="head_text_two">Experience With</string>
     <string name="head_text_three">Premium Access</string>
+    <string name="premium_user">You are now a Premium User!</string>
+
 
     <!-- SignIn Fragment -->
     <string name="login">Sign In</string>

@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import com.android.billingclient.api.BillingClient
@@ -68,13 +69,7 @@ class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
         with(binding) {
             premiumCancelButton.setOnClickListener { dismiss() }
 
-            constraintLayout3.setOnClickListener {
-                setSelectedStyle(constraintLayout3, bozo)
-            }
 
-            bozo.setOnClickListener {
-                setSelectedStyle(bozo, constraintLayout3)
-            }
 
             continuee.setOnClickListener { handleBillingProcess() }
         }
@@ -90,9 +85,7 @@ class PremiumRequiredDialogFragment : BottomSheetDialogFragment() {
         val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
                 // Satın alma başarılı
-                for (purchase in purchases) {
-                    // Satın alınan ürünleri burada işleyebilirsiniz
-                }
+                Toast.makeText(requireContext(), getString(R.string.premium_user), Toast.LENGTH_SHORT).show()
             } else {
                 // Satın alma başarısız
             }

@@ -191,6 +191,7 @@
                     android:background="@android:color/darker_gray" />
 
                 <RelativeLayout
+                    android:id="@+id/link_to_play_store"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp">

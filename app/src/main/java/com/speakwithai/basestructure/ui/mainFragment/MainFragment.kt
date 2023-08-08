@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.base.BaseViewModel
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.databinding.FragmentMainBinding
 
 
@@ -43,55 +45,47 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
 
         binding.textInputLayout.setEndIconOnClickListener {
 
-            val user = FirebaseAuth.getInstance().currentUser
-            val uid = user?.uid
+            viewModel.userStatus.observe(this, Observer { status ->
+                when(status) {
+                    UserStatus.PREMIUM -> {
+                        val options = arrayOf<CharSequence>("Camera", "Gallery", "Cancel")
 
-            if (uid != null) {
-                val userRef = FirebaseFirestore.getInstance().collection("users").document(uid)
-                userRef.get()
-                    .addOnSuccessListener { document ->
-                        if (document != null && document.exists()) {
-                            val isPremium = document.getBoolean("isPremium")
-                            if (isPremium != null && isPremium) {
-                                // Kullanıcı premium hesaba sahip
-                                val options = arrayOf<CharSequence>("Camera", "Gallery", "Cancel")
+                        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+                        builder.setTitle("Choose your picture")
 
-                                val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-                                builder.setTitle("Choose your picture")
-
-                                builder.setItems(options) { dialog, item ->
-                                    when {
-                                        options[item] == "Camera" -> {
-                                            askCameraPermissionAndOpenCamera()
-                                        }
-                                        options[item] == "Gallery" -> {
-                                            openGallery()
-                                        }
-                                        options[item] == "Cancel" -> {
-                                            dialog.dismiss()
-                                        }
-                                    }
+                        builder.setItems(options) { dialog, item ->
+                            when {
+                                options[item] == "Camera" -> {
+                                    askCameraPermissionAndOpenCamera()
                                 }
-                                builder.show()
-                            } else {
-                                // Kullanıcı premium hesaba sahip değil
-                               // Toast.makeText(requireContext(), "Premium hesaba sahip olmanız gerekiyor", Toast.LENGTH_SHORT).show()
-                                findNavController().navigate(R.id.action_mainFragment_to_premiumRequiredDialogFragment)
+                                options[item] == "Gallery" -> {
+                                    openGallery()
+                                }
+                                options[item] == "Cancel" -> {
+                                    dialog.dismiss()
+                                }
                             }
-                        } else {
-                            // Belge bulunamadı veya hata oluştu
-                            Toast.makeText(requireContext(), "Kullanıcı belgesi bulunamadı", Toast.LENGTH_SHORT).show()
                         }
+                        builder.show()
                     }
-                    .addOnFailureListener { e ->
-                        // Firestore'dan veri alınamadı
-                        Toast.makeText(requireContext(), "Firestore'dan veri alınamadı", Toast.LENGTH_SHORT).show()
+                    UserStatus.NON_PREMIUM -> {
+                        Toast.makeText(requireContext(),"Değil", Toast.LENGTH_SHORT).show()
                     }
-            } else {
-                // Kullanıcı oturum açmamış
-                Toast.makeText(requireContext(), "Kullanıcı oturum açmamış", Toast.LENGTH_SHORT).show()
-            }
+                    UserStatus.UNKNOWN -> {
+                        showPremiumRequiredDialog()
+                    }
+                    else -> {
+
+                    }
+                }
+            })
+
         }
+    }
+
+    private fun showPremiumRequiredDialog() {
+        findNavController().navigate(R.id.action_mainFragment_to_premiumRequiredDialogFragment)
+
     }
 
     private fun openGallery() {
@@ -143,11 +137,11 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 val imageBitmap = data?.extras?.get("data") as Bitmap
-                   recognizeTextFromImage(imageBitmap)
+                recognizeTextFromImage(imageBitmap)
             } else if (requestCode == REQUEST_GALLERY_IMAGE) {
                 val selectedImage = data?.data
                 val bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedImage)
-                  recognizeTextFromImage(bitmap)
+                recognizeTextFromImage(bitmap)
             }
         }
     }

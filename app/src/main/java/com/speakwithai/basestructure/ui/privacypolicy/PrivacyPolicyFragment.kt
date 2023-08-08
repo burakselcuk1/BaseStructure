@@ -25,10 +25,6 @@ class PrivacyPolicyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args: com.speakwithai.basestructure.ui.privacypolicy.PrivacyPolicyFragmentArgs by navArgs()
-        val isim = args.isim
-
-        Toast.makeText(requireContext(),isim,Toast.LENGTH_SHORT).show()
     }
 
 }

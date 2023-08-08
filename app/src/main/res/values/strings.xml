@@ -69,14 +69,13 @@
     <string name="logut">Çıkış yapıldı</string>
 
 
-    <!--
-    <string name="privacy_policy">Bu Gizlilik Politikası, Speak With AI ("biz", "bize", "bizim") tarafından sunulan mobil uygulamanın ("Uygulama") kullanımınız sırasında toplanan bilgileri ve bu bilgilerin nasıl kullanıldığını açıklar.
+    <string name="privacy_policy">Bu Gizlilik Politikası, Speak With AI tarafından sunulan mobil uygulamanın kullanımınız sırasında toplanan bilgileri ve bu bilgilerin nasıl kullanıldığını açıklar.
 
 1. Topladığımız Bilgiler
-Uygulamamızı kullanırken, sizden bazı kişisel verileri toplamamız gerekebilir. Bu veriler, kayıt işlemi sırasında sağladığınız bilgileri (örneğin, e-posta adresi) ve Uygulamayı kullanırken oluşturulan diğer bilgileri (örneğin, mesajlarınız) içerir.
+Uygulamamızı kullanırken, sizden bazı kişisel verileri toplamamız gerekebilir. Bu veriler, kayıt işlemi sırasında sağladığınız bilgileri ve Uygulamayı kullanırken oluşturulan diğer bilgileri içerir.
  <br />
 2. Bilgilerin Kullanımı
-Topladığımız bilgileri aşağıdaki amaçlarla kullanırız:
+Topladığımız bilgileri aşağıdaki amaçlarla kullanırız
  <br />
 
 Uygulamayı yönetmek ve iyileştirmek.
@@ -86,20 +85,20 @@ Uygulamanın güvenliğini sağlamak.
 <br />
 
 3. Bilgi Paylaşımı
-Verilerinizin gizliliği bizim için önemlidir ve kişisel bilgilerinizi üçüncü taraf servis sağlayıcılarıyla sadece aşağıdaki durumlarda paylaşırız:
+Verilerinizin gizliliği bizim için önemlidir ve kişisel bilgilerinizi üçüncü taraf servis sağlayıcılarıyla sadece aşağıdaki durumlarda paylaşırız
 
-OpenAI: ChatGPT API hizmetini sağlayan OpenAI ile mesajlarınız paylaşılır. OpenAI'nin kendi gizlilik politikasını gözden geçirebilirsiniz.
-Yasal gereklilikler: Yasalar gereği talep edilmesi durumunda veya hukuk yoluyla koruma ihtiyacı olduğuna inandığımız durumlarda bilgilerinizi paylaşabiliriz.
+OpenAI ChatGPT API hizmetini sağlayan OpenAI ile mesajlarınız paylaşılır. OpenAI nin kendi gizlilik politikasını gözden geçirebilirsiniz.
+Yasal gereklilikler Yasalar gereği talep edilmesi durumunda veya hukuk yoluyla koruma ihtiyacı olduğuna inandığımız durumlarda bilgilerinizi paylaşabiliriz.
  <br />
 4. Güvenlik
-Bilgilerinizi güvende tutmak için ticari olarak kabul görmüş teknik ve organizasyonel önlemler kullanırız. Ancak, internet üzerinde hiçbir iletim yönteminin veya elektronik depolamanın %100 güvenli olmadığını unutmayın.
+Bilgilerinizi güvende tutmak için ticari olarak kabul görmüş teknik ve organizasyonel önlemler kullanırız. Ancak, internet üzerinde hiçbir iletim yönteminin veya elektronik depolamanın yüzde yüz güvenli olmadığını unutmayın.
  <br />
 5. Gizlilik Politikasında Değişiklikler
 Bu gizlilik politikasını zaman zaman güncellememiz gerekebilir. Bu sayfayı düzenli olarak ziyaret ederek güncellemeleri kontrol edebilirsiniz.
  <br />
 6. İletişim
 Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yazın. speakwithaitr@gmail.com</string>
--->
+
 
     <string name="privacy_policy_Title">Gizlilik Politikası</string>
 
@@ -130,7 +129,8 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="head_text_one">Premium Erişim</string>
     <string name="head_text_two">ile Deneyiminizi</string>
     <string name="head_text_three">Artırın</string>
-    
+    <string name="premium_user">Artık bir Premium Kullanıcısısınız!</string>
+
     
     <!-- SignIn Fragment -->
     <string name="login">Giriş Yap</string>
