@@ -7,6 +7,7 @@
     <string name="description">Cevabını bulmak istediğiniz</string>
     <string name="description_continue">Soruyu aşağıya yazın</string>
     <string name="type_here">Buraya yazın..</string>
+    <string name="not_premium">Değil</string>
 
     <!-- Child Options -->
     <string name="house_rent">Antalya Kaş ev kiraları ne kadar?</string>

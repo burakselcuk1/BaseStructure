@@ -8,6 +8,7 @@
     <string name="description">The question you want to</string>
     <string name="description_continue">find the answer to, write it below</string>
     <string name="type_here">Type here..</string>
+    <string name="not_premium">Değil</string>
 
     <!-- Child Options -->
     <string name="house_rent">How much are the house rents in Kaş, Antalya?</string>

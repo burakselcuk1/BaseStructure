@@ -32,12 +32,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
     layoutId = R.layout.fragment_main,
     viewModelClass = MainFragmentViewModel::class.java
 ) {
-    companion object {
-        private const val REQUEST_IMAGE_CAPTURE = 1
-        private const val REQUEST_GALLERY_IMAGE = 2
-        private const val REQUEST_CAMERA_PERMISSION = 100
-    }
-
     override fun onInitDataBinding() {
         binding.editText.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_chatFragment2)
@@ -69,7 +63,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
                         builder.show()
                     }
                     UserStatus.NON_PREMIUM -> {
-                        Toast.makeText(requireContext(),"Değil", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(),getString(R.string.not_premium), Toast.LENGTH_SHORT).show()
                     }
                     UserStatus.UNKNOWN -> {
                         showPremiumRequiredDialog()
@@ -163,9 +157,14 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
 
             }
             .addOnFailureListener { e ->
-                // Task failed with an exception
-                // ...
+              println(e.message)
             }
+    }
+
+    companion object {
+        private const val REQUEST_IMAGE_CAPTURE = 1
+        private const val REQUEST_GALLERY_IMAGE = 2
+        private const val REQUEST_CAMERA_PERMISSION = 100
     }
 
 }
