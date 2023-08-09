@@ -350,9 +350,11 @@
             android:id="@+id/update_versin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#3F51B5"
             android:text="@string/update_version"
             android:visibility="gone"
             android:layout_marginTop="20dp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />

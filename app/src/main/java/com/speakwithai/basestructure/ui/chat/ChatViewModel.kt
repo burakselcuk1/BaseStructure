@@ -115,7 +115,6 @@ class ChatViewModel @Inject constructor(private val messageRepository: MessageRe
         )
         viewModelScope.launch {
             messageRepository.insert(messageEntity)
-            // After inserting the message into the database, we add it to the _currentSessionMessages list
             _currentSessionMessages.value = _currentSessionMessages.value?.plus(
                 Message(
                     message = messageEntity.content,

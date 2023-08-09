@@ -78,7 +78,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                 val message = messageEntityToMessage(messageEntity)
                 adapter.addMessage(message)
             }
-            adapter.notifyDataSetChanged()
         }
 
 
