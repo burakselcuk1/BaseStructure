@@ -12,7 +12,9 @@ import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseViewModel
+import com.speakwithai.basestructure.common.BillingManager
 import com.speakwithai.basestructure.common.ChildOption
+import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.di.NetworkModule
 import com.speakwithai.basestructure.model.MessageRequest
 import com.speakwithai.basestructure.model.local.MessageEntity
@@ -36,8 +38,10 @@ import java.util.Locale
 import javax.inject.Inject
 @HiltViewModel
 class ChatViewModel @Inject constructor(private val messageRepository: MessageRepository,
-                                        @ApplicationContext private val context: Context
+                                        @ApplicationContext private val context: Context,
+                                        private val billingManager: BillingManager
 ): BaseViewModel() {
+    val userStatus: LiveData<UserStatus> get() = billingManager.userStatus
 
 
     @RequiresApi(Build.VERSION_CODES.O)

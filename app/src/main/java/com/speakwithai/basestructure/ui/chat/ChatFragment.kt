@@ -11,6 +11,7 @@ import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
 import android.media.MediaPlayer
@@ -25,6 +26,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.speakwithai.basestructure.adapter.MessageAdapter
 import com.speakwithai.basestructure.base.BaseFragment
@@ -33,6 +35,7 @@ import com.google.android.material.internal.ViewUtils
 import java.util.Locale
 import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.common.utils.MessageManager
 import com.speakwithai.basestructure.databinding.FragmentChatBinding
 import com.speakwithai.basestructure.model.Message
@@ -135,14 +138,37 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
 
         binding.sendBtn.setOnClickListener {
             ViewUtils.hideKeyboard(it)
-            if (MessageManager.canSendMessage()) {
-                val question = binding.messageEditText.text.toString()
-                viewModel.sendMessage(question)
-                binding.messageEditText.setText("")
-                MessageManager.messageSent()
-            } else {
-                showPremiumRequiredDialog()
-            }
+            viewModel.userStatus.observe(this, Observer { status ->
+                when(status) {
+                    UserStatus.PREMIUM -> {
+                        val question = binding.messageEditText.text.toString()
+                        viewModel.sendMessage(question)
+                        binding.messageEditText.setText("")
+                    }
+                    UserStatus.NON_PREMIUM -> {
+                        if (MessageManager.canSendMessage()) {
+                            val question = binding.messageEditText.text.toString()
+                            viewModel.sendMessage(question)
+                            binding.messageEditText.setText("")
+                            MessageManager.messageSent()
+                        } else {
+                            showPremiumRequiredDialog()
+                        }                    }
+                    UserStatus.UNKNOWN -> {
+                        if (MessageManager.canSendMessage()) {
+                            val question = binding.messageEditText.text.toString()
+                            viewModel.sendMessage(question)
+                            binding.messageEditText.setText("")
+                            MessageManager.messageSent()
+                        } else {
+                            showPremiumRequiredDialog()
+                        }                    }
+                    else -> {
+
+                    }
+                }
+            })
+
         }
 
         binding.microphone.setOnClickListener {

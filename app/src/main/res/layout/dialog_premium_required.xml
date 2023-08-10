@@ -251,7 +251,7 @@
             android:id="@+id/textView91"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yıllık Plan"
+            android:text="Haftalık Plan"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -260,7 +260,7 @@
             android:id="@+id/asdf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="299,99  / Yıllık"
+            android:text="159,99  / Haftalık"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView91"
