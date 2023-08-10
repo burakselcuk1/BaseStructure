@@ -68,7 +68,6 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         llm.stackFromEnd = true
         binding.recyclerView.layoutManager = llm
 
-        val adapter = MessageAdapter(mutableListOf())
         binding.recyclerView.adapter = adapter
 
         val clickedMessages = arguments?.getSerializable("clickedMessages") as? ArrayList<MessageEntity>
@@ -109,7 +108,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             } else {
                 adapter.removeTypingIndicator()
             }
-            scrollToBottom()
+                    //  scrollToBottom()
         }
 
         viewModel.botWritingMessage.observe(viewLifecycleOwner) { partialMessage ->
@@ -117,13 +116,20 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
             adapter.updateLastMessage(message)
         }
 
-        viewModel.botWritingMessage.observe(viewLifecycleOwner) { _ ->
+      /*  viewModel.botWritingMessage.observe(viewLifecycleOwner) { _ ->
             scrollToBottom()
-        }
+        }*/
 
         viewModel.isMessageComplete.observe(viewLifecycleOwner) { isComplete ->
             adapter.setCopyIconVisibility(isComplete)
         }
+
+        viewModel.isMessageComplete.observe(viewLifecycleOwner) { isComplete ->
+            if (isComplete) {
+                scrollToBottom()
+            }
+        }
+
 
         // Get the clicked child name from the arguments
 
@@ -221,7 +227,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         val targetPosition = viewModel.allMessages.value?.size?.minus(1) ?: 0
         if (targetPosition >= 0) {
             binding.recyclerView.post {
-                binding.recyclerView.smoothScrollToPosition(targetPosition)
+                binding.recyclerView.layoutManager?.scrollToPosition(targetPosition)
             }
         }
     }
