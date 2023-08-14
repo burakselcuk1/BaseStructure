@@ -49,11 +49,13 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
     companion object {
         private const val REQ_CODE_SPEECH_INPUT = 100
         private const val MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 101
-
+        private const val RO_SPEECH_REC = 102
     }
+
     private var speechRecognizer: SpeechRecognizer? = null
 
     private lateinit var adapter: MessageAdapter
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("RestrictedApi", "ClickableViewAccessibility")
@@ -172,9 +174,13 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
         }
 
         binding.microphone.setOnClickListener {
-            startVoiceInput()
-            val mp = MediaPlayer.create(requireContext(), R.raw.microphone)
-            mp.start()
+            if (SpeechRecognizer.isRecognitionAvailable(requireContext())) {
+                startVoiceInput()
+                val mp = MediaPlayer.create(requireContext(), R.raw.microphone)
+                mp.start()
+            } else {
+                askSpeechInput()
+            }
         }
 
         binding.microphone.setOnTouchListener { _, event ->
@@ -234,6 +240,15 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                 }
             }
         })
+    }
+
+    private fun askSpeechInput() {
+
+            val i = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            i. putExtra (RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            i.putExtra (RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            i.putExtra(RecognizerIntent.EXTRA_PROMPT,  "Say something!")
+            startActivityForResult(i,RO_SPEECH_REC)
     }
 
     fun messageEntityToMessage(entity: MessageEntity): Message {
@@ -342,6 +357,13 @@ class ChatFragment : BaseFragment<FragmentChatBinding, ChatViewModel>(
                 if (resultCode == RESULT_OK && null != data) {
                     val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     binding.messageEditText.text = Editable.Factory.getInstance().newEditable(result.toString())
+                }
+            }
+            RO_SPEECH_REC ->{
+                if (resultCode == RESULT_OK && null != data) {
+                    val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                    binding.messageEditText.setText(result?.get(0).toString())
+
                 }
             }
         }

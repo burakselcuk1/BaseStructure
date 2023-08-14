@@ -2,7 +2,9 @@ package com.speakwithai.basestructure.common
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -10,6 +12,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.utils.MessageManager
+import com.speakwithai.basestructure.ui.mainActivity.MainActivity
 
 class CheckDayWorker(appContext: Context, workerParams: WorkerParameters) :
     Worker(appContext, workerParams) {
@@ -40,17 +43,24 @@ class CheckDayWorker(appContext: Context, workerParams: WorkerParameters) :
     }
 
     internal fun sendNotification(context: Context) {
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.logoo)
             .setContentTitle(context.getString(R.string.one_day_passed))
             .setContentText(context.getString(R.string.ask_now))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setDefaults(NotificationCompat.DEFAULT_SOUND)
+            .setContentIntent(pendingIntent) // Bildirime tıklanınca etkinliği başlat
+            .setAutoCancel(true) // Tıklanınca bildirimi otomatik olarak kapat
 
         with(NotificationManagerCompat.from(context)) {
             notify(0, builder.build())
         }
-    }
 
 
+}
 }

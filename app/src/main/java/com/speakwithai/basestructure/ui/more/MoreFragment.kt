@@ -85,15 +85,19 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>(
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     val latestVersion = firebaseRemoteConfig.getDouble("latest_version")
-                    val currentVersion = requireActivity().packageManager.getPackageInfo(requireActivity().packageName, 0).versionName.toDouble()
-
-                    if (currentVersion < latestVersion) {
-                        updateVersin.visibility = View.VISIBLE
-                        updateVersin.setOnClickListener {
-                            val intent = Intent(Intent.ACTION_VIEW)
-                            intent.data = Uri.parse(PLAY_STORE_URL)
-                            startActivity(intent)
+                    val appContext = context
+                    if (appContext != null) {
+                        val currentVersion = appContext.packageManager.getPackageInfo(appContext.packageName, 0).versionName.toDouble()
+                        if (currentVersion < latestVersion) {
+                            updateVersin.visibility = View.VISIBLE
+                            updateVersin.setOnClickListener {
+                                val intent = Intent(Intent.ACTION_VIEW)
+                                intent.data = Uri.parse(PLAY_STORE_URL)
+                                startActivity(intent)
+                            }
                         }
+                    } else {
+                        return@addOnCompleteListener
                     }
                 }
             }

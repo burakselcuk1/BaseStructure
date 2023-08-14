@@ -31,7 +31,7 @@ object MessageManager {
             return true
         }
 
-        return messageCount < 2
+        return messageCount < 3
     }
 
     fun messageSent() {

@@ -30,6 +30,7 @@
         <activity
             android:name="com.speakwithai.basestructure.ui.splah.SplashActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.BaseStructure">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +40,9 @@
         </activity>
         <activity
             android:name="com.speakwithai.basestructure.ui.mainActivity.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 </manifest>
