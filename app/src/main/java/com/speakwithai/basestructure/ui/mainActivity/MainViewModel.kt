@@ -2,11 +2,15 @@ package com.speakwithai.basestructure.ui.mainActivity
 
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.speakwithai.basestructure.base.BaseViewModel
 import com.speakwithai.basestructure.common.BillingManager
@@ -34,7 +38,24 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val messageRepository: MessageRepository,
     private val billingManager: BillingManager) : BaseViewModel() {
+    init {
+            billingManager.startConnection(object : BillingClientStateListener {
+                override fun onBillingSetupFinished(billingResult: BillingResult) {
+                    // Bağlantı başarılı bir şekilde kurulduğunda yapılacak işlemler
+                    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                        // Bağlantı başarılı bir şekilde kurulduğunda yapılacak işlemler
+                        Log.d("BillingConnection", "Bağlantı başarılı!")
+                    } else {
+                        Log.d("BillingConnection", "Bağlantı başarısız. Hata kodu: ${billingResult.responseCode}")
+                    }                }
 
+                override fun onBillingServiceDisconnected() {
+                    // Bağlantı kesildiğinde yapılacak işlemler
+                }
+            })
+        setPurchasesUpdatedListener()
+        checkUserStatus()
+    }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -57,11 +78,6 @@ class MainViewModel @Inject constructor(private val messageRepository: MessageRe
     private val _botTyping = MutableLiveData<Boolean>()
     val botTyping: LiveData<Boolean> get() = _botTyping
 
-
-    init {
-        setPurchasesUpdatedListener()
-        checkUserStatus()
-    }
     private fun setPurchasesUpdatedListener() {
         val purchasesUpdatedListener = PurchasesUpdatedListener { billingResult, purchases ->
             // Satın alma işlemlerini burada işleyebilirsiniz. Gerekliyse LiveData'yı güncelleyebilirsiniz.

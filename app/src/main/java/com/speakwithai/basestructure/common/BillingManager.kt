@@ -2,6 +2,8 @@ package com.speakwithai.basestructure.common
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.billingclient.api.*
@@ -54,16 +56,44 @@ class BillingManager @Inject constructor(private val context: Context) {
     }
 
     fun startConnection(param: BillingClientStateListener) {
+        Timber.d("Bağlantı başlatılıyor...")
+
         billingClient.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    Timber.d("Bağlantı başarıyla kuruldu.")
+                } else {
+                    Timber.e("Bağlantı başarısız. Hata kodu: ${billingResult.responseCode}, Debug mesajı: ${billingResult.debugMessage}")
+                }
 
                 param.onBillingSetupFinished(billingResult)
             }
+
             override fun onBillingServiceDisconnected() {
-                param.onBillingServiceDisconnected()
+                Timber.e("Bağlantı kesildi. Bağlantıyı yeniden başlatılıyor...")
+
+                // Ekstra detaylar sağlamak için aşağıdaki gibi log mesajları ekleyebilirsiniz.
+                Timber.d("Şu anda bağlantı durumu: ${billingClient.connectionState}")
+                Timber.d("Şu anda hazır mı? ${billingClient.isReady}")
+
+                // Diğer istediğiniz detaylar burada olabilir.
+
+                // Bağlantıyı yeniden başlatma öncesi bekleme
+                Handler(Looper.getMainLooper()).postDelayed({
+                    startConnection(this)
+                }, 1000) // Örnek olarak 1 saniye
             }
+
+
+            /*   override fun onBillingServiceDisconnected() {
+                   Timber.e("Bağlantı kesildi. Bağlantıyı yeniden başlatılıyor...")
+                   // Bağlantıyı yeniden başlat
+                   param.onBillingServiceDisconnected()
+                   startConnection(this)
+               }*/
         })
     }
+
 
     fun initiatePurchase(context: Context, skuDetails: SkuDetails) {
         if (context !is Activity || !billingClient.isReady) {
@@ -100,6 +130,7 @@ class BillingManager @Inject constructor(private val context: Context) {
                     _userStatus.value = UserStatus.NON_PREMIUM
                 }
             } else {
+                Timber.e("QueryPurchases Error: Response code: ${billingResult.responseCode}, Debug message: ${billingResult.debugMessage}")
                 _userStatus.value = UserStatus.UNKNOWN
             }
         }

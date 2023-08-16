@@ -44,7 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
             }
         }
 
- /*       viewModel.userStatus.observe(this, Observer { status ->
+    /*   viewModel.userStatus.observe(this, Observer { status ->
             when(status) {
                 UserStatus.PREMIUM -> {
                     Toast.makeText(this,"Premium", Toast.LENGTH_SHORT).show()
