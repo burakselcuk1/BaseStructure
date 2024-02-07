@@ -8,110 +8,69 @@
 
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_fragmentt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.mainFragment.MainFragment">
+        android:background="@drawable/background"
+        tools:context=".presentation.main.MainFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="36dp"
-            android:src="@drawable/logoo"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/logosuper"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:fontFamily="@font/bitwise"
-            android:text="Speak with BURAK TEST"
-            android:textColor="@color/black"
+            android:layout_marginTop="244dp"
+            android:fontFamily="@font/asul"
+            android:text="@string/main_text_one"
+            android:textColor="@color/white"
             android:textSize="36sp"
-            app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
-            app:layout_constraintStart_toStartOf="@+id/appCompatImageView"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:gravity="center"
-            android:text="@string/description"
-            android:textColor="@color/black"
-            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
 
         <TextView
-            android:id="@+id/text1View"
-            android:layout_width="match_parent"
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/description_continue"
-            android:textSize="20sp"
-            android:textColor="@color/black"
+            android:fontFamily="@font/asul"
+            android:text="@string/main_text_two"
+            android:textColor="@color/white"
+            android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            app:endIconDrawable="@drawable/baseline_camera_alt_24"
-            app:endIconMode="custom"
-            app:layout_constraintEnd_toEndOf="@+id/text1View"
-            app:layout_constraintStart_toStartOf="@+id/text1View"
-            app:layout_constraintTop_toBottomOf="@+id/text1View">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rounded_edittext"
-                android:hint="@string/type_here"
-                android:focusable="false"
-                android:focusableInTouchMode="false" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/sonuc"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/get_started_btn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/text_input_layout"
-            app:layout_constraintStart_toStartOf="@+id/text_input_layout"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_layout" />
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:indeterminate="true"
-            android:indeterminateTint="@color/black"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/text_input_layout"
-            app:layout_constraintStart_toStartOf="@+id/text_input_layout"
-            app:layout_constraintTop_toTopOf="@+id/sonuc" />
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/button_degrade_background"
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/button_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 </layout>
