@@ -27,6 +27,7 @@ import com.muratozturk.click_shrink_effect.applyClickShrink
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.common.AdManager.loadBannerAd
+import com.speakwithai.basestructure.common.AnalyticsHelper
 import com.speakwithai.basestructure.databinding.FragmentPickUpBinding
 import com.speakwithai.basestructure.premium.PremiumFragment
 import com.speakwithai.basestructure.ui.pickUp.navigation.PickUpNavigation
@@ -40,7 +41,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
     val navigator: PickUpNavigation = PickUpNavigationImple()
 
     override fun onInitDataBinding() {
-        //AnalyticsHelper.logScreenView("PickUpFragment","PickUpFragment",requireContext())
+        AnalyticsHelper.logScreenView("PickUpFragment","PickUpFragment",requireContext())
         navigator.bind(findNavController())
         showPremiumDialog()
         setListeners()
