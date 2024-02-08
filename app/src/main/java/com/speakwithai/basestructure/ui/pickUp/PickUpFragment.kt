@@ -141,7 +141,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
 
                 }
                 R.id.setting -> {
-                 //   navigator.navigateToSettingsFragment()
+                    navigator.navigateToSettingsFragment()
                 }
                 R.id.linkedin -> {
                     val url = "https://www.linkedin.com/company/101372439/"

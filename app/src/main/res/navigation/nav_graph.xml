@@ -91,4 +91,8 @@
         android:id="@+id/pickUpFragment"
         android:name="com.speakwithai.basestructure.ui.pickUp.PickUpFragment"
         android:label="PickUpFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.speakwithai.basestructure.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

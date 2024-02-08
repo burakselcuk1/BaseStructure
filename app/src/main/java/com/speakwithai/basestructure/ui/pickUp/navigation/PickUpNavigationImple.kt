@@ -63,4 +63,8 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
     override fun navigateToLoginFragment() {
         navigate(R.id.signInFragment)
     }
+
+    override fun navigateToSettingsFragment() {
+        navigate(R.id.settingsFragment)
+    }
 }
