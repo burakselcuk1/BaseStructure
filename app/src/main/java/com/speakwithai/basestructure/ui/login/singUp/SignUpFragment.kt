@@ -7,13 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.base.BaseFragment
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.common.EmailFormatter
 import com.speakwithai.basestructure.databinding.FragmentSignUpBinding
+import com.speakwithai.basestructure.ui.login.navigation.LoginNavigation
+import com.speakwithai.basestructure.ui.login.navigation.LoginNavigationImpl
 
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpFragmentViewModel>(
@@ -21,56 +26,74 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpFragmentViewMod
     viewModelClass = SignUpFragmentViewModel::class.java
 ) {
     val auth = Firebase.auth
-    val firestore = FirebaseFirestore.getInstance()
+    val navigator: LoginNavigation = LoginNavigationImpl()
+
 
     override fun onInitDataBinding() {
+        navigator.bind(findNavController())
+        setListeners()
+        binding.apply {
+            myProgressButton.cardView.setOnClickListener {
+                val name = signupComponent.name.text.toString().trim()
+                val email = signupComponent.email.text.toString().trim()
+                val countryCode = signupComponent.ccpPhone.selectedCountryCode()
+                val phoneNumber = signupComponent.phone.text
+                val phone = "$countryCode$phoneNumber"
 
-        binding.signUp.setOnClickListener {
 
-            val email = binding.emaill.text.toString()
-            val password = binding.passwordd.text.toString()
-            signup(email.toString(), password.toString())
-        }
-    }
-    private fun signup(email: String, password: String) {
-        if(email.isNullOrEmpty() || password.isNullOrEmpty()){
-            Toast.makeText(requireContext(), "Email or Password cannot be empty", Toast.LENGTH_SHORT).show()
-            return
-        }
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    Toast.makeText(requireContext(),user.toString(), Toast.LENGTH_SHORT).show()
-                    val uid = user?.uid
-                    if (uid != null) {
-                        createUserDocument(uid)
+                val password = signupComponent.password.text.toString().trim()
+
+                when {
+                    name.isEmpty() -> Toast.makeText(context, getString(R.string.fill_all), Toast.LENGTH_SHORT).show()
+                    phone.isEmpty() -> Toast.makeText(context, getString(R.string.fill_all), Toast.LENGTH_SHORT).show()
+                    email.isEmpty() -> Toast.makeText(context, getString(R.string.fill_all), Toast.LENGTH_SHORT).show()
+                    password.isEmpty() -> Toast.makeText(context, getString(R.string.fill_all), Toast.LENGTH_SHORT).show()
+                    password.length < 6 -> Toast.makeText(context, getString(R.string.password_too_short), Toast.LENGTH_SHORT).show()
+                    !EmailFormatter.isValidEmail(email) -> Toast.makeText(context, getString(R.string.invalid_mail), Toast.LENGTH_SHORT).show()
+                    else -> {
+                        myProgressButton.progressBar.visibility = View.VISIBLE
+                        registerUser(email, password, name, phone)
                     }
-                    findNavController().navigate(R.id.action_signUpFragment_to_moreFragment)
-                } else {
-                    Log.w("TAG", "createUserWithEmail:failure", task.exception)
                 }
             }
+        }
     }
 
-    fun createUserDocument(uid: String) {
-        val userRef = firestore.collection("users").document(uid)
-
-        val data = hashMapOf(
-            "isPremium" to false
-            // İstediğiniz diğer alanları da buraya ekleyebilirsiniz
-        )
-
-        userRef.set(data)
-            .addOnSuccessListener {
-                // Belge oluşturma başarılı
-                Log.d("Firestore", "Belge oluşturma başarılı")
+    private fun setListeners() {
+        with(binding){
+            backArrow.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white))
+            backArrow.setOnClickListener {
+                findNavController().popBackStack()
             }
-            .addOnFailureListener { e ->
-                // Belge oluşturma başarısız
-                Log.e("Firestore", "Belge oluşturma başarısız", e)
-            }
+        }
+    }
 
+    private fun registerUser(email: String, password: String, name: String, phone: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val uid = auth.currentUser?.uid
+                    uid?.let { uid ->
+                        val userMap = hashMapOf(
+                            "name" to name,
+                            "phone" to phone
+                        )
+                        val database = FirebaseDatabase.getInstance().getReference("users")
+                        database.child(uid).setValue(userMap)
+                            .addOnSuccessListener {
+                                binding.myProgressButton.progressBar.visibility = View.GONE
+                                Toast.makeText(requireContext(), getString(R.string.register_success), Toast.LENGTH_SHORT).show()
+                                navigator.navigateToPickUpFragment()
+                            }
+                            .addOnFailureListener {
+                                binding.myProgressButton.progressBar.visibility = View.GONE
+                                Toast.makeText(requireContext(), getString(R.string.register_non_success), Toast.LENGTH_SHORT).show()
+                            }
+                    }
+                } else {
+
+                }
+            }
     }
 
 

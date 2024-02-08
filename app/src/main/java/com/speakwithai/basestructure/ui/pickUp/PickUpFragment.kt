@@ -23,6 +23,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.muratozturk.click_shrink_effect.applyClickShrink
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseFragment
@@ -48,7 +52,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
         setListenerBurgerMenu()
         updateLoginLogoutText()
         loadAdMod()
-      //  fetchUserNameAndSurname()
+        fetchUserNameAndSurname()
         if (!areNotificationsEnabled()) {
             showNotificationPermissionDialog()
         }
@@ -101,12 +105,13 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
     }
 
 
-   /* private fun fetchUserNameAndSurname() {
+    private fun fetchUserNameAndSurname() {
         val user = FirebaseAuth.getInstance().currentUser
         user?.let {
             val uid = user.uid
             val databaseReference = FirebaseDatabase.getInstance().getReference("users")
-            databaseReference.child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
+            databaseReference.child(uid).addListenerForSingleValueEvent(object :
+                ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val name = snapshot.child("name").getValue(String::class.java)
 
@@ -121,7 +126,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 }
             })
         }
-    }*/
+    }
 
 
     private fun setListenerBurgerMenu() {

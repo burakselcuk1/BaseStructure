@@ -14,14 +14,18 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.EmailFormatter
 import com.speakwithai.basestructure.databinding.FragmentSignInBinding
+import com.speakwithai.basestructure.ui.login.navigation.LoginNavigation
+import com.speakwithai.basestructure.ui.login.navigation.LoginNavigationImpl
 
 class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>(
     layoutId = R.layout.fragment_sign_in,
     viewModelClass = SignInViewModel::class.java
 ) {
     val auth = FirebaseAuth.getInstance()
+    val navigator: LoginNavigation = LoginNavigationImpl()
 
     override fun onInitDataBinding() {
+    navigator.bind(findNavController())
     setListeners()
 
     }
@@ -29,7 +33,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>(
         with(binding) {
             login.textView1.text = getString(R.string.login)
             createAccount.setOnClickListener {
-               // navigator.navigateToRegisterFragment()
+                navigator.navigateToRegisterFragment()
             }
             backArrow.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white))
             backArrow.setOnClickListener {
@@ -64,7 +68,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>(
                 if (task.isSuccessful) {
                     binding.login.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show()
-                    //navigator.navigateToPickUpFragment()
+                    navigator.navigateToPickUpFragment()
                 } else {
                     binding.login.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), getString(R.string.login_non_success), Toast.LENGTH_SHORT).show()
