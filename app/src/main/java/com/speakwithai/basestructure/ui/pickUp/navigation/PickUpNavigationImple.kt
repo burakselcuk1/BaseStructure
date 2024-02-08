@@ -1,9 +1,10 @@
 package com.speakwithai.basestructure.ui.pickUp.navigation
 
+import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseNavigator
 
 class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
-/*
+    /*
     override fun navigateToCryptoFragment() {
         navigate(R.id.cryptoMainFragment2)
     }
@@ -59,4 +60,7 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
     override fun navigateToQrGeneratorFragment() {
         navigate(R.id.qrCreaterFragment)
     }*/
+    override fun navigateToLoginFragment() {
+        navigate(R.id.signInFragment)
+    }
 }

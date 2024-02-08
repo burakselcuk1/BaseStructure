@@ -176,7 +176,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
             val headerView = binding.navView.getHeaderView(0)
             val userNameAndSurnameTextView = headerView.findViewById<TextView>(R.id.user_name_and_surname)
             userNameAndSurnameTextView.setOnClickListener {
-             //   navigator.navigateToLoginFragment()
+                navigator.navigateToLoginFragment()
             }
 
 
@@ -259,7 +259,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                     trackButtonClick("premiumIcon")
 
                 }*/
-                /*loginFra.setOnClickListener {
+                loginFra.setOnClickListener {
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
                         FirebaseAuth.getInstance().signOut()
@@ -267,7 +267,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                     } else {
                         navigator.navigateToLoginFragment()
                     }
-                }*/
+                }
 
             }
 
