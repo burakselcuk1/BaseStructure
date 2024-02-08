@@ -28,6 +28,7 @@ import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.common.AdManager.loadBannerAd
 import com.speakwithai.basestructure.databinding.FragmentPickUpBinding
+import com.speakwithai.basestructure.premium.PremiumFragment
 import com.speakwithai.basestructure.ui.pickUp.navigation.PickUpNavigation
 import com.speakwithai.basestructure.ui.pickUp.navigation.PickUpNavigationImple
 
@@ -41,7 +42,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
     override fun onInitDataBinding() {
         //AnalyticsHelper.logScreenView("PickUpFragment","PickUpFragment",requireContext())
         navigator.bind(findNavController())
-       // showPremiumDialog()
+        showPremiumDialog()
         setListeners()
         setListenerBurgerMenu()
         updateLoginLogoutText()
@@ -84,7 +85,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
         dialog.show()
     }
 
-    /*private fun showPremiumDialog() {
+    private fun showPremiumDialog() {
         val prefs = requireActivity().getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
         if (!prefs.getBoolean("isBottomSheetShown", false)) {
             Handler(Looper.getMainLooper()).postDelayed({
@@ -96,7 +97,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
             }, 2000) // 2000 milisaniye = 2 saniye
         }
-    }*/
+    }
 
 
    /* private fun fetchUserNameAndSurname() {
