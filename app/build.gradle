@@ -15,8 +15,8 @@ android {
         applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 34
-        versionCode 26
-        versionName "2.6"
+        versionCode 27
+        versionName "2.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -135,7 +135,10 @@ dependencies {
     //Work Manager
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
+    // AdMod
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
 
-
+    //Click Shrink Effect
+    implementation 'com.github.muratozturk5:ClickShrinkEffectLibrary:1.2.0'
 
 }

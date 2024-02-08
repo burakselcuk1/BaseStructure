@@ -66,7 +66,6 @@
     <string name="share_app">Bu harika uygulamayı kontrol et:</string>
     <string name="share_app_two">Uygulamayı paylaşın</string>
 
-    <string name="subject">Konu</string>
     <string name="write_your_message_here">Mesajınızı buraya yazın</string>
     <string name="send_with_email">E-posta ile gönder</string>
     <string name="logut">Çıkış yapıldı</string>
@@ -125,7 +124,6 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="more">Daha Fazlası</string>
 
     <!-- Explore Fragment -->
-    <string name="categories">Kategoriler</string>
     <string name="history">Geçmiş</string>
 
     <!-- Premium Bottom Sheet Dialog -->
@@ -134,17 +132,14 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="head_text_three">Artırın</string>
     <string name="premium_user">Artık bir Premium Kullanıcısısınız!</string>
 
-    
+
     <!-- SignIn Fragment -->
     <string name="update_version">Lütfen uygulama sürümünüzü güncelleyin</string>
     <string name="create_an_account">Bir Hesap Oluştur</string>
-    <string name="password">Şifre</string>
-    <string name="name">İsim</string>
     <string name="unsuccess">Giriş Başarısız</string>
 
 
     <!-- SignUp Fragment -->
-    <string name="sign_up">Kayıt Ol</string>
 
     <!-- Notification -->
     <string name="one_day_passed">1 Gün Geçti!</string>
@@ -153,5 +148,172 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="main_text_one">10+ Yapay Zeka</string>
     <string name="main_text_two">Modülü Süper AI Appde</string>
     <string name="button_text">HADİ BAŞLAYALIM</string>
+
+    <!-- PICKUP SCREEN -->
+    <string name="pick_ai_service">AI SERVİSİNİ SEÇ</string>
+    <string name="general">FİNANS</string>
+    <string name="chat_with_ai">YAPAY ZEKA İLE SOHBET</string>
+    <string name="creative">YARATICI YAPAY ZEKA ARAÇLARI</string>
+    <string name="stock">STOK</string>
+    <string name="please_login">Lütfen Giriş Yapın</string>
+    <string name="subject">Konu</string>
+    <string name="your_message">Mesajınız...</string>
+    <string name="select_email_app">Bir e-posta uygulaması seçin</string>
+    <string name="no_email_app">E-posta uygulaması bulunamadı</string>
+
+    <!-- CRYPTO BOTTOM NAV MENU -->
+    <string name="home_page">Ana Sayfa</string>
+    <string name="converter">Dönüştürücü</string>
+
+    <!-- CRYPTO HOME PAGE -->
+    <string name="search_for_a_coin">Bir kripto para birimi arayın</string>
+    <string name="too_many_requests">Çok fazla istek!</string>
+    <string name="an_error_occurred">Bir hata oluştu</string>
+    <string name="no_internet_connection">İnternet bağlantısı yok!</string>
+    <string name="currency_converter">Kripto Dönüştürücü</string>
+    <string name="favourite_coins">Favori Kripto Paralar</string>
+    <string name="title_converter">Dönüştürücü</string>
+    <string name="available_coins">Kullanılabilir kripto paralar</string>
+    <string name="slash">/</string>
+    <string name="watchlist">İzleme Listesi</string>
+    <string name="crypto_currency">Kripto Anlık</string>
+
+    <!-- CRYPTO EXCHANGE PAGE -->
+    <string name="zero">0</string>
+    <string name="coingecko_attribution"> </string>
+    <string name="title_activity_google">GoogleActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Sonraki</string>
+    <string name="previous">Önceki</string>
+
+    <!-- WALLPAPER FRAGMENT -->
+    <string name="editor_picks">AI Seçimleri</string>
+    <string name="unexpected_error">Beklenmeyen Hata</string>
+    <string name="colors_tones">Renk Tonları</string>
+    <string name="categories">Kategoriler</string>
+    <string name="download_started">İndirme başladı. İlerleme için bildirim çubuğunuzu kontrol edin.</string>
+    <string name="download_failed">İndirme başarısız. Lütfen tekrar deneyin.</string>
+    <string name="super_ai_app_jpg">SuperAIApp.jpg</string>
+
+    <!-- WALLPAPER FRAGMENT -->
+    <string name="download">İndir</string>
+    <string name="download_music">Müzik İndiriliyor</string>
+
+    <!-- WALLPAPER FRAGMENT -->
+    <string name="search_music">Müzik Ara</string>
+
+
+    <!-- TEXT TO SPEECH FRAGMENT -->
+    <string name="convert">Dönüştür</string>
+    <string name="your_last_record">Son Kaydınız</string>
+    <string name="write_your_text">Metinizi buraya yazın 🖌️</string>
+    <string name="last_record">Son Kayıt:</string>
+    <string name="woman">Kadın</string>
+    <string name="man">Erkek</string>
+    <string name="empy_message">Metin boş! Ses dosyası oluşturulamıyor.</string>
+    <string name="turkish">Türkçe</string>
+    <string name="english">İngilizce</string>
+    <string name="russian">Rusça</string>
+    <string name="french">Fransızca</string>
+    <string name="german">Almanca</string>
+    <string name="italian">İtalyanca</string>
+    <string name="file_downloaded">Dosya indirildi: </string>
+    <string name="file_not_downloaded">Dosya indirilemedi!</string>
+    <string name="not_find_voice_file">Ses dosyası bulunamadı!</string>
+
+    <!-- TEXT TO IMAGE FRAGMENT -->
+    <string name="generate">Oluştur</string>
+    <string name="size_1024">1024 x 1024</string>
+    <string name="size_512">512 x 512</string>
+    <string name="size_256">256 x 256</string>
+    <string name="prompt_hint">Buraya isteğinizi girin 🎨🖌️</string>
+    <string name="enter_description">Detaylı açıklamayı düzenleyin</string>
+    <string name="enter_prompt">Prompt boş olamaz</string>
+    <string name="error">Hata!</string>
+    <string name="close">Kapat</string>
+    <string name="tips">ÖNERİ</string>
+    <string name="best_result1">En iyi sonuç için,</string>
+    <string name="best_result2">detaylı bir açıklama</string>
+    <string name="best_result3">girin.</string>
+
+    <!-- BURGER MENU -->
+    <string name="instagram">Instagram</string>
+    <string name="linkedin">Linkedin</string>
+    <string name="web_site">Web Site</string>
+    <string name="contact_us">İletişime Geç</string>
+    <string name="settings">Ayarlar</string>
+    <string name="log_out">Çıkış Yap</string>
+
+    <!-- LOGIN FRAGMENT -->
+    <string name="login">Giriş Yap</string>
+    <string name="news">Haberler</string>
+    <string name="name">İsim</string>
+    <string name="phone_number">Telefon Numarası</string>
+    <string name="e_mail">E-Posta</string>
+    <string name="password">Şifre</string>
+    <string name="required">*Gerekli</string>
+    <string name="sign_up">Kayıt Ol</string>
+    <string name="or">YADA</string>
+    <string name="login_success">Giriş Başarılı</string>
+    <string name="login_non_success">E-posta veya şifre hatalı</string>
+
+    <!-- REGISTER FRAGMENT -->
+    <string name="register_success">Kayıt Başarılı</string>
+    <string name="register_non_success">Kayıt Başarısız</string>
+    <string name="fill_all">Lütfen bütün alanları doldurunuz</string>
+    <string name="invalid_mail">Geçirsiz E-posta adresi</string>
+    <string name="password_too_short">Şifre 6 karakterden kısa olamaz</string>
+
+    <!-- SETTINGS FRAGMENT -->
+    <string name="profile">Profil</string>
+    <string name="change_language">Dili Değiştir</string>
+    <string name="notification_setting">Bildirim Ayarları</string>
+    <string name="power_settings">Güç Yönetim Ayarları</string>
+    <string name="battery_settings">Batarya Optimizasyon Ayarı</string>
+    <string name="app_settings">Uygulama Ayarı</string>
+
+    <!-- PROFILE FRAGMENT -->
+    <string name="user_name">İsminiz</string>
+    <string name="user_email">E-mail</string>
+    <string name="user_phone">Telefon</string>
+
+    <!-- PREMIUM FRAGMENT -->
+    <string name="no_ads">REKLAMSIZ</string>
+    <string name="access_every_module">HER MODÜLE ERİŞİM</string>
+    <string name="early_access">ERKEN ERİŞİM</string>
+    <string name="get_ai_news">AI HABERLERİNİ AL</string>
+    <string name="limitless_download">LİMİTSİZ İNDİRME</string>
+    <string name="get_premium">PREMIUM SATIN AL</string>
+    <string name="price">100₺/Aylık</string>
+    <string name="more_ai_voice">DAHA FAZLA AI SES</string>
+
+    <!-- GEMINI FRAGMENT -->
+    <string name="please_enter_prompt">Lüften bir prompt girin</string>
+    <string name="pick_image">Resim Seç</string>
+    <string name="camera_or_gallery">Kamera mı galeriden mi resim seçmek istiyorsunuz?</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="your_question">Mesajınız..</string>
+
+    <!-- CHAT GPT FRAGMENT -->
+    <string name="chat_gpt">Doğal dil işleme teknolojisi kullanarak, kullanıcıların sorularına anlamlı ve bağlamsal yanıtlar sağlar. Geniş bir bilgi tabanına ve öğrenme yeteneğine sahiptir, bu sayede çeşitli konularda bilgi sunabilir ve tartışmalar yapabilir. ChatGPT, sürekli öğrenen bir model olup, kullanıcı etkileşimlerinden ve geri bildirimlerden yararlanarak kendini geliştirir.</string>
+    <string name="launch">Başlat</string>
+
+    <!-- META AI FRAGMENT -->
+    <string name="meta_ai">Meta Image AI, Metanın (önceki adıyla Facebook) geliştirdiği yapay zeka teknolojisidir. Görüntü işleme, tanıma ve analiz alanlarında uzmanlaşmıştır. Bu teknoloji, sosyal medya platformlarındaki görsel içeriği analiz etmek, kullanıcı deneyimini iyileştirmek ve güvenlik önlemlerini artırmak için kullanılır. Meta Image AI, görsel içeriği anlamlandırma ve içerik oluşturma gibi görevlerde de etkili bir rol oynar,</string>
+
+    <!-- CUSTOM ALERT DIALOG  -->
+    <string name="open_notification_information">Güncel kalmak için bildirimleri açın</string>
+    <string name="okay">Tamam</string>
+    <string name="reminder">HATIRLATMA</string>
+
+    <!-- QR FRAGMENT  -->
+    <string name="your_url_here">URL niz buraya</string>
+    <string name="create">Oluştur</string>
+    <string name="please_enter_url">Lütfen bir url veya metin giriniz</string>
+    <string name="go_to_url">Url ye git</string>
+    <string name="qr_code_content">QR kod içeriği</string>
 
 </resources>

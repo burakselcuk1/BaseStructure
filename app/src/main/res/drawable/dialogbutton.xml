@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#F6C31E"/> <!-- Bu kısımda hex rengi görsele göre ayarlayabilirsiniz -->
+    <corners android:radius="50dp"/> <!-- Köşe yarıçapını butonunuzun yuvarlaklığına göre ayarlayınız -->
+</shape>

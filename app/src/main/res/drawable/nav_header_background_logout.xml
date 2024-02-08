@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Degrade arka planı -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#CF3636"
+                android:endColor="#FF0000"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

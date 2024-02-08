@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Degrade arka planı -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:startColor="#36cf3f"
+                android:endColor="#abe545"
+                android:type="linear" />
+            <corners android:radius="20dp" /> <!-- Köşeleri oval yapmak için -->
+        </shape>
+    </item>
+    <!-- Üzerine resim eklenen katman -->
+    <item android:drawable="@drawable/bard"
+        android:top="10dp"
+        android:bottom="10dp"
+        android:right="20dp"
+        android:left="20dp"
+
+        /> <!-- Burada "arka_plan_resmi" resminizin adını belirtmelisiniz -->
+</layer-list>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/babak"
+        android:text="@string/general"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+ />
+
+    <RelativeLayout
+        android:id="@+id/general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/textView3">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/crypto"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:background="@drawable/pick_up_bitcoin"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/crypto_news"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_toRightOf="@id/crypto"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/pick_up_news"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/chat_with_ai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/babak"
+        android:text="@string/chat_with_ai"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/general" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/chat_with_ai">
+
+
+    <RelativeLayout
+        android:id="@+id/chat_with_ai_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/chat_with_ai">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/google_bard_button"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:background="@drawable/pick_up_google_bard" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/microsoft_bing"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_toRightOf="@id/microsoft_bing"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pick_up_bing" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/gpt_button"
+                android:layout_width="150dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="130dp"
+                android:layout_toRightOf="@id/google_bard_button"
+                android:background="@drawable/pick_up_gpt" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/creative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/babak"
+        android:text="@string/creative"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/creative">
+
+
+    <RelativeLayout
+        android:id="@+id/creative_ai_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/creative">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/text_to_image"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/pick_up_text_to_image"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/text_to_speech"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_toRightOf="@id/text_to_image"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/pick_up_text_to_speech"/>
+
+    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/creative_ai_items_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/creative">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/meta_ai"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pick_up_meta"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/qr_generator"
+                android:layout_width="150dp"
+                android:layout_height="130dp"
+                android:layout_toRightOf="@id/meta_ai"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/pick_up_qr"/>
+        </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/qr_reader"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/pick_up_qr_reader"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/babak"
+        android:text="@string/stock"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout2" />
+
+    <RelativeLayout
+        android:id="@+id/stock_ai_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/stock">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/image_stock"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/pick_up_stock_photo"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/music_stock"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
+            android:layout_toRightOf="@id/image_stock"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/pick_up_stock_music"/>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

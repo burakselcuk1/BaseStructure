@@ -26,16 +26,27 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.databinding.FragmentMainBinding
+import com.speakwithai.basestructure.ui.mainFragment.navigation.MainNavigation
+import com.speakwithai.basestructure.ui.mainFragment.navigation.MainNavigationImpl
 
 
 class MainFragment : BaseFragment<FragmentMainBinding, MainFragmentViewModel>(
     layoutId = R.layout.fragment_main,
     viewModelClass = MainFragmentViewModel::class.java
 ) {
+    val navigator: MainNavigation = MainNavigationImpl()
+
     override fun onInitDataBinding() {
+        navigator.bind(findNavController())
+        setListeners()
 
     }
-
-
-
+    private fun setListeners() {
+        with(binding) {
+            getStartedBtn.setOnClickListener {
+                getStartedBtn.setBackgroundResource(R.drawable.button_degrade_background_click)
+                navigator.navigateToPickUpFragment()
+            }
+        }
+    }
 }

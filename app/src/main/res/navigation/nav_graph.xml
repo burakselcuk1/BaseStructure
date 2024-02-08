@@ -87,4 +87,8 @@
             android:id="@+id/action_signUpFragment_to_moreFragment"
             app:destination="@id/moreFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/pickUpFragment"
+        android:name="com.speakwithai.basestructure.ui.pickUp.PickUpFragment"
+        android:label="PickUpFragment" />
 </navigation>
