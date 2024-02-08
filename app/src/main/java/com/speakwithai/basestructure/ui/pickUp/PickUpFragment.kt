@@ -21,7 +21,9 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
+import com.muratozturk.click_shrink_effect.applyClickShrink
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.common.AdManager.loadBannerAd
@@ -175,41 +177,41 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
              //   navigator.navigateToLoginFragment()
             }
 
-/*
+
             with(pickUpItems) {
 
                 crypto.applyClickShrink()
                 crypto.setOnClickListener {
-                    navigator.navigateToCryptoFragment()
+                    //navigator.navigateToCryptoFragment()
                     trackButtonClick("crypto")
                 }
 
                 googleBardButton.applyClickShrink()
                 googleBardButton.setOnClickListener {
-                    navigator.navigateToGoogleBardFragment()
+                   // navigator.navigateToGoogleBardFragment()
                     trackButtonClick("googleBardButton")
                 }
 
                 microsoftBing.applyClickShrink()
                 microsoftBing.setOnClickListener {
-                    navigator.navigateToBingBardFragment()
+                    //navigator.navigateToBingBardFragment()
                     trackButtonClick("microsoftBing")
                 }
 
                 imageStock.applyClickShrink()
                 imageStock.setOnClickListener {
-                    navigator.navigateToWallpaperFragment()
+                   // navigator.navigateToWallpaperFragment()
                     trackButtonClick("imageStock")
 
                 }
                 qrGenerator.applyClickShrink()
                 qrGenerator.setOnClickListener {
-                    navigator.navigateToQrGeneratorFragment()
+                   // navigator.navigateToQrGeneratorFragment()
                     trackButtonClick("qrCreateFragment")
                 }
                 qrReader.applyClickShrink()
                 qrReader.setOnClickListener {
-                    navigator.navigateToQrReaderFragment()
+                    //navigator.navigateToQrReaderFragment()
                     trackButtonClick("qrReaderFragment")
 
                 }
@@ -217,36 +219,36 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
 
                 metaAi.applyClickShrink()
                 metaAi.setOnClickListener{
-                    navigator.navigateToMetaAiFragment()
+                   // navigator.navigateToMetaAiFragment()
                     trackButtonClick("metaAi")
                 }
 
                 musicStock.applyClickShrink()
                 musicStock.setOnClickListener {
-                    navigator.navigateToMusicFragment()
+                    //navigator.navigateToMusicFragment()
                     trackButtonClick("musicStock")
                 }
                 textToSpeech.applyClickShrink()
                 textToSpeech.setOnClickListener {
-                    val intent = Intent(requireContext(), TextToSpeechActivity::class.java)
-                    startActivity(intent)
+                    //val intent = Intent(requireContext(), TextToSpeechActivity::class.java)
+                    //startActivity(intent)
                     trackButtonClick("textToSpeech")
                 }
                 textToImage.applyClickShrink()
                 textToImage.setOnClickListener {
-                    navigator.navigateToTextToImageFragment()
+                    //navigator.navigateToTextToImageFragment()
                     trackButtonClick("textToImage")
                 }
                 gptButton.applyClickShrink()
                 gptButton.setOnClickListener {
-                    navigator.navigateToChatGptFragment()
+                   // navigator.navigateToChatGptFragment()
                     trackButtonClick("gptButton")
                 }
                 cryptoNews.applyClickShrink()
                 cryptoNews.setOnClickListener {
-                    navigator.navigateToCrpytoNewsFragment()
+                   // navigator.navigateToCrpytoNewsFragment()
                     trackButtonClick("cryptoNews")
-                }
+                }/*
                 premiumIcon.setOnClickListener {
                     val bottomSheet = PremiumFragment()
                     bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
@@ -254,8 +256,8 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                     drawerLayout.closeDrawer(GravityCompat.START)
                     trackButtonClick("premiumIcon")
 
-                }
-                loginFra.setOnClickListener {
+                }*/
+                /*loginFra.setOnClickListener {
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
                         FirebaseAuth.getInstance().signOut()
@@ -263,10 +265,10 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                     } else {
                         navigator.navigateToLoginFragment()
                     }
-                }
+                }*/
 
             }
-*/
+
         }
     }
 
@@ -288,11 +290,11 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
         }
     }
 
-   /* fun trackButtonClick(buttonName: String) {
+    fun trackButtonClick(buttonName: String) {
         val analytics = FirebaseAnalytics.getInstance(requireContext())
         val params = Bundle()
         params.putString(buttonName, buttonName)
 
         analytics.logEvent("Button_Click", params)
-    }*/
+    }
 }

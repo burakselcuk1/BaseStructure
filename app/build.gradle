@@ -5,6 +5,7 @@ plugins {
     id "dagger.hilt.android.plugin"
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -42,9 +43,7 @@ android {
 
 dependencies {
 
-    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
-    implementation 'com.google.firebase:firebase-firestore:24.4.1'
-    implementation 'com.google.firebase:firebase-config-ktx:21.2.0'
+
     def nav_version = "2.5.3"
     def retrofit_version ="2.9.0"
     def hilt_version = "2.44"
@@ -135,10 +134,18 @@ dependencies {
     //Work Manager
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
-    // AdMod
+    //AdMod
     implementation 'com.google.android.gms:play-services-ads:22.6.0'
 
     //Click Shrink Effect
     implementation 'com.github.muratozturk5:ClickShrinkEffectLibrary:1.2.0'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-firestore:24.4.1'
+    implementation 'com.google.firebase:firebase-config-ktx:21.2.0'
+    implementation 'com.google.firebase:firebase-analytics:21.5.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.5.1'
+
 
 }
