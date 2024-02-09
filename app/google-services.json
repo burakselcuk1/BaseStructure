@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1063319832506",
+    "firebase_url": "https://chatcpt-bd3c8-default-rtdb.firebaseio.com",
     "project_id": "chatcpt-bd3c8",
     "storage_bucket": "chatcpt-bd3c8.appspot.com"
   },
@@ -8,6 +9,35 @@
     {
       "client_info": {
         "mobilesdk_app_id": "1:1063319832506:android:23b64380aa4b69b0a57f83",
+        "android_client_info": {
+          "package_name": "com.example.basestructure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063319832506-23vh8u0417hd8g9n6fjpcvoj6h9k5ka7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsRzsOAxwIKr2sC_kQrsMCjw0PrIvu6-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063319832506-23vh8u0417hd8g9n6fjpcvoj6h9k5ka7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063319832506:android:56db79930a9a8edca57f83",
         "android_client_info": {
           "package_name": "com.speakwithai.basestructure"
         }

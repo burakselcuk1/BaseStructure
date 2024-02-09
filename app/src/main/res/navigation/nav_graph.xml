@@ -95,4 +95,12 @@
         android:id="@+id/settingsFragment"
         android:name="com.speakwithai.basestructure.ui.settings.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.speakwithai.basestructure.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
 </navigation>

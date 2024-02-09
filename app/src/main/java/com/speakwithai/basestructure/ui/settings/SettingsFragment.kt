@@ -16,17 +16,19 @@ import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.common.AnalyticsHelper
 import com.speakwithai.basestructure.databinding.FragmentSettingsBinding
 import android.provider.Settings
+import com.speakwithai.basestructure.ui.settings.navigation.SettingsNavigation
+import com.speakwithai.basestructure.ui.settings.navigation.SettingsNavigationImpl
 
 
 class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel>(
     layoutId = R.layout.fragment_settings,
     viewModelClass = SettingsViewModel::class.java
 ) {
-    //val navigator: SettingsNavigation = SettingsNavigationImpl()
+    val navigator: SettingsNavigation = SettingsNavigationImpl()
 
     override fun onInitDataBinding() {
         AnalyticsHelper.logScreenView("SettingsFragment","SettingsFragment",requireContext())
-        //navigator.bind(findNavController())
+        navigator.bind(findNavController())
         setListenersr()
     }
 
@@ -59,7 +61,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel
                 startActivity(intent)
             }
             profile.setOnClickListener {
-                //navigator.navigateToProfileFragment()
+                navigator.navigateToProfileFragment()
             }
             powerSetting.setOnClickListener {
                 val intent = Intent(Settings.ACTION_BATTERY_SAVER_SETTINGS)

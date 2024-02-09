@@ -2,6 +2,7 @@
     <string name="app_name">Super AI</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_notification_channel_id" translatable="false">default_channel</string>
 
     <!-- Main Fragment -->
     <string name="description">Cevabını bulmak istediğiniz</string>
