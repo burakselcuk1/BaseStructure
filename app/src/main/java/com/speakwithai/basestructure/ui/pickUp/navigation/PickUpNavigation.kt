@@ -7,12 +7,13 @@ interface PickUpNavigation : Navigation {
 
     fun navigateToLoginFragment()
     fun navigateToSettingsFragment()
+    fun navigateToQrGeneratorFragment()
+    fun navigateToQrReaderFragment()
 
     /*
     fun navigateToCryptoFragment()
     fun navigateToGoogleBardFragment()
     fun navigateToBingBardFragment()
-    fun navigateToQrReaderFragment()
     fun navigateToWallpaperFragment()
     fun navigateToMusicFragment()
     fun navigateToTextToImageFragment()
@@ -20,7 +21,6 @@ interface PickUpNavigation : Navigation {
     fun navigateToCrpytoNewsFragment()
     fun navigateToMetaAiFragment()
     fun navigateToGeminiFragment()
-    fun navigateToQrGeneratorFragment()
 
 */
 

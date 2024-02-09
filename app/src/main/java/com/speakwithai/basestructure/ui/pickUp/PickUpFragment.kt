@@ -213,12 +213,12 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 }
                 qrGenerator.applyClickShrink()
                 qrGenerator.setOnClickListener {
-                   // navigator.navigateToQrGeneratorFragment()
+                    navigator.navigateToQrGeneratorFragment()
                     trackButtonClick("qrCreateFragment")
                 }
                 qrReader.applyClickShrink()
                 qrReader.setOnClickListener {
-                    //navigator.navigateToQrReaderFragment()
+                    navigator.navigateToQrReaderFragment()
                     trackButtonClick("qrReaderFragment")
 
                 }

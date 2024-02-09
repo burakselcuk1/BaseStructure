@@ -103,4 +103,12 @@
             android:id="@+id/action_profileFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/qrCreaterFragment"
+        android:name="com.speakwithai.basestructure.ui.qrCreator.QrCreaterFragment"
+        android:label="QrCreaterFragment" />
+    <fragment
+        android:id="@+id/qrReaderFragment"
+        android:name="com.speakwithai.basestructure.qrRead.QrReaderFragment"
+        android:label="QrReaderFragment" />
 </navigation>

@@ -67,4 +67,12 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
     override fun navigateToSettingsFragment() {
         navigate(R.id.settingsFragment)
     }
+
+    override fun navigateToQrGeneratorFragment() {
+        navigate(R.id.qrCreaterFragment)
+    }
+
+    override fun navigateToQrReaderFragment() {
+        navigate(R.id.qrReaderFragment)
+    }
 }

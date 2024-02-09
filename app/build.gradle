@@ -150,10 +150,14 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
     implementation 'com.google.firebase:firebase-messaging:23.4.0'
 
-
-    // GIF Player
+    //GIF Player
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.28'
 
     //Country Code picker
     implementation 'com.github.Ajinkrishnak:CountryCodePicker:1.0.2'
+
+    //QR
+    implementation("io.github.g0dkar:qrcode-kotlin:4.1.0")
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+
 }
