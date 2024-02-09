@@ -255,7 +255,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 cryptoNews.setOnClickListener {
                    // navigator.navigateToCrpytoNewsFragment()
                     trackButtonClick("cryptoNews")
-                }/*
+                }
                 premiumIcon.setOnClickListener {
                     val bottomSheet = PremiumFragment()
                     bottomSheet.show(requireActivity().supportFragmentManager, bottomSheet.tag)
@@ -263,7 +263,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                     drawerLayout.closeDrawer(GravityCompat.START)
                     trackButtonClick("premiumIcon")
 
-                }*/
+                }
                 loginFra.setOnClickListener {
                     val user = FirebaseAuth.getInstance().currentUser
                     if (user != null) {
