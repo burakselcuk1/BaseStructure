@@ -4,7 +4,9 @@ import com.speakwithai.basestructure.common.API_KEY
 import com.speakwithai.basestructure.common.utils.Constans.Companion.BASE_URL
 import com.speakwithai.basestructure.services.Api
 import com.google.gson.Gson
+import com.speakwithai.basestructure.common.utils.Constans.Companion.CRYPTO_API_URL
 import com.speakwithai.basestructure.common.utils.Constans.Companion.CRYPTO_NEWS_API_URL
+import com.speakwithai.basestructure.domain.CoinGeckoService
 import com.speakwithai.basestructure.domain.CryptoNewsApi
 import dagger.Module
 import dagger.Provides
@@ -94,6 +96,20 @@ object NetworkModule {
     fun provideCryptoNewsAPI(@Named("cryptoNewsRetrofit") retrofit: Retrofit): CryptoNewsApi {
         return retrofit.create(CryptoNewsApi::class.java)
     }
+
+    @Provides
+    @Singleton
+    @Named("cryptoRetrofit")
+    fun provideSecondRetrofit() = Retrofit.Builder()
+        .baseUrl(CRYPTO_API_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+
+    @Provides
+    @Singleton
+    fun provideSecondService(@Named("cryptoRetrofit") retrofit: Retrofit) = retrofit.create(
+        CoinGeckoService::class.java)
 
 }
 

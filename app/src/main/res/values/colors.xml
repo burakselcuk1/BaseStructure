@@ -15,6 +15,8 @@
     <color name="child_four">#E6EDF3</color>
     <color name="child_five">#E3E2E0</color>
     <color name="child_six">#CDDC39</color>
+    <color name="fadedWhite">#66FFFFFF</color>
+    <color name="indigo_500">#3F51B5</color>
 
     <!-- Chat Fragment -->
     <color name="red">#CF0000</color>
