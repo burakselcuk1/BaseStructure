@@ -123,4 +123,8 @@
         android:id="@+id/newsDetailFragment"
         android:name="com.speakwithai.basestructure.ui.cryptoNews.newsDetail.NewsDetailFragment"
         android:label="NewsDetailFragment" />
+    <fragment
+        android:id="@+id/cryptoMainFragment"
+        android:name="com.speakwithai.basestructure.ui.crypto.cryptoMain.CryptoMainFragment"
+        android:label="CryptoMainFragment" />
 </navigation>

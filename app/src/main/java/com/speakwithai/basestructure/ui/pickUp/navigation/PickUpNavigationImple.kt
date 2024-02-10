@@ -79,4 +79,8 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
     override fun navigateToCrpytoNewsFragment() {
         navigate(R.id.cryptoNewsFragment)
     }
+
+    override fun navigateToCryptoFragment() {
+        navigate(R.id.cryptoMainFragment)
+    }
 }

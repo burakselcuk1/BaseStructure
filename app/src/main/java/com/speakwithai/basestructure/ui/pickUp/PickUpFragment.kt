@@ -189,7 +189,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
 
                 crypto.applyClickShrink()
                 crypto.setOnClickListener {
-                    //navigator.navigateToCryptoFragment()
+                    navigator.navigateToCryptoFragment()
                     trackButtonClick("crypto")
                 }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/crypto_nav"
+    app:startDestination="@id/cryptoHomePageFragment">
+
+    <fragment
+        android:id="@+id/converterFragment"
+        android:name="com.speakwithai.basestructure.ui.crypto.converter.ConverterFragment"
+        android:label="ConverterFragment" />
+    <fragment
+        android:id="@+id/cryptoHomePageFragment"
+        android:name="com.speakwithai.basestructure.ui.crypto.cryptoHome.CryptoHomePageFragment"
+        android:label="CryptoHomePageFragment" >
+        <action
+            android:id="@+id/action_cryptoHomePageFragment_to_cryptoDetailFragment"
+            app:destination="@id/cryptoDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cryptoDetailFragment"
+        android:name="com.speakwithai.basestructure.ui.crypto.cryptoDetail.CryptoDetailFragment"
+        android:label="CryptoDetailFragment" />
+</navigation>

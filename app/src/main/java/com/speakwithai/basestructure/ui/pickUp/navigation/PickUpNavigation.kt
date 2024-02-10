@@ -10,9 +10,9 @@ interface PickUpNavigation : Navigation {
     fun navigateToQrGeneratorFragment()
     fun navigateToQrReaderFragment()
     fun navigateToCrpytoNewsFragment()
+    fun navigateToCryptoFragment()
 
     /*
-    fun navigateToCryptoFragment()
     fun navigateToGoogleBardFragment()
     fun navigateToBingBardFragment()
     fun navigateToWallpaperFragment()
