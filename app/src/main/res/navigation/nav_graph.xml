@@ -114,5 +114,13 @@
     <fragment
         android:id="@+id/cryptoNewsFragment"
         android:name="com.speakwithai.basestructure.ui.cryptoNews.CryptoNewsFragment"
-        android:label="CryptoNewsFragment" />
+        android:label="CryptoNewsFragment" >
+        <action
+            android:id="@+id/action_cryptoNewsFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.speakwithai.basestructure.ui.cryptoNews.newsDetail.NewsDetailFragment"
+        android:label="NewsDetailFragment" />
 </navigation>

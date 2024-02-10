@@ -45,7 +45,7 @@ class NewsRVAdapter(private var newsList : List<NewsData>) : RecyclerView.Adapte
             val bundle = Bundle().apply {
                 putString("url", currentItem.url)
             }
-           // it.findNavController().navigate(R.id.action_cryptoNewsFragment_to_newsDetailFragment, bundle)
+            it.findNavController().navigate(R.id.action_cryptoNewsFragment_to_newsDetailFragment, bundle)
         }
     }
 
