@@ -253,7 +253,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 }
                 cryptoNews.applyClickShrink()
                 cryptoNews.setOnClickListener {
-                   // navigator.navigateToCrpytoNewsFragment()
+                    navigator.navigateToCrpytoNewsFragment()
                     trackButtonClick("cryptoNews")
                 }
                 premiumIcon.setOnClickListener {

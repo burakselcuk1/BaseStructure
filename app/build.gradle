@@ -16,8 +16,8 @@ android {
         applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 34
-        versionCode 32
-        versionName "3.2"
+        versionCode 33
+        versionName "3.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -159,5 +159,8 @@ dependencies {
     //QR
     implementation("io.github.g0dkar:qrcode-kotlin:4.1.0")
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+
+    // Shimmer Effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
 }

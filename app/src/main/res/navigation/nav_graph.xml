@@ -111,4 +111,8 @@
         android:id="@+id/qrReaderFragment"
         android:name="com.speakwithai.basestructure.qrRead.QrReaderFragment"
         android:label="QrReaderFragment" />
+    <fragment
+        android:id="@+id/cryptoNewsFragment"
+        android:name="com.speakwithai.basestructure.ui.cryptoNews.CryptoNewsFragment"
+        android:label="CryptoNewsFragment" />
 </navigation>

@@ -75,4 +75,8 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
     override fun navigateToQrReaderFragment() {
         navigate(R.id.qrReaderFragment)
     }
+
+    override fun navigateToCrpytoNewsFragment() {
+        navigate(R.id.cryptoNewsFragment)
+    }
 }

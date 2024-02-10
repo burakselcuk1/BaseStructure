@@ -4,6 +4,8 @@ import com.speakwithai.basestructure.common.API_KEY
 import com.speakwithai.basestructure.common.utils.Constans.Companion.BASE_URL
 import com.speakwithai.basestructure.services.Api
 import com.google.gson.Gson
+import com.speakwithai.basestructure.common.utils.Constans.Companion.CRYPTO_NEWS_API_URL
+import com.speakwithai.basestructure.domain.CryptoNewsApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -75,6 +78,22 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideApiService(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
+
+    @Provides
+    @Singleton
+    @Named("cryptoNewsRetrofit")
+    fun provideCryptoNewsRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(CRYPTO_NEWS_API_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCryptoNewsAPI(@Named("cryptoNewsRetrofit") retrofit: Retrofit): CryptoNewsApi {
+        return retrofit.create(CryptoNewsApi::class.java)
+    }
 
 }
 

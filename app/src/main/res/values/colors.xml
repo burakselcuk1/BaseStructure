@@ -19,6 +19,7 @@
     <!-- Chat Fragment -->
     <color name="red">#CF0000</color>
     <color name="progress_button_color">#31d246</color>
+    <color name="shimmer_layout">#202124</color>
 
 
 </resources>
