@@ -127,4 +127,8 @@
         android:id="@+id/cryptoMainFragment"
         android:name="com.speakwithai.basestructure.ui.crypto.cryptoMain.CryptoMainFragment"
         android:label="CryptoMainFragment" />
+    <fragment
+        android:id="@+id/chatGptFragment"
+        android:name="com.speakwithai.basestructure.ui.chatGpt.ChatGptFragment"
+        android:label="ChatGptFragment" />
 </navigation>

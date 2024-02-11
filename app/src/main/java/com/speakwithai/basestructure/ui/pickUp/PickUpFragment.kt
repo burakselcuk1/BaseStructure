@@ -248,7 +248,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 }
                 gptButton.applyClickShrink()
                 gptButton.setOnClickListener {
-                   // navigator.navigateToChatGptFragment()
+                    navigator.navigateToChatGptFragment()
                     trackButtonClick("gptButton")
                 }
                 cryptoNews.applyClickShrink()
