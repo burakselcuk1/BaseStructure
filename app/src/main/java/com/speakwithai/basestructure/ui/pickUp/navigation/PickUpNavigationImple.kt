@@ -87,4 +87,8 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
     override fun navigateToChatGptFragment() {
         navigate(R.id.chatGptFragment)
     }
+
+    override fun navigateToMetaAiFragment() {
+        navigate(R.id.metaFragment)
+    }
 }

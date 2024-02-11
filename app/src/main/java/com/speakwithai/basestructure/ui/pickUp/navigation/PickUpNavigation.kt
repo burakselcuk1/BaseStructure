@@ -12,6 +12,7 @@ interface PickUpNavigation : Navigation {
     fun navigateToCrpytoNewsFragment()
     fun navigateToCryptoFragment()
     fun navigateToChatGptFragment()
+    fun navigateToMetaAiFragment()
 
     /*
     fun navigateToGoogleBardFragment()
@@ -19,7 +20,6 @@ interface PickUpNavigation : Navigation {
     fun navigateToWallpaperFragment()
     fun navigateToMusicFragment()
     fun navigateToTextToImageFragment()
-    fun navigateToMetaAiFragment()
     fun navigateToGeminiFragment()
 
 */

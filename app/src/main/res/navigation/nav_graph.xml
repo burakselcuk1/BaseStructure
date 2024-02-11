@@ -131,4 +131,8 @@
         android:id="@+id/chatGptFragment"
         android:name="com.speakwithai.basestructure.ui.chatGpt.ChatGptFragment"
         android:label="ChatGptFragment" />
+    <fragment
+        android:id="@+id/metaFragment"
+        android:name="com.speakwithai.basestructure.ui.metaAi.MetaFragment"
+        android:label="MetaFragment" />
 </navigation>

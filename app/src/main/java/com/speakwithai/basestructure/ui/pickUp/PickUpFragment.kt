@@ -227,7 +227,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
 
                 metaAi.applyClickShrink()
                 metaAi.setOnClickListener{
-                   // navigator.navigateToMetaAiFragment()
+                    navigator.navigateToMetaAiFragment()
                     trackButtonClick("metaAi")
                 }
 
