@@ -17,9 +17,9 @@
     <color name="child_six">#CDDC39</color>
     <color name="fadedWhite">#66FFFFFF</color>
     <color name="indigo_500">#3F51B5</color>
-
+    <color name="green">#1B881F</color>
+    <color name="red">#B91B1B</color>
     <!-- Chat Fragment -->
-    <color name="red">#CF0000</color>
     <color name="progress_button_color">#31d246</color>
     <color name="shimmer_layout">#202124</color>
 

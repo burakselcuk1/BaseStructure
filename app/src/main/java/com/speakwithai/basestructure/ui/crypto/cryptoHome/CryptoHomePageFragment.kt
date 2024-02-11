@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.common.AnalyticsHelper
@@ -87,7 +88,7 @@ class CryptoHomePageFragment : BaseFragment<FragmentCryptoHomePageBinding, Crypt
 
     private fun onItemClickListener(coinUiModel: CoinUiModel) {
         val bundle = bundleOf("coin" to coinUiModel)
-       // findNavController().navigate(R.id.action_cryptoHomePageFragment_to_cryptoDetailFragment, bundle)
+        findNavController().navigate(R.id.action_cryptoHomePageFragment_to_cryptoDetailFragment, bundle)
 
     }
 
