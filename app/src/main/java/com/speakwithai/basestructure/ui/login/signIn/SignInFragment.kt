@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.base.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.EmailFormatter
 import com.speakwithai.basestructure.databinding.FragmentSignInBinding

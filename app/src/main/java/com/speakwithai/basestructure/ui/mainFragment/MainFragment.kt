@@ -20,9 +20,6 @@ import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.base.BaseViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ml.vision.FirebaseVision
-import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.databinding.FragmentMainBinding

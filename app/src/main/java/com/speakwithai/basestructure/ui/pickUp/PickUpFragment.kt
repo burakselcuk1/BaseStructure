@@ -36,6 +36,7 @@ import com.speakwithai.basestructure.databinding.FragmentPickUpBinding
 import com.speakwithai.basestructure.premium.PremiumFragment
 import com.speakwithai.basestructure.ui.pickUp.navigation.PickUpNavigation
 import com.speakwithai.basestructure.ui.pickUp.navigation.PickUpNavigationImple
+import com.speakwithai.basestructure.ui.textToSpeech.TextToSpeechActivity
 
 
 class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
@@ -237,8 +238,8 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 }
                 textToSpeech.applyClickShrink()
                 textToSpeech.setOnClickListener {
-                    //val intent = Intent(requireContext(), TextToSpeechActivity::class.java)
-                    //startActivity(intent)
+                    val intent = Intent(requireContext(), TextToSpeechActivity::class.java)
+                    startActivity(intent)
                     trackButtonClick("textToSpeech")
                 }
                 textToImage.applyClickShrink()

@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.base.BaseFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.EmailFormatter

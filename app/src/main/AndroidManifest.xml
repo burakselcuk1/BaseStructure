@@ -18,7 +18,7 @@
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
-        android:name="com.speakwithai.basestructure.Application"
+        android:name=".Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -28,17 +28,17 @@
         android:theme="@style/Theme.BaseStructure"
         tools:targetApi="31">
         <activity
-            android:name="com.speakwithai.basestructure.ui.splah.SplashActivity"
+            android:name=".ui.textToSpeech.TextToSpeechActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.splah.SplashActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.BaseStructure">
-
-        </activity>
+            android:theme="@style/Theme.BaseStructure"></activity>
         <activity
-            android:name="com.speakwithai.basestructure.ui.mainActivity.MainActivity"
+            android:name=".ui.mainActivity.MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
