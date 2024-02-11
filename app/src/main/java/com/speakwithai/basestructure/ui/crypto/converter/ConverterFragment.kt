@@ -5,56 +5,83 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.databinding.FragmentConverterBinding
+import com.speakwithai.basestructure.ui.crypto.utilities.Response
+import com.speakwithai.basestructure.ui.crypto.utilities.displayErrorSnackBar
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ConverterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class ConverterFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var _binding: FragmentConverterBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: ConverterViewModel by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentConverterBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewmodel = viewModel
+
+        binding.autoCompleteFrom.setOnItemClickListener { parent, view, position, id ->
+            viewModel.changeFromExchangeRate(parent.getItemAtPosition(position) as String)
+        }
+
+        binding.autoCompleteTo.setOnItemClickListener { parent, view, position, id ->
+            viewModel.changeToExchangeRate(parent.getItemAtPosition(position) as String)
+        }
+
+        viewModel.fetchExchangeRates()
+        this.setupObservers()
+
+        return root
+    }
+
+
+    /**
+     * Nastaví observer, ktorý sleduje odpoveď zo servera. Ak zo servera prídu dáta
+     * skryje indikátor načítavania, nastaví skratky mien ako adaptéer do
+     * dvoch autoComplete listov a nastaví default hodnoty. Ak čakáme
+     * na odpoveď zobrazí indikátor načítavania. Ak nastane chyba
+     * zobrazí chybovú hlášku.
+     */
+    private fun setupObservers() {
+        viewModel.response.observe(viewLifecycleOwner) { response ->
+            response.data?.let {
+                binding.cpiLoadingIndicator.visibility = View.GONE
+
+                val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, it.map { it.key.uppercase() }.sorted() )
+                binding.autoCompleteFrom.setAdapter(arrayAdapter)
+                binding.autoCompleteTo.setAdapter(arrayAdapter)
+
+                binding.autoCompleteFrom.setText(viewModel.selectedFromExchangeRate, false)
+                binding.autoCompleteTo.setText(viewModel.selectedToExchangeRate, false)
+            }
+
+            if (response is Response.Waiting) {
+                binding.cpiLoadingIndicator.visibility = View.VISIBLE
+            }
+
+            if (response is Response.Error) {
+                binding.cpiLoadingIndicator.visibility = View.GONE
+                displayErrorSnackBar(response, binding.root, requireContext(), viewModel::fetchExchangeRates)
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_converter, container, false)
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ConverterFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ConverterFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
