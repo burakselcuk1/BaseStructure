@@ -135,4 +135,8 @@
         android:id="@+id/metaFragment"
         android:name="com.speakwithai.basestructure.ui.metaAi.MetaFragment"
         android:label="MetaFragment" />
+    <fragment
+        android:id="@+id/wallpaperFragment"
+        android:name="com.speakwithai.basestructure.ui.wallpaper.WallpaperFragment"
+        android:label="WallpaperFragment" />
 </navigation>

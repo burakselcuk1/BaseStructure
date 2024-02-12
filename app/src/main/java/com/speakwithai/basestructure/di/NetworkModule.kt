@@ -6,8 +6,10 @@ import com.speakwithai.basestructure.services.Api
 import com.google.gson.Gson
 import com.speakwithai.basestructure.common.utils.Constans.Companion.CRYPTO_API_URL
 import com.speakwithai.basestructure.common.utils.Constans.Companion.CRYPTO_NEWS_API_URL
+import com.speakwithai.basestructure.common.utils.Constans.Companion.WALLPAPER_URL
 import com.speakwithai.basestructure.domain.CoinGeckoService
 import com.speakwithai.basestructure.domain.CryptoNewsApi
+import com.speakwithai.basestructure.domain.WallpaperService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -110,7 +112,6 @@ object NetworkModule {
     @Singleton
     fun provideSecondService(@Named("cryptoRetrofit") retrofit: Retrofit) = retrofit.create(
         CoinGeckoService::class.java)
-
 }
 
 class AuthInterceptor : Interceptor {

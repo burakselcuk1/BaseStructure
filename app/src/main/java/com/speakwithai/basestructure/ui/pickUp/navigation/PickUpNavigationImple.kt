@@ -21,9 +21,7 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
         navigate(R.id.qrReadFragment)
     }
 
-    override fun navigateToWallpaperFragment() {
-        navigate(R.id.wallpaperFragment)
-    }
+
 
     override fun navigateToMusicFragment() {
         navigate(R.id.musicFragment)
@@ -90,5 +88,8 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
 
     override fun navigateToMetaAiFragment() {
         navigate(R.id.metaFragment)
+    }
+    override fun navigateToWallpaperFragment() {
+        navigate(R.id.wallpaperFragment)
     }
 }

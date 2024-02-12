@@ -208,7 +208,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
 
                 imageStock.applyClickShrink()
                 imageStock.setOnClickListener {
-                   // navigator.navigateToWallpaperFragment()
+                    navigator.navigateToWallpaperFragment()
                     trackButtonClick("imageStock")
 
                 }
