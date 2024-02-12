@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseFragment
@@ -31,6 +32,10 @@ class MetaFragment : BaseFragment<FragmentMetaBinding, MetaViewModel>(
                 openCustomTab("https://imagine.meta.com/")
             }
             floatingActionButtonGoogleBard.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            backArrow.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white))
+            backArrow.setOnClickListener {
                 findNavController().popBackStack()
             }
         }

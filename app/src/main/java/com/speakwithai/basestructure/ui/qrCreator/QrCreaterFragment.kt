@@ -54,6 +54,9 @@ class QrCreaterFragment : BaseFragment<FragmentQrCreaterBinding, QrCreaterViewMo
             backArrow.setOnClickListener {
                 findNavController().popBackStack()
             }
+            floatingActionButtonGoogleBard.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 

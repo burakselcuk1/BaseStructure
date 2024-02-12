@@ -7,6 +7,9 @@
 
     </data>
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,20 +18,69 @@
         android:background="@drawable/backgroundpickup"
         tools:context=".presentation.qrRead.QrReadFragment">
 
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/image"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="20dp"
+            app:lottie_fileName="qranimation.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+             />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/qr_read"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:background="@drawable/button_degrade_background"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_degrade_background"
             android:text="tıkla"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/image" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonGoogleBard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/logg"
+        app:fabCustomSize="90dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="56dp"
+        app:shapeAppearanceOverlay="@style/FloatingActionButtonShape"
+        app:tint="#39CF3F" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.CaptureActivity
 import com.speakwithai.basestructure.R
@@ -37,6 +38,15 @@ class QrReaderFragment : BaseFragment<FragmentQrReaderBinding, QrReadViewModel>(
             } else {
                 // İzin iste
                 requestPermissions(arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
+            }
+        }
+        with(binding){
+            backArrow.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white))
+            backArrow.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            floatingActionButtonGoogleBard.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }
