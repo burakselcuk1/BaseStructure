@@ -128,10 +128,10 @@ class WallpaperFragment : BaseFragment<FragmentWallpaperBinding, WallpaperViewMo
     }
 
     override fun tonsItemClick(url: String) {
-       // navigator.navigateToWallpaperResultFragment(url)
+        navigator.navigateToWallpaperResultFragment(url)
     }
 
     override fun categoryItemClick(url: String) {
-       // navigator.navigateToWallpaperResultFragment(url)
+        navigator.navigateToWallpaperResultFragment(url)
     }
 }

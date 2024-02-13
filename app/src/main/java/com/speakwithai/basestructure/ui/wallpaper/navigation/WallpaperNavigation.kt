@@ -6,5 +6,6 @@ import com.speakwithai.basestructure.data.model.response.wallpaper.Photo
 interface WallpaperNavigation: Navigation {
 
     fun navigateToWallpaperDetailFragment(photo: Photo)
+    fun navigateToWallpaperResultFragment(url: String)
 
 }
