@@ -3,15 +3,19 @@ package com.speakwithai.basestructure.di
 import com.speakwithai.basestructure.ui.wallpaper.model.WallpaperUiMapper
 import com.speakwithai.basestructure.domain.CoinGeckoService
 import com.speakwithai.basestructure.domain.CryptoNewsApi
+import com.speakwithai.basestructure.domain.MusicService
 import com.speakwithai.basestructure.domain.WallpaperService
 import com.speakwithai.basestructure.repository.CoinsRepository
 import com.speakwithai.basestructure.repository.CryptoNewsRepository
+import com.speakwithai.basestructure.repository.MusicRepository
 import com.speakwithai.basestructure.repository.WallpaperRepository
 import com.speakwithai.basestructure.repository.repositoryImpl.CoinsRepositoryImpl
 import com.speakwithai.basestructure.repository.repositoryImpl.CryptoNewsRepositoryImpl
+import com.speakwithai.basestructure.repository.repositoryImpl.MusicRepositoryImpl
 import com.speakwithai.basestructure.repository.repositoryImpl.WallpaperRepositoryImple
 import com.speakwithai.basestructure.ui.crypto.model.CoinsMapper
 import com.speakwithai.basestructure.ui.cryptoNews.model.NewsUiMapper
+import com.speakwithai.basestructure.ui.music.model.MusicUiMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -65,5 +69,20 @@ object RepositoryModule {
         coinsMapper: CoinsMapper
     ): CoinsRepository {
         return CoinsRepositoryImpl(coinGeckoService, coinsMapper)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMusicUiMapper(): MusicUiMapper {
+        return MusicUiMapper()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMusicRepository(
+        musicService: MusicService,
+        musicUiMapper: MusicUiMapper
+    ): MusicRepository {
+        return MusicRepositoryImpl(musicService, musicUiMapper)
     }
 }

@@ -6,6 +6,7 @@ class Constans {
         const val CRYPTO_NEWS_API_URL = "https://min-api.cryptocompare.com/data/v2/"
         const val CRYPTO_API_URL = "https://api.coingecko.com/api/v3/"
         const val WALLPAPER_URL ="https://api.pexels.com/v1/"
+        const val MUSIC_URL ="https://itunes.apple.com/"
 
     }
 }

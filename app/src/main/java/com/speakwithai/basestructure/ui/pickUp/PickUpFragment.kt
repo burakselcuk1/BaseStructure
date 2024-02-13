@@ -233,7 +233,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
 
                 musicStock.applyClickShrink()
                 musicStock.setOnClickListener {
-                    //navigator.navigateToMusicFragment()
+                    navigator.navigateToMusicFragment()
                     trackButtonClick("musicStock")
                 }
                 textToSpeech.applyClickShrink()

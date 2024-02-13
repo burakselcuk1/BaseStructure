@@ -14,11 +14,11 @@ interface PickUpNavigation : Navigation {
     fun navigateToChatGptFragment()
     fun navigateToMetaAiFragment()
     fun navigateToWallpaperFragment()
+    fun navigateToMusicFragment()
 
     /*
     fun navigateToGoogleBardFragment()
     fun navigateToBingBardFragment()
-    fun navigateToMusicFragment()
     fun navigateToTextToImageFragment()
     fun navigateToGeminiFragment()
 

@@ -92,4 +92,8 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
     override fun navigateToWallpaperFragment() {
         navigate(R.id.wallpaperFragment)
     }
+
+    override fun navigateToMusicFragment() {
+        navigate(R.id.musicFragment)
+    }
 }
