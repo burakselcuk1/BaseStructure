@@ -22,6 +22,8 @@ import com.speakwithai.basestructure.ui.wallpaper.adapter.EditorPicksAdapter
 import com.speakwithai.basestructure.ui.wallpaper.adapter.EditorPicksClickListener
 import com.speakwithai.basestructure.ui.wallpaper.adapter.TonesAdapter
 import com.speakwithai.basestructure.ui.wallpaper.adapter.TonsClickListener
+import com.speakwithai.basestructure.ui.wallpaper.navigation.WallpaperNavigation
+import com.speakwithai.basestructure.ui.wallpaper.navigation.WallpaperNavigationImpl
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -31,11 +33,11 @@ class WallpaperFragment : BaseFragment<FragmentWallpaperBinding, WallpaperViewMo
     viewModelClass = WallpaperViewModel::class.java
 ), EditorPicksClickListener, TonsClickListener, CategoryClickListener {
     private lateinit var data: ResultUiModel
-   // val navigator: WallpaperNavigation = WallpaperNavigationImpl()
+    val navigator: WallpaperNavigation = WallpaperNavigationImpl()
 
     override fun onInitDataBinding() {
         AnalyticsHelper.logScreenView("WallpaperFragment","WallpaperFragment",requireContext())
-      //  navigator.bind(findNavController())
+        navigator.bind(findNavController())
         setObservers()
         viewModel.getCurated()
         setTonesRecyclerview()
@@ -121,7 +123,7 @@ class WallpaperFragment : BaseFragment<FragmentWallpaperBinding, WallpaperViewMo
 
     override fun editorPicksItemClick(photo: Photo) {
 
-     //   navigator.navigateToWallpaperDetailFragment(photo)
+        navigator.navigateToWallpaperDetailFragment(photo)
 
     }
 

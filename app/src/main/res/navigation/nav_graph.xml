@@ -139,4 +139,13 @@
         android:id="@+id/wallpaperFragment"
         android:name="com.speakwithai.basestructure.ui.wallpaper.WallpaperFragment"
         android:label="WallpaperFragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.speakwithai.basestructure.ui.wallpaper.detail.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="photo"
+            app:argType="com.speakwithai.basestructure.data.model.response.wallpaper.Photo"
+            app:nullable="true" />
+    </fragment>
 </navigation>
