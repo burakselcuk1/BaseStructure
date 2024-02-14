@@ -161,4 +161,8 @@
         android:id="@+id/musicFragment"
         android:name="com.speakwithai.basestructure.ui.music.MusicFragment"
         android:label="MusicFragment" />
+    <fragment
+        android:id="@+id/geminiFragment"
+        android:name="com.speakwithai.basestructure.ui.gemini.GeminiFragment"
+        android:label="GeminiFragment" />
 </navigation>

@@ -196,8 +196,8 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
 
                 googleBardButton.applyClickShrink()
                 googleBardButton.setOnClickListener {
-                   // navigator.navigateToGoogleBardFragment()
-                    trackButtonClick("googleBardButton")
+                    navigator.navigateToGeminiFragment()
+                    trackButtonClick("geminiButton")
                 }
 
                 microsoftBing.applyClickShrink()

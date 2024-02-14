@@ -15,6 +15,7 @@ interface PickUpNavigation : Navigation {
     fun navigateToMetaAiFragment()
     fun navigateToWallpaperFragment()
     fun navigateToMusicFragment()
+    fun navigateToGeminiFragment()
 
     /*
     fun navigateToGoogleBardFragment()
