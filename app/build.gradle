@@ -19,8 +19,8 @@ android {
         applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 34
-        versionCode 44
-        versionName "4.4"
+        versionCode 46
+        versionName "4.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

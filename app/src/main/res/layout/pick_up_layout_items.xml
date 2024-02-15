@@ -68,7 +68,7 @@
             android:id="@+id/google_bard_button"
             android:layout_width="150dp"
             android:layout_height="130dp"
-            android:background="@drawable/pick_up_google_bard" />
+            android:background="@drawable/pick_up_gemini" />
 
 
         <androidx.appcompat.widget.AppCompatButton
