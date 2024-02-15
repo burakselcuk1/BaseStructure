@@ -165,4 +165,8 @@
         android:id="@+id/geminiFragment"
         android:name="com.speakwithai.basestructure.ui.gemini.GeminiFragment"
         android:label="GeminiFragment" />
+    <fragment
+        android:id="@+id/textToImageFragment"
+        android:name="com.speakwithai.basestructure.ui.textToImage.TextToImageFragment"
+        android:label="TextToImageFragment" />
 </navigation>

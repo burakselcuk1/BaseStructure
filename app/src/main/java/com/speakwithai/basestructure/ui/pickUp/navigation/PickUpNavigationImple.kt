@@ -47,4 +47,8 @@ class PickUpNavigationImple: BaseNavigator(), PickUpNavigation {
     override fun navigateToGeminiFragment() {
         navigate(R.id.geminiFragment)
     }
+
+    override fun navigateToTextToImageFragment() {
+        navigate(R.id.textToImageFragment)
+    }
 }

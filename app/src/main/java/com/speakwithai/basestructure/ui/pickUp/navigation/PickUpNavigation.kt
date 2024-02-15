@@ -16,11 +16,11 @@ interface PickUpNavigation : Navigation {
     fun navigateToWallpaperFragment()
     fun navigateToMusicFragment()
     fun navigateToGeminiFragment()
+    fun navigateToTextToImageFragment()
 
     /*
     fun navigateToGoogleBardFragment()
     fun navigateToBingBardFragment()
-    fun navigateToTextToImageFragment()
     fun navigateToGeminiFragment()
 
 */

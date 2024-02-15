@@ -244,7 +244,7 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 }
                 textToImage.applyClickShrink()
                 textToImage.setOnClickListener {
-                    //navigator.navigateToTextToImageFragment()
+                    navigator.navigateToTextToImageFragment()
                     trackButtonClick("textToImage")
                 }
                 gptButton.applyClickShrink()
