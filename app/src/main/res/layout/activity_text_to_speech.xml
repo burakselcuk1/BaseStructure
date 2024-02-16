@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,6 +7,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundpickup"
     tools:context=".ui.textToSpeech.TextToSpeechActivity">
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -78,21 +83,36 @@
 
         </LinearLayout>
 
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/play_sound"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_degrade_background"
             android:padding="20dp"
-            android:layout_marginTop="20dp"
             android:text="@string/convert"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinners" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="stop"
+            app:layout_constraintStart_toEndOf="@+id/play_sound"
+            app:layout_constraintTop_toTopOf="@+id/play_sound" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/continue_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="play"
+            app:layout_constraintStart_toEndOf="@+id/stop"
+            app:layout_constraintTop_toTopOf="@+id/play_sound" />
 
         <TextView
             android:id="@+id/your_last_record"
@@ -132,5 +152,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </FrameLayout>
 
 </ScrollView>

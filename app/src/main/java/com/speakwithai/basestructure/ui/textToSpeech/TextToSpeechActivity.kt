@@ -41,9 +41,11 @@ class TextToSpeechActivity : AppCompatActivity() {
     private var languageCode: String = "tr-TR"
     private var ssmlGender: SsmlVoiceGender = SsmlVoiceGender.FEMALE
     private var mInterstitialAd: InterstitialAd? = null
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mediaPlayer = MediaPlayer()
         binding = ActivityTextToSpeechBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -62,6 +64,17 @@ class TextToSpeechActivity : AppCompatActivity() {
                 playSound(it)
                 AdManager.loadAd(this@TextToSpeechActivity, "ca-app-pub-3940256099942544/1033173712")
                 AdManager.showAd(this@TextToSpeechActivity)
+            }
+            stop.setOnClickListener {
+                if (mediaPlayer.isPlaying) {
+                    mediaPlayer.pause()
+                }
+            }
+
+            continueVoice.setOnClickListener {
+                if (!mediaPlayer.isPlaying) {
+                    mediaPlayer.start()
+                }
             }
         }
 
@@ -116,7 +129,6 @@ class TextToSpeechActivity : AppCompatActivity() {
 
 
     fun playSound(view: View) {
-        val mediaPlayer = MediaPlayer()
 
         val textFromEditText = binding.editText.text.toString().trim()
         val fileName = getOutputFileName()
@@ -127,7 +139,6 @@ class TextToSpeechActivity : AppCompatActivity() {
             val hataMesaji = getString(R.string.empy_message)
             Toast.makeText(this, hataMesaji, Toast.LENGTH_SHORT).show()
         }
-
         val file = File(filesDir, fileName)
 
         if (file.exists()) {
@@ -136,6 +147,7 @@ class TextToSpeechActivity : AppCompatActivity() {
                 binding.download.visibility = View.VISIBLE
                 val fis = FileInputStream(file)
                 val fd = fis.fd
+                mediaPlayer.reset()
                 mediaPlayer.setDataSource(fd)
                 mediaPlayer.prepare()
                 mediaPlayer.start()
