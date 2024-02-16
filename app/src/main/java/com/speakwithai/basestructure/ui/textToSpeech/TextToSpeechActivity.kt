@@ -65,12 +65,13 @@ class TextToSpeechActivity : AppCompatActivity() {
                 AdManager.loadAd(this@TextToSpeechActivity, "ca-app-pub-3940256099942544/1033173712")
                 AdManager.showAd(this@TextToSpeechActivity)
             }
+            stop.applyClickShrink()
             stop.setOnClickListener {
                 if (mediaPlayer.isPlaying) {
                     mediaPlayer.pause()
                 }
             }
-
+            continueVoice.applyClickShrink()
             continueVoice.setOnClickListener {
                 if (!mediaPlayer.isPlaying) {
                     mediaPlayer.start()
@@ -129,6 +130,9 @@ class TextToSpeechActivity : AppCompatActivity() {
 
 
     fun playSound(view: View) {
+
+        binding.stop.visibility = View.VISIBLE
+        binding.continueVoice.visibility = View.VISIBLE
 
         val textFromEditText = binding.editText.text.toString().trim()
         val fileName = getOutputFileName()
