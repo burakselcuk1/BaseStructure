@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.api.gax.core.FixedCredentialsProvider
 import com.google.auth.oauth2.GoogleCredentials
@@ -49,6 +52,10 @@ class TextToSpeechActivity : AppCompatActivity() {
         with(binding) {
             download.setOnClickListener {
                 downloadLastFile()
+            }
+            backArrow.setColorFilter(ContextCompat.getColor(this@TextToSpeechActivity, R.color.white))
+            backArrow.setOnClickListener {
+                onBackPressed()
             }
             playSound.applyClickShrink()
             playSound.setOnClickListener {

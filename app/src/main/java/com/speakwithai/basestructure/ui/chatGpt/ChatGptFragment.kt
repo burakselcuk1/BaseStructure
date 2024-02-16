@@ -38,6 +38,10 @@ class ChatGptFragment : BaseFragment<FragmentChatGptBinding, ChatGptViewModel>(
             floatingActionButtonGoogleBard.setOnClickListener {
                 findNavController().popBackStack()
             }
+            backArrow.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white))
+            backArrow.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
