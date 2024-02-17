@@ -126,12 +126,18 @@ class BillingManager @Inject constructor(private val context: Context) {
                 if (!purchaseList.isNullOrEmpty()) {
                     _purchases.value = purchaseList
                     _userStatus.postValue(UserStatus.PREMIUM)
+                    Log.d("bozo","KULLANICI PREMIUM")
+
                 } else {
                     _userStatus.postValue(UserStatus.NON_PREMIUM)
                     _purchases.value = emptyList()
+                    Log.d("bozo","KULLANICI PREMIUM DEĞİL")
+
                 }
             } else {
-                _userStatus.value = UserStatus.UNKNOWN
+                _userStatus.postValue(UserStatus.UNKNOWN)
+                Log.d("bozo","KULLANICI UNKNOWN.")
+
             }
         }
     }

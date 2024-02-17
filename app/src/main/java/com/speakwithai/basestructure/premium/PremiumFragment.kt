@@ -80,6 +80,7 @@ class PremiumFragment : BottomSheetDialogFragment() {
             if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
                 // Satın alma başarılı
                 Toast.makeText(requireContext(), getString(R.string.premium_user), Toast.LENGTH_SHORT).show()
+
             } else {
                 // Satın alma başarısız
             }

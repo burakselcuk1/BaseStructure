@@ -59,7 +59,6 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
     override fun onInitDataBinding() {
         AnalyticsHelper.logScreenView("PickUpFragment","PickUpFragment",requireContext())
         navigator.bind(findNavController())
-        showPremiumDialog()
         setListeners()
         setListenerBurgerMenu()
         updateLoginLogoutText()
@@ -89,25 +88,23 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 UserStatus.PREMIUM -> {
                     // Kullanıcı premiumdur
                     Toast.makeText(requireContext(), "PREMIUM", Toast.LENGTH_SHORT).show()
-                    Log.d("burak",userStatus.toString())
-                    Log.d("burak","PREMUIM")
+                    binding.premiumIcon.visibility = View.GONE
                 }
 
                 UserStatus.NON_PREMIUM -> {
                     // Kullanıcı premium değildir
                     Toast.makeText(requireContext(), "NON PREMIUM", Toast.LENGTH_SHORT).show()
-                    Log.d("burak",userStatus.toString())
-                    Log.d("burak","NON PREMIUM")
+                    showPremiumDialog()
 
                 }
 
                 UserStatus.UNKNOWN -> {
                     // Kullanıcının durumu belirsizdir
                     Toast.makeText(requireContext(), "BİLİNMİYOR", Toast.LENGTH_SHORT).show()
-                    Log.d("burak",userStatus.toString())
-                    Log.d("burak","BİLİNMİYOR")
+                    showPremiumDialog()
                 }else->{
                 Toast.makeText(requireContext(), "BOŞ", Toast.LENGTH_SHORT).show()
+                showPremiumDialog()
 
                 }
             }
