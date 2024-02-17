@@ -316,5 +316,7 @@ Bu Gizlilik Politikası hakkında daha fazla bilgi almak için lütfen bize yaz�
     <string name="please_enter_url">Lütfen bir url veya metin giriniz</string>
     <string name="go_to_url">Url ye git</string>
     <string name="qr_code_content">QR kod içeriği</string>
+    <string name="permission_required">İzin verilmedi</string>
+    <string name="camera_permission_required">Kamera izni gereklidir</string>
 
 </resources>

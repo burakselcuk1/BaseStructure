@@ -7,6 +7,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -58,7 +59,7 @@ class QrReaderFragment : BaseFragment<FragmentQrReaderBinding, QrReadViewModel>(
             startQrReader()
         } else {
             // İzin reddedildi, kullanıcıya bilgi ver
-            Toast.makeText(context, "Kamera izni gereklidir", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.camera_permission_required), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -76,18 +77,20 @@ class QrReaderFragment : BaseFragment<FragmentQrReaderBinding, QrReadViewModel>(
                 showDialogWithContent(result.contents)
             }
         }else{
-            Toast.makeText(requireContext(),"izin verilmedi",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(),getString(R.string.permission_required),Toast.LENGTH_SHORT).show()
         }
     }
     private fun showDialogWithContent(qrContent: String) {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("QR Kod İçeriği")
+        builder.setTitle(getString(R.string.qr_code_content))
         builder.setMessage(qrContent)
-        builder.setPositiveButton("Tamam", DialogInterface.OnClickListener { dialog, id ->
-            // Kullanıcı 'Tamam' butonuna tıkladığında yapılacak işlemler
-        })
+        builder.setPositiveButton(getString(R.string.okay)) { dialog, which ->
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(qrContent))
+            startActivity(browserIntent)
+        }
         val dialog = builder.create()
         dialog.show()
     }
+
 
 }

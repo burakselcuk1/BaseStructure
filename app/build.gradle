@@ -19,15 +19,25 @@ android {
         applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 34
-        versionCode 48
-        versionName "4.8"
+        versionCode 51
+        versionName "5.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
+        release {
+            storeFile file("../key/app.jks")
+            keyAlias "key0"
+            keyPassword "xx.Thezaa123"
+            storePassword "xx.Thezaa123"
+        }
+    }
+
+        buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -174,9 +184,5 @@ dependencies {
 
     //Gemini
     implementation 'com.google.ai.client.generativeai:generativeai:0.1.0'
-
-
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.16.1'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.16.1'
 
 }

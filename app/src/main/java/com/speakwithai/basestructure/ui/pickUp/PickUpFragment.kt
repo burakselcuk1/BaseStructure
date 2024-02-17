@@ -20,6 +20,9 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
@@ -32,18 +35,25 @@ import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.common.AdManager.loadBannerAd
 import com.speakwithai.basestructure.common.AnalyticsHelper
+import com.speakwithai.basestructure.common.BillingManager
+import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.databinding.FragmentPickUpBinding
 import com.speakwithai.basestructure.premium.PremiumFragment
 import com.speakwithai.basestructure.ui.pickUp.navigation.PickUpNavigation
 import com.speakwithai.basestructure.ui.pickUp.navigation.PickUpNavigationImple
 import com.speakwithai.basestructure.ui.textToSpeech.TextToSpeechActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
     layoutId = R.layout.fragment_pick_up,
     viewModelClass = PickUpViewModel::class.java
 ) {
     val navigator: PickUpNavigation = PickUpNavigationImple()
+
+    @Inject
+    lateinit var billingManager: BillingManager
 
     override fun onInitDataBinding() {
         AnalyticsHelper.logScreenView("PickUpFragment","PickUpFragment",requireContext())
@@ -56,6 +66,45 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
         fetchUserNameAndSurname()
         if (!areNotificationsEnabled()) {
             showNotificationPermissionDialog()
+        }
+
+        billingManager.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    billingManager.queryPurchases() // Satın almaları sorgula
+                } else {
+                    // Billing bağlantısı kurulamadı, gerekli hata işlemleri buraya gelebilir
+                }
+            }
+
+            override fun onBillingServiceDisconnected() {
+                // Billing servisi bağlantısı kesildi, gerektiğinde yeniden bağlanma işlemleri buraya gelebilir
+            }
+        })
+
+        billingManager.userStatus.observe(viewLifecycleOwner) { userStatus ->
+            // Kullanıcı durumu güncellendiğinde buraya gelecek işlemler
+            when (userStatus) {
+                UserStatus.PREMIUM -> {
+                    // Kullanıcı premiumdur
+                    Toast.makeText(requireContext(), "PREMIUM", Toast.LENGTH_SHORT).show()
+                }
+
+                UserStatus.NON_PREMIUM -> {
+                    // Kullanıcı premium değildir
+                    Toast.makeText(requireContext(), "NON PREMIUM", Toast.LENGTH_SHORT).show()
+
+                }
+
+                UserStatus.UNKNOWN -> {
+                    // Kullanıcının durumu belirsizdir
+                    Toast.makeText(requireContext(), "BİLİNMİYOR", Toast.LENGTH_SHORT).show()
+
+                }else->{
+                Toast.makeText(requireContext(), "BOŞ", Toast.LENGTH_SHORT).show()
+
+                }
+            }
         }
     }
 

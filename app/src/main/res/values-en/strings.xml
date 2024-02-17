@@ -321,5 +321,7 @@ Please write to us for more information about this Privacy Policy. speakwithaitr
     <string name="please_enter_url">Please enter a URL or text</string>
     <string name="go_to_url">Go to URL</string>
     <string name="qr_code_content">QR Code Content</string>
+    <string name="permission_required">No permission</string>
+    <string name="camera_permission_required">Needs camera permission</string>
 
 </resources>
