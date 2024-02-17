@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -88,18 +89,23 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
                 UserStatus.PREMIUM -> {
                     // Kullanıcı premiumdur
                     Toast.makeText(requireContext(), "PREMIUM", Toast.LENGTH_SHORT).show()
+                    Log.d("burak",userStatus.toString())
+                    Log.d("burak","PREMUIM")
                 }
 
                 UserStatus.NON_PREMIUM -> {
                     // Kullanıcı premium değildir
                     Toast.makeText(requireContext(), "NON PREMIUM", Toast.LENGTH_SHORT).show()
+                    Log.d("burak",userStatus.toString())
+                    Log.d("burak","NON PREMIUM")
 
                 }
 
                 UserStatus.UNKNOWN -> {
                     // Kullanıcının durumu belirsizdir
                     Toast.makeText(requireContext(), "BİLİNMİYOR", Toast.LENGTH_SHORT).show()
-
+                    Log.d("burak",userStatus.toString())
+                    Log.d("burak","BİLİNMİYOR")
                 }else->{
                 Toast.makeText(requireContext(), "BOŞ", Toast.LENGTH_SHORT).show()
 

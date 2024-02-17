@@ -32,11 +32,7 @@ class CryptoMainFragment : BaseFragment<FragmentCryptoMainBinding, CryptoMainVie
 
     private fun setListeners() {
         with(binding){
-            floatingActionButton.setOnClickListener{
-                val fragmentManager = requireActivity().supportFragmentManager
-                fragmentManager.popBackStack()
 
-            }
         }
     }
 }

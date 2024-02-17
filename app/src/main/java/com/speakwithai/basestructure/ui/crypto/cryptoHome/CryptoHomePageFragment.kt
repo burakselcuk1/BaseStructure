@@ -35,9 +35,18 @@ class CryptoHomePageFragment : BaseFragment<FragmentCryptoHomePageBinding, Crypt
         }
         this.displayLoading()
 
-        // Nastavenie observerov
         this.setupObservers()
+        setListeners()
+    }
 
+    private fun setListeners() {
+        with(binding){
+            backArrow.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white))
+            backArrow.setOnClickListener {
+                val fragmentManager = requireActivity().supportFragmentManager
+                fragmentManager.popBackStack()
+            }
+        }
     }
 
     private fun setupObservers() {

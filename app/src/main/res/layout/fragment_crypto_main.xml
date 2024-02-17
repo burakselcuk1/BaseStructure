@@ -24,22 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/crypto_menu" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fabCustomSize="90dp"
-            android:layout_marginBottom="50dp"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/logg"
-            app:maxImageSize="56dp"
-            app:tint="#39CF3F"
-            app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:shapeAppearanceOverlay="@style/FloatingActionButtonShape"
-            />
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/cryptoFragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"

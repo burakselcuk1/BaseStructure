@@ -27,8 +27,8 @@ class MetaFragment : BaseFragment<FragmentMetaBinding, MetaViewModel>(
     private fun setListeners() {
         with(binding){
             launchMeta.setOnClickListener {
-                AdManager.loadAd(requireContext(), "ca-app-pub-3940256099942544/1033173712")
-                AdManager.showAd(requireActivity())
+               /* AdManager.loadAd(requireContext(), "ca-app-pub-3940256099942544/1033173712")
+                AdManager.showAd(requireActivity())*/
                 openCustomTab("https://imagine.meta.com/")
             }
             floatingActionButtonGoogleBard.setOnClickListener {
