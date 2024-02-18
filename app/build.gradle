@@ -19,13 +19,19 @@ android {
         applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 34
-        versionCode 54
-        versionName "5.4"
+        versionCode 57
+        versionName "5.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
         release {
+            storeFile file("../key/app.jks")
+            keyAlias "key0"
+            keyPassword "xx.Thezaa123"
+            storePassword "xx.Thezaa123"
+        }
+        debug {
             storeFile file("../key/app.jks")
             keyAlias "key0"
             keyPassword "xx.Thezaa123"
@@ -39,6 +45,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
+            debug {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                signingConfig signingConfigs.debug
+            }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
