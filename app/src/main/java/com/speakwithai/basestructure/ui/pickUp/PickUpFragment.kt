@@ -83,30 +83,22 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
         })
 
         billingManager.userStatus.observe(viewLifecycleOwner) { userStatus ->
-            // Kullanıcı durumu güncellendiğinde buraya gelecek işlemler
             when (userStatus) {
                 UserStatus.PREMIUM -> {
-                    // Kullanıcı premiumdur
-                    Toast.makeText(requireContext(), "PREMIUM", Toast.LENGTH_SHORT).show()
                 }
 
                 UserStatus.NON_PREMIUM -> {
-                    // Kullanıcı premium değildir
-                    Toast.makeText(requireContext(), "NON PREMIUM", Toast.LENGTH_SHORT).show()
                     showPremiumDialog()
                     binding.premiumIcon.visibility = View.VISIBLE
                 }
 
                 UserStatus.UNKNOWN -> {
-                    // Kullanıcının durumu belirsizdir
-                    Toast.makeText(requireContext(), "BİLİNMİYOR", Toast.LENGTH_SHORT).show()
                     showPremiumDialog()
                     binding.premiumIcon.visibility = View.VISIBLE
 
                 }else->{
-                Toast.makeText(requireContext(), "BOŞ", Toast.LENGTH_SHORT).show()
                 showPremiumDialog()
-
+                binding.premiumIcon.visibility = View.VISIBLE
                 }
             }
         }

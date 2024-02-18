@@ -13,6 +13,9 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.api.gax.core.FixedCredentialsProvider
 import com.google.auth.oauth2.GoogleCredentials
@@ -26,15 +29,20 @@ import com.google.cloud.texttospeech.v1.VoiceSelectionParams
 import com.muratozturk.click_shrink_effect.applyClickShrink
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.AdManager
+import com.speakwithai.basestructure.common.BillingManager
+import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.databinding.ActivityTextToSpeechBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.util.Date
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class TextToSpeechActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTextToSpeechBinding
@@ -42,12 +50,28 @@ class TextToSpeechActivity : AppCompatActivity() {
     private var ssmlGender: SsmlVoiceGender = SsmlVoiceGender.FEMALE
     private var mInterstitialAd: InterstitialAd? = null
     private lateinit var mediaPlayer: MediaPlayer
-
+    private var isPremium = false
+    @Inject
+    lateinit var billingManager: BillingManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mediaPlayer = MediaPlayer()
         binding = ActivityTextToSpeechBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        billingManager.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    billingManager.queryPurchases() // Satın almaları sorgula
+                } else {
+                    // Billing bağlantısı kurulamadı, gerekli hata işlemleri buraya gelebilir
+                }
+            }
+
+            override fun onBillingServiceDisconnected() {
+                // Billing servisi bağlantısı kesildi, gerektiğinde yeniden bağlanma işlemleri buraya gelebilir
+            }
+        })
 
         var voiceValue = binding.editText.text.toString()
 
@@ -62,8 +86,26 @@ class TextToSpeechActivity : AppCompatActivity() {
             playSound.applyClickShrink()
             playSound.setOnClickListener {
                 playSound(it)
-                AdManager.loadAd(this@TextToSpeechActivity, "ca-app-pub-3940256099942544/1033173712")
-                AdManager.showAd(this@TextToSpeechActivity)
+                billingManager.userStatus.observe(this@TextToSpeechActivity) { userStatus ->
+                    when (userStatus) {
+                        UserStatus.PREMIUM -> {
+                        }
+
+                        UserStatus.NON_PREMIUM -> {
+                            AdManager.loadAd(this@TextToSpeechActivity, "ca-app-pub-3940256099942544/1033173712")
+                            AdManager.showAd(this@TextToSpeechActivity)
+                        }
+
+                        UserStatus.UNKNOWN -> {
+                            AdManager.loadAd(this@TextToSpeechActivity, "ca-app-pub-3940256099942544/1033173712")
+                            AdManager.showAd(this@TextToSpeechActivity)
+
+                        }else->{
+                        AdManager.loadAd(this@TextToSpeechActivity, "ca-app-pub-3940256099942544/1033173712")
+                        AdManager.showAd(this@TextToSpeechActivity)
+                    }
+                    }
+                }
             }
             stop.applyClickShrink()
             stop.setOnClickListener {
