@@ -15,17 +15,27 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.common.AdManager
+import com.speakwithai.basestructure.common.BillingManager
+import com.speakwithai.basestructure.common.enums.UserStatus
 import com.speakwithai.basestructure.databinding.FragmentQrCreaterBinding
+import dagger.hilt.android.AndroidEntryPoint
 import qrcode.QRCode
 import java.io.OutputStream
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class QrCreaterFragment : BaseFragment<FragmentQrCreaterBinding, QrCreaterViewModel>(
     layoutId = R.layout.fragment_qr_creater,
     viewModelClass = QrCreaterViewModel::class.java
 ) {
+    @Inject
+    lateinit var billingManager: BillingManager
     override fun onInitDataBinding() {
 
         setListeners()
@@ -37,8 +47,42 @@ class QrCreaterFragment : BaseFragment<FragmentQrCreaterBinding, QrCreaterViewMo
             download.setOnClickListener {
                 onDownloadButtonClicked(requireContext(),binding.image)
                 Toast.makeText(requireContext(), getString(R.string.download_started), Toast.LENGTH_SHORT).show()
-                AdManager.loadAd(requireContext(), "ca-app-pub-3940256099942544/1033173712")
-                AdManager.showAd(requireActivity())
+
+                billingManager.startConnection(object : BillingClientStateListener {
+                    override fun onBillingSetupFinished(billingResult: BillingResult) {
+                        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                            billingManager.queryPurchases() // Satın almaları sorgula
+                        } else {
+                            // Billing bağlantısı kurulamadı, gerekli hata işlemleri buraya gelebilir
+                        }
+                    }
+
+                    override fun onBillingServiceDisconnected() {
+                        // Billing servisi bağlantısı kesildi, gerektiğinde yeniden bağlanma işlemleri buraya gelebilir
+                    }
+                })
+
+                billingManager.userStatus.observe(viewLifecycleOwner) { userStatus ->
+                    when (userStatus) {
+                        UserStatus.PREMIUM -> {
+
+                        }
+
+                        UserStatus.NON_PREMIUM -> {
+                            AdManager.loadAd(requireContext(), "ca-app-pub-3940256099942544/1033173712")
+                            AdManager.showAd(requireActivity())
+                        }
+
+                        UserStatus.UNKNOWN -> {
+                            AdManager.loadAd(requireContext(), "ca-app-pub-3940256099942544/1033173712")
+                            AdManager.showAd(requireActivity())
+
+                        }else->{
+                        AdManager.loadAd(requireContext(), "ca-app-pub-3940256099942544/1033173712")
+                        AdManager.showAd(requireActivity())
+                    }
+                    }
+                }
             }
             create.setOnClickListener {
                 if (userMessage.text.toString().isEmpty()) {
