@@ -25,10 +25,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
 
     override fun onInitDataBinding() {
 
-        val periodicWorkRequest = PeriodicWorkRequestBuilder<CheckDayWorker>(15, TimeUnit.MINUTES).build()
-        WorkManager.getInstance(this).enqueue(periodicWorkRequest)
+        /*val periodicWorkRequest = PeriodicWorkRequestBuilder<CheckDayWorker>(15, TimeUnit.MINUTES).build()
+        WorkManager.getInstance(this).enqueue(periodicWorkRequest)*/
 
-        MessageManager.initialize(this)
+      //  MessageManager.initialize(this)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
