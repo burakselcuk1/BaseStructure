@@ -62,7 +62,6 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
         setListeners()
         setListenerBurgerMenu()
         updateLoginLogoutText()
-        loadAdMod()
         fetchUserNameAndSurname()
         if (!areNotificationsEnabled()) {
             showNotificationPermissionDialog()
@@ -89,15 +88,18 @@ class PickUpFragment : BaseFragment<FragmentPickUpBinding, PickUpViewModel>(
 
                 UserStatus.NON_PREMIUM -> {
                     showPremiumDialog()
+                    loadAdMod()
                     binding.premiumIcon.visibility = View.VISIBLE
                 }
 
                 UserStatus.UNKNOWN -> {
                     showPremiumDialog()
+                    loadAdMod()
                     binding.premiumIcon.visibility = View.VISIBLE
 
                 }else->{
                 showPremiumDialog()
+                loadAdMod()
                 binding.premiumIcon.visibility = View.VISIBLE
                 }
             }
