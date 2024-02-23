@@ -14,6 +14,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.speakwithai.basestructure.R
+import com.speakwithai.basestructure.ui.mainActivity.MainActivity
 
 class FirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -49,14 +50,29 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             }
 
             // Bildirim yöneticisine kanalı ekle
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
 
         // Şimdi bir PendingIntent oluştur
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+        val intent: Intent
+        if (url.isNullOrEmpty()) {
+            intent = Intent(this, MainActivity::class.java)
+        } else {
+            intent = Intent(this, MainActivity::class.java)
+            // Veriyi intent'e ekle
+            intent.putExtra("title", title)
+            intent.putExtra("message", message)
+            intent.putExtra("url", url)
+        }
 
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         // Builder'a PendingIntent'i ekle
         val builder = NotificationCompat.Builder(this, channelId)
