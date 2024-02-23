@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Super AI</string>
+    <string name="hello_blank_fragment">Hallo leeres Fragment</string>
+
+    <!-- Ana Parça -->
+    <string name="description">Die Frage, die du beantworten möchtest</string>
+    <string name="description_continue">finde die Antwort darauf, schreibe sie unten</string>
+    <string name="type_here">Hier eingeben..</string>
+    <string name="not_premium">Nicht Premium</string>
+
+    <!-- Alt Seçenekler -->
+    <string name="house_rent">Wie hoch sind die Mietpreise für Häuser in Kaş, Antalya?</string>
+    <string name="take_ticket">Kann ich Tickets für den Orlando Disney World am Eingang kaufen?</string>
+    <string name="suggest_restaurant">Welche sind die Top 5 Restaurants, die man in Kappadokien besuchen sollte?</string>
+    <string name="travel">Angenommen, ich bleibe nur 5 Tage in Istanbul, kannst du mir Orte vorschlagen, die ich unbedingt sehen muss?</string>
+    <string name="name_crator">Kannst du einen Produktnamenvorschlag für folgende Details erstellen: Produktbeschreibung: Eine Maschine für selbstgemachte Milchshakes. Wichtige Wörter: schnell, gesund, kompakt.</string>
+    <string name="suggest_relationship">Was sind einige romantische Ideen, um meiner Freundin einen Antrag zu machen?</string>
+    <string name="suggest_title">Hast du Ideen für Instagram-Beschriftungen für ein Reisefoto in Çeşme?</string>
+    <string name="write_document">Schreibe ein Gedicht über Liebe</string>
+    <string name="job_posts">Kannst du eine Stellenausschreibungsvorlage für eine Stelle als Jr. QA-Ingenieur erstellen?</string>
+    <string name="cell">Was sind die Organellen einer eukaryotischen Zelle?</string>
+    <string name="climate">Wie wirkt sich der Klimawandel auf die Welt aus?</string>
+    <string name="evolution">Was ist der Evolutionsprozess und wie funktioniert er?</string>
+    <string name="brain">Wie verarbeitet das Gehirn Informationen und wie entstehen Gedanken und Emotionen?</string>
+    <string name="ıniverse">Was ist die Struktur des Universums und wie ist es entstanden?</string>
+    <string name="hair">Welche Möglichkeiten gibt es, um das Haarwachstum zu beschleunigen?</string>
+    <string name="sleep">Was sind einige Tipps, die mir helfen können, besser zu schlafen?</string>
+    <string name="routine">Was sind einige Tipps für die Erstellung einer Morgenroutine?</string>
+    <string name="book">Welche Bücher würdest du jemandem empfehlen, der sich für Achtsamkeit interessiert?</string>
+
+    <string name="house_rent_short">Hausmiete</string>
+    <string name="take_ticket_short">Ticketkauf</string>
+    <string name="suggest_restaurant_short">Restaurantvorschläge</string>
+    <string name="travel_short">Sehenswürdigkeiten</string>
+
+    <string name="name_crator_short">Namensgenerator</string>
+    <string name="suggest_relationship_short">Beziehungsberatung</string>
+    <string name="suggest_title_short">Titelideen</string>
+    <string name="write_document_short">Gedicht schreiben</string>
+    <string name="job_posts_short">Stellenausschreibung</string>
+
+    <string name="cell_short">Zellorganellen</string>
+    <string name="climate_short">Klimawandel</string>
+    <string name="evolution_short">Evolutionstheorie</string>
+
+    <string name="hair_short">Haarwachstum</string>
+    <string name="sleep_short">Besser schlafen</string>
+    <string name="routine_short">Morgenroutine</string>
+    <string name="book_short">Buchvorschläge</string>
+
+    <string name="travel_and_discovery">Reisen und Entdecken</string>
+    <string name="creative_ideas">Kreative Ideen</string>
+    <string name="science_and_learning">Wissenschaft und Lernen</string>
+    <string name="beauty_and_lifestyle">Schönheit und Lebensstil</string>
+
+    <!-- Mehr Fragment -->
+    <string name="select_language">Sprache auswählen</string>
+    <string name="share_speak_with_ai">Teilen Sie Sprechen mit KI</string>
+    <string name="evaluate">Bewerten Sie uns</string>
+    <string name="security">Datenschutzrichtlinie</string>
+    <string name="help">Hilfe</string>
+    <string name="share_app">Überprüfen Sie diese tolle App:</string>
+    <string name="share_app_two">App teilen</string>
+
+    <!-- Mehr Fragment -->
+    <string name="write_your_message_here">Schreiben Sie Ihre Nachricht hier</string>
+    <string name="send_with_email">Mit E-Mail senden</string>
+    <string name="logut">Ausloggen</string>
+
+    <string name="privacy_policy_Title">Datenschutzrichtlinie</string>
+
+    <!-- Chat Parçası -->
+    <string name="no_choices_found">Keine Auswahl gefunden</string>
+    <string name="response_body_is_null">Erhaltene Antwort ist leer</string>
+    <string name="limited_until_2021">Ich bin bis 2021 begrenzt</string>
+    <string name="limited_until_2021_one">Begrenzt bis 2021</string>
+    <string name="limited_until_2021_two">Mein Wissen geht bis 2021</string>
+    <string name="limited_until_2021_three">Ich wurde bis 2021 trainiert</string>
+    <string name="data_after_2021_here">Sie können hier Daten nach 2021 sehen:</string>
+    <string name="typing">Tippen</string>
+    <string name="speak_with_chat">Mit Chat sprechen</string>
+    <string name="unsupport">Entschuldigung, Ihr Gerät unterstützt diese Funktion nicht</string>
+    <string name="no_microphone_permission">Mikrofonberechtigung verweigert.</string>
+
+    <!-- Alt Navigasyon Menüsü -->
+    <string name="chat">Chat</string>
+    <string name="explore">Erkunden</string>
+    <string name="more">Mehr</string>
+
+    <!-- Keşfet Parçası -->
+    <string name="history">Geschichte</string>
+
+    <!-- Premium Alt Sayfa Diyaloğu -->
+    <string name="head_text_one">Verbessern Sie Ihr</string>
+    <string name="head_text_two">Erlebnis mit</string>
+    <string name="head_text_three">Premium-Zugang</string>
+    <string name="premium_user">Sie sind jetzt ein Premium-Benutzer!</string>
+
+    <!-- Giriş Parçası -->
+    <string name="update_version">Bitte aktualisieren Sie die App-Version</string>
+    <string name="create_an_account">Ein Konto erstellen</string>
+    <string name="password">Passwort</string>
+    <string name="name">Benutzername</string>
+    <string name="unsuccess">Anmeldung fehlgeschlagen</string>
+
+    <!-- Kaydol Parçası -->
+    <string name="sign_up">Anmelden</string>
+
+    <!-- Bildirim -->
+    <string name="one_day_passed">1 Tag vergangen!</string>
+    <string name="ask_now">Jetzt können Sie Ihre Fragen stellen</string>
+
+    <!-- SPLASH EKRANI -->
+    <string name="main_text_one">10+ KI-Tools</string>
+    <string name="main_text_two">Mit der Super-KI-App</string>
+    <string name="button_text">LOSLEGEN</string>
+
+    <!-- PICKUP EKRANI -->
+    <string name="pick_ai_service">WÄHLEN SIE IHREN KI-DIENST</string>
+    <string name="general">FINANZ</string>
+    <string name="chat_with_ai">MIT KI CHATTEN</string>
+    <string name="creative">KREATIVE KI-WERKZEUGE</string>
+    <string name="stock">AKTIEN</string>
+    <string name="please_login">Bitte einloggen</string>
+    <string name="subject">Betreff</string>
+    <string name="your_message">Ihre Nachricht...</string>
+    <string name="select_email_app">E-Mail-App auswählen</string>
+    <string name="no_email_app">Keine E-Mail-App gefunden</string>
+
+    <!-- CRYPTO ALTTA NAV MENÜSÜ -->
+    <string name="home_page">Startseite</string>
+    <string name="converter">Konverter</string>
+
+    <!-- CRYPTO ANA SAYFA -->
+    <string name="search_for_a_coin">Nach einer Münze suchen</string>
+    <string name="too_many_requests">Zu viele Anfragen!</string>
+    <string name="an_error_occurred">Ein Fehler ist aufgetreten</string>
+    <string name="no_internet_connection">Keine Internetverbindung!</string>
+    <string name="currency_converter">Währungsumrechner</string>
+    <string name="favourite_coins">Lieblingsmünzen</string>
+    <string name="title_converter">Konverter</string>
+    <string name="available_coins">Verfügbare Münzen</string>
+    <string name="slash">/</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="crypto_currency">Kryptowährung</string>
+
+    <!-- CRYPTO EXCHANGE SAYFASI -->
+    <string name="zero">0</string>
+    <string name="coingecko_attribution"> </string>
+    <string name="title_activity_google">GoogleAktivität</string>
+    <!-- Navigasyon için kullanılan stringler -->
+    <string name="first_fragment_label">Erstes Fragment</string>
+    <string name="second_fragment_label">Zweites Fragment</string>
+    <string name="next">Nächster</string>
+    <string name="previous">Vorheriger</string>
+
+    <!-- DUVAR KAĞIDI PARÇASI -->
+    <string name="editor_picks">KI-Auswahl</string>
+    <string name="unexpected_error">Unerwarteter Fehler</string>
+    <string name="colors_tones">Farbtöne</string>
+    <string name="categories">Kategorien</string>
+    <string name="download_started">Download gestartet. Überprüfen Sie Ihre Benachrichtigungsleiste auf den Fortschritt.</string>
+    <string name="download_failed">Download fehlgeschlagen. Bitte versuchen Sie es erneut.</string>
+    <string name="super_ai_app_jpg">SuperAIApp.jpg</string>
+
+    <!-- DUVAR KAĞIDI PARÇASI -->
+    <string name="download">Herunterladen</string>
+    <string name="download_music">Musik herunterladen</string>
+
+    <!-- DUVAR KAĞIDI PARÇASI -->
+    <string name="search_music">Musik suchen</string>
+
+    <!-- METİN OKUMA PARÇASI -->
+    <string name="convert">Konvertieren</string>
+    <string name="your_last_record">Ihr letzter Eintrag</string>
+    <string name="write_your_text">Schreiben Sie hier Ihren Text</string>
+    <string name="last_record">Letzter Eintrag:</string>
+    <string name="woman">Frau</string>
+    <string name="man">Mann</string>
+    <string name="empy_message">Der Text ist leer! Es kann keine Audiodatei erstellt werden.</string>
+    <string name="turkish">Türkisch</string>
+    <string name="english">Englisch</string>
+    <string name="russian">Russisch</string>
+    <string name="french">Französisch</string>
+    <string name="german">Deutsch</string>
+    <string name="italian">Italienisch</string>
+    <string name="file_downloaded">Datei heruntergeladen: </string>
+    <string name="file_not_downloaded">Datei konnte nicht heruntergeladen werden!</string>
+    <string name="not_find_voice_file">Sprachdatei nicht gefunden!</string>
+
+    <!-- METİN İMAJI PARÇASI -->
+    <string name="generate">Generieren</string>
+    <string name="size_1024">1024 x 1024</string>
+    <string name="size_512">512 x 512</string>
+    <string name="size_256">256 x 256</string>
+    <string name="prompt_hint">Geben Sie hier Ihren Hinweis ein 🎨🖌️</string>
+    <string name="enter_description">Bearbeiten Sie die detaillierte Beschreibung</string>
+    <string name="enter_prompt">Hinweis darf nicht leer sein</string>
+    <string name="error">Fehler!</string>
+    <string name="close">Schließen</string>
+    <string name="tips">TIPPS</string>
+    <string name="best_result1">Für beste Ergebnisse,</string>
+    <string name="best_result2">geben Sie eine detaillierte</string>
+    <string name="best_result3">Beschreibung ein.</string>
+
+    <!-- BURGER MENÜ -->
+    <string name="instagram">Instagram</string>
+    <string name="web_site">Webseite</string>
+    <string name="contact_us">Kontaktiere uns</string>
+    <string name="settings">Einstellungen</string>
+    <string name="log_out">Ausloggen</string>
+
+    <!-- CRYPTO HABERLER -->
+    <string name="news">Nachrichten</string>
+
+    <!-- GİRİŞ PARÇASI -->
+    <string name="login">Anmelden</string>
+    <string name="phone_number">Telefonnummer</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="required">*Erforderlich</string>
+    <string name="or">ODER</string>
+    <string name="login_success">Anmeldung erfolgreich</string>
+    <string name="login_non_success">Falsche E-Mail oder Passwort</string>
+
+    <!-- KAYIT PARÇASI -->
+    <string name="register_success">Registrierung erfolgreich</string>
+    <string name="register_non_success">Registrierung fehlgeschlagen</string>
+    <string name="fill_all">Bitte füllen Sie alle Felder aus</string>
+    <string name="invalid_mail">Ungültige E-Mail-Adresse</string>
+    <string name="password_too_short">Das Passwort muss mindestens 6 Zeichen lang sein</string>
+
+    <!-- AYARLAR PARÇASI -->
+    <string name="profile">Profil</string>
+    <string name="change_language">Sprache ändern</string>
+    <string name="notification_setting">Benachrichtigungseinstellungen</string>
+    <string name="power_settings">Energieverwaltungseinstellungen</string>
+    <string name="battery_settings">Akkuoptimierungseinstellung</string>
+    <string name="app_settings">App-Einstellungen</string>
+
+    <!-- PROFİL PARÇASI -->
+    <string name="user_name">Ihr Name</string>
+    <string name="user_email">E-Mail</string>
+    <string name="user_phone">Telefon</string>
+
+
+    <!-- PREMIUM PARÇASI -->
+    <string name="no_ads">KEINE WERBUNG</string>
+    <string name="access_every_module">AUF ALLE MODULE ZUGREIFEN</string>
+    <string name="early_access">FRÜHER ZUGANG</string>
+    <string name="get_ai_news">KI-NACHRICHTEN ERHALTEN</string>
+    <string name="limitless_download">UNBEGRENZTE DOWNLOADS</string>
+    <string name="get_premium">PREMIUM ERHALTEN</string>
+    <string name="price">0,99 $/Monatlich</string>
+    <string name="more_ai_voice">MEHR KI-STIMME</string>
+
+    <!-- GEMINI PARÇASI -->
+    <string name="please_enter_prompt">Bitte geben Sie einen Hinweis ein</string>
+    <string name="pick_image">Bild auswählen</string>
+    <string name="camera_or_gallery">Möchten Sie ein Bild aus der Kamera oder der Galerie auswählen?</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galerie</string>
+    <string name="your_question">Ihre Nachricht..</string>
+
+    <!-- CHAT GPT PARÇASI -->
+    <string name="chat_gpt">Mit Hilfe von Technologien zur natürlichen Sprachverarbeitung bietet es sinnvolle und kontextbezogene Antworten auf die Fragen der Benutzer. Mit einem breiten Wissensspektrum und Lernfähigkeit kann es Informationen zu verschiedenen Themen bereitstellen und an Diskussionen teilnehmen. ChatGPT ist ein kontinuierlich lernendes Modell, das sich durch Interaktionen und Feedback der Benutzer verbessert.</string>
+    <string name="launch">Starten</string>
+
+    <!-- META AI PARÇASI -->
+    <string name="meta_ai">Meta Image AI ist eine von Meta (früher bekannt als Facebook) entwickelte künstliche Intelligenztechnologie. Sie ist auf Bildverarbeitung, -erkennung und -analyse spezialisiert. Diese Technologie wird verwendet, um visuelle Inhalte auf Social-Media-Plattformen zu analysieren, die Benutzererfahrung zu verbessern und Sicherheitsmaßnahmen zu verstärken. Meta Image AI spielt auch eine effektive Rolle bei Aufgaben wie der Interpretation visueller Inhalte und der Content-Erstellung.</string>
+
+    <!-- BENUTZERDEFINIERTE ALERT DIALOG  -->
+    <string name="open_notification_information">Aktivieren Sie Benachrichtigungen, um auf dem neuesten Stand zu bleiben</string>
+    <string name="okay">VERSTANDEN</string>
+    <string name="reminder">ERINNERUNG</string>
+
+    <!-- QR PARÇASI  -->
+    <string name="your_url_here">Ihre URL hier</string>
+    <string name="create">Erstellen</string>
+    <string name="please_enter_url">Bitte geben Sie eine URL oder einen Text ein</string>
+    <string name="go_to_url">Zur URL gehen</string>
+    <string name="qr_code_content">QR-Code-Inhalt</string>
+    <string name="permission_required">Keine Berechtigung</string>
+    <string name="camera_permission_required">Kameraberechtigung erforderlich</string>
+
+
+</resources>

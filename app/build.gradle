@@ -19,8 +19,8 @@ android {
         applicationId "com.speakwithai.basestructure"
         minSdk 24
         targetSdk 34
-        versionCode 62
-        versionName "6.2"
+        versionCode 65
+        versionName "6.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -195,5 +195,10 @@ dependencies {
 
     //Gemini
     implementation 'com.google.ai.client.generativeai:generativeai:0.1.0'
+
+    implementation('com.google.api.grpc:proto-google-common-protos:2.27.0') {
+        force = true
+    }
+
 
 }

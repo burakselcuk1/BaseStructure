@@ -2,9 +2,13 @@ package com.speakwithai.basestructure.common.service
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -16,12 +20,19 @@ class FirebaseMessagingService : FirebaseMessagingService() {
         if (remoteMessage.data.isNotEmpty()) {
             val title = remoteMessage.data["title"]
             val message = remoteMessage.data["message"]
-
-            createNotification(title, message)
+            val url = remoteMessage.data["url"]
+            createNotification(title, message,url)
         }
     }
 
-    private fun createNotification(title: String?, message: String?) {
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+        // Token burada alınır
+        Log.e("New FCM token","$token")
+    }
+
+
+    private fun createNotification(title: String?, message: String?, url: String?) {
         val channelId = "default_channel" // Bildirim kanalı kimliği
         val notificationId = 1 // Bildirim kimliği
 
@@ -41,16 +52,22 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
 
-        // Bildirim oluştur
+        // Şimdi bir PendingIntent oluştur
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        // Builder'a PendingIntent'i ekle
         val builder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.logosuper) // Bildirim simgesi
             .setContentTitle(title) // Bildirim başlığı
             .setContentText(message) // Bildirim metni
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent) // PendingIntent'i ekle
 
         // Bildirimi göster
         with(NotificationManagerCompat.from(this)) {
             notify(notificationId, builder.build())
         }
     }
+
 }
