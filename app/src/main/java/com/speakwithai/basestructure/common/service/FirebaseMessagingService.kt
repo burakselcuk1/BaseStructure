@@ -21,6 +21,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             val title = remoteMessage.data["title"]
             val message = remoteMessage.data["message"]
             val url = remoteMessage.data["url"]
+            Log.d("gelenurl",url.toString())
             createNotification(title, message,url)
         }
     }
@@ -54,7 +55,8 @@ class FirebaseMessagingService : FirebaseMessagingService() {
 
         // Şimdi bir PendingIntent oluştur
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+
 
         // Builder'a PendingIntent'i ekle
         val builder = NotificationCompat.Builder(this, channelId)
