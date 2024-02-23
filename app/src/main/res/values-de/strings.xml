@@ -251,7 +251,7 @@
     <string name="get_ai_news">KI-NACHRICHTEN ERHALTEN</string>
     <string name="limitless_download">UNBEGRENZTE DOWNLOADS</string>
     <string name="get_premium">PREMIUM ERHALTEN</string>
-    <string name="price">0,99 $/Monatlich</string>
+    <string name="price">0,99$/Monatlich</string>
     <string name="more_ai_voice">MEHR KI-STIMME</string>
 
     <!-- GEMINI PARÇASI -->
@@ -270,8 +270,8 @@
     <string name="meta_ai">Meta Image AI ist eine von Meta (früher bekannt als Facebook) entwickelte künstliche Intelligenztechnologie. Sie ist auf Bildverarbeitung, -erkennung und -analyse spezialisiert. Diese Technologie wird verwendet, um visuelle Inhalte auf Social-Media-Plattformen zu analysieren, die Benutzererfahrung zu verbessern und Sicherheitsmaßnahmen zu verstärken. Meta Image AI spielt auch eine effektive Rolle bei Aufgaben wie der Interpretation visueller Inhalte und der Content-Erstellung.</string>
 
     <!-- BENUTZERDEFINIERTE ALERT DIALOG  -->
-    <string name="open_notification_information">Aktivieren Sie Benachrichtigungen, um auf dem neuesten Stand zu bleiben</string>
-    <string name="okay">VERSTANDEN</string>
+    <string name="open_notification_information">Aktivieren Sie Benachrichtigungen </string>
+    <string name="okay">Verstanden</string>
     <string name="reminder">ERINNERUNG</string>
 
     <!-- QR PARÇASI  -->

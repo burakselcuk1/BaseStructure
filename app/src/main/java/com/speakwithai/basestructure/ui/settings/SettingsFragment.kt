@@ -16,6 +16,7 @@ import com.speakwithai.basestructure.base.BaseFragment
 import com.speakwithai.basestructure.common.AnalyticsHelper
 import com.speakwithai.basestructure.databinding.FragmentSettingsBinding
 import android.provider.Settings
+import com.speakwithai.basestructure.BuildConfig
 import com.speakwithai.basestructure.ui.settings.navigation.SettingsNavigation
 import com.speakwithai.basestructure.ui.settings.navigation.SettingsNavigationImpl
 
@@ -39,6 +40,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel
             backArrow.setOnClickListener {
                 findNavController().popBackStack()
             }
+            val versionName = "v${BuildConfig.VERSION_NAME}"
+            version.text = versionName.toString()
+
             imageViewProfile.setColorFilter(ContextCompat.getColor(requireContext(), R.color.white), android.graphics.PorterDuff.Mode.SRC_IN)
             changeLanguage.setOnClickListener {
                 val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
