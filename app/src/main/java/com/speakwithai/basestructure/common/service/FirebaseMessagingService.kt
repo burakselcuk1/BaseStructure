@@ -22,8 +22,9 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             val title = remoteMessage.data["title"]
             val message = remoteMessage.data["message"]
             val url = remoteMessage.data["url"]
+            val imageUrl = remoteMessage.data["imageUrl"]
             Log.d("gelenurl",url.toString())
-            createNotification(title, message,url)
+            createNotification(title, message,url,imageUrl)
         }
     }
 
@@ -34,7 +35,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
     }
 
 
-    private fun createNotification(title: String?, message: String?, url: String?) {
+    private fun createNotification(title: String?, message: String?, url: String?, imageUrl: String?) {
         val channelId = "default_channel" // Bildirim kanalı kimliği
         val notificationId = 1 // Bildirim kimliği
 
@@ -65,6 +66,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
             intent.putExtra("title", title)
             intent.putExtra("message", message)
             intent.putExtra("url", url)
+            intent.putExtra("imageUrl", imageUrl)
         }
 
         val pendingIntent = PendingIntent.getActivity(

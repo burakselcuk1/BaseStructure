@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.bumptech.glide.Glide
 import com.speakwithai.basestructure.base.BaseActivity
 import com.speakwithai.basestructure.R
 import com.speakwithai.basestructure.common.CheckDayWorker
@@ -33,10 +35,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
         val message = intent.getStringExtra("message")
         val title = intent.getStringExtra("title")
         val url = intent.getStringExtra("url")
+        val imageUrl = intent.getStringExtra("imageUrl")
 
         // Veri varsa ve bu verileri içeren bir dialog
         if (message != null && title != null && url != null) {
-            showNotificationDialog(title, message, url)
+            if (imageUrl != null) {
+                showNotificationDialog(title, message, url, imageUrl)
+            }
         }
 
         /*val periodicWorkRequest = PeriodicWorkRequestBuilder<CheckDayWorker>(15, TimeUnit.MINUTES).build()
@@ -83,7 +88,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
         dialog.show()
     }*/
 
-    private fun showNotificationDialog(title: String, message: String, url: String) {
+    private fun showNotificationDialog(title: String, message: String, url: String, imageUrl: String) {
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.notification_custom_dialog, null)
@@ -91,10 +96,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
         val titleTextView = dialogView.findViewById<TextView>(R.id.titleTextView)
         val messageTextView = dialogView.findViewById<TextView>(R.id.messageTextView)
         val openUrlButton = dialogView.findViewById<Button>(R.id.openUrlButton)
+        val notificationImage = dialogView.findViewById<ImageView>(R.id.notification_image)
         val closeButton = dialogView.findViewById<Button>(R.id.closeButton)
 
         titleTextView.text = title
         messageTextView.text = message
+        Glide.with(this)
+            .load(imageUrl)
+            .into(notificationImage)
 
         builder.setView(dialogView)
 
