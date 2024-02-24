@@ -73,7 +73,7 @@
             android:textColor="@color/white"
 
             android:background="#FF5722"
-            android:text="Kapat"
+            android:text="@string/close"
             />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:background="@drawable/button_degrade_background"
-            android:text="URL'yi Aç"
+            android:text="@string/go_to_url"
             android:layout_weight="1"
            />
     </LinearLayout>
